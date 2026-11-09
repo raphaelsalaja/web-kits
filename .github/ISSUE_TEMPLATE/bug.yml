@@ -1,0 +1,42 @@
+name: Bug Report
+description: Something doesn't work the way the docs say it should.
+labels: [bug]
+body:
+  - type: dropdown
+    id: package
+    attributes:
+      label: Package
+      options:
+        - "@web-kits/audio"
+        - "@web-kits/blur"
+        - "@web-kits/motion-blur"
+        - "@web-kits/springboard"
+        - Website or docs
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What Happened
+      description: What you did, what you expected and what you saw instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: A link to a sandbox or repo, or the smallest code that shows it.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser and OS
+      placeholder: Safari 27 on macOS 27

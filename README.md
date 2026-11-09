@@ -7,12 +7,12 @@ Interface kits for the web.
 
 ## Packages
 
-| Package | Description |
-| --- | --- |
-| [`@web-kits/audio`](./packages/audio) | Declarative audio synthesis, with a CLI for sound patches |
-| [`@web-kits/blur`](./packages/blur) | The progressive blur from the iOS scroll edge |
-| [`@web-kits/springboard`](./packages/springboard) | Apple's springs, curves, app launch and genie |
-| [`@web-kits/motion-blur`](./packages/motion-blur) | Motion blur for moving DOM elements |
+| Package | Version | Description |
+| --- | --- | --- |
+| [`@web-kits/audio`](./packages/audio) | [![npm](https://img.shields.io/npm/v/@web-kits/audio)](https://www.npmjs.com/package/@web-kits/audio) | Declarative audio synthesis, with a CLI for sound patches |
+| [`@web-kits/blur`](./packages/blur) | [![npm](https://img.shields.io/npm/v/@web-kits/blur)](https://www.npmjs.com/package/@web-kits/blur) | The progressive blur from the iOS scroll edge |
+| [`@web-kits/springboard`](./packages/springboard) | [![npm](https://img.shields.io/npm/v/@web-kits/springboard)](https://www.npmjs.com/package/@web-kits/springboard) | Apple's springs, curves, app launch and genie |
+| [`@web-kits/motion-blur`](./packages/motion-blur) | [![npm](https://img.shields.io/npm/v/@web-kits/motion-blur)](https://www.npmjs.com/package/@web-kits/motion-blur) | Motion blur for moving DOM elements |
 
 Each package is versioned and published on its own.
 
