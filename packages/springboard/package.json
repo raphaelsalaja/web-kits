@@ -26,7 +26,8 @@
   "exports": {
     ".": "./src/index.ts",
     "./react": "./src/react.tsx",
-    "./motion": "./src/motion.ts"
+    "./motion": "./src/motion.ts",
+    "./package.json": "./package.json"
   },
   "files": [
     "dist"
@@ -45,7 +46,8 @@
       "./motion": {
         "types": "./dist/motion.d.ts",
         "default": "./dist/motion.js"
-      }
+      },
+      "./package.json": "./package.json"
     }
   },
   "scripts": {
