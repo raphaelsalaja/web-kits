@@ -1,6 +1,6 @@
 {
   "name": "@web-kits/motion-blur",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Motion blur for moving DOM elements, sized from speed, frame time and shutter angle.",
   "license": "MIT",
   "author": "Raphael Salaja",

@@ -1,5 +1,11 @@
 # @web-kits/audio
 
+## 0.3.0
+
+### Minor Changes
+
+- 7754c1e: Requires Node 22 or later. The package now builds with `tsc` instead of bunchee. Every export, the CLI and the React entry stay the same, and `"use client"` stays on `@web-kits/audio/react`.
+
 ## 0.2.0
 
 ### Patch Changes
