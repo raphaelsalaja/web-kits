@@ -17,7 +17,7 @@
     "@biomejs/biome": "2.6.6",
     "@changesets/cli": "^2.31.0",
     "@commitlint/cli": "^20.5.0",
-    "@commitlint/config-conventional": "^20.5.0",
+    "@commitlint/config-conventional": "^21.2.4",
     "@web-kits/audio": "workspace:^",
     "husky": "^9.1.7",
     "prettier": "^3.8.3",
