@@ -2,7 +2,7 @@
 
 Declarative audio synthesis for the web. Describe sounds as plain objects, play them with one function call.
 
-Read the full docs at [audio.raphaelsalaja.com](https://audio.raphaelsalaja.com).
+Read the full docs at [web-kits.dev/audio](https://web-kits.dev/audio).
 
 ```sh
 npm install @web-kits/audio
