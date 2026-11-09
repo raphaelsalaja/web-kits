@@ -7,10 +7,10 @@
 	"homepage": "https://www.raphaelsalaja.com/work/apple",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/raphaelsalaja/springboard.git",
+		"url": "git+https://github.com/raphaelsalaja/web-kits.git",
 		"directory": "packages/springboard"
 	},
-	"bugs": "https://github.com/raphaelsalaja/springboard/issues",
+	"bugs": "https://github.com/raphaelsalaja/web-kits/issues",
 	"type": "module",
 	"sideEffects": false,
 	"keywords": [

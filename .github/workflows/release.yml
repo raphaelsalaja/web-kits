@@ -34,14 +34,14 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - name: Typecheck package
-        run: pnpm --filter @web-kits/audio typecheck
+      - name: Build packages
+        run: pnpm --filter "./packages/*" build
 
-      - name: Test package
-        run: pnpm --filter @web-kits/audio test
+      - name: Typecheck packages
+        run: pnpm --filter "./packages/*" typecheck
 
-      - name: Build package
-        run: pnpm --filter @web-kits/audio build
+      - name: Test packages
+        run: pnpm --filter "./packages/*" --if-present run test
 
       - name: Verify installed package
         run: bash scripts/smoke-package.sh

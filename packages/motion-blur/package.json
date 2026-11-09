@@ -7,10 +7,10 @@
   "homepage": "https://www.raphaelsalaja.com/work/motion-blur",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/raphaelsalaja/motion-blur.git",
+    "url": "git+https://github.com/raphaelsalaja/web-kits.git",
     "directory": "packages/motion-blur"
   },
-  "bugs": "https://github.com/raphaelsalaja/motion-blur/issues",
+  "bugs": "https://github.com/raphaelsalaja/web-kits/issues",
   "type": "module",
   "sideEffects": false,
   "keywords": [

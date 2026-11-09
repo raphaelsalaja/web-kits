@@ -4,13 +4,14 @@
   "description": "A declarative synthesizer for the web",
   "author": "Raphael Salaja",
   "license": "MIT",
-  "homepage": "https://github.com/raphaelsalaja/audio",
+  "homepage": "https://audio.raphaelsalaja.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/raphaelsalaja/audio.git"
+    "url": "git+https://github.com/raphaelsalaja/web-kits.git",
+    "directory": "packages/audio"
   },
   "bugs": {
-    "url": "https://github.com/raphaelsalaja/audio/issues"
+    "url": "https://github.com/raphaelsalaja/web-kits/issues"
   },
   "keywords": [
     "audio",

@@ -1,4 +1,4 @@
-# Contributing to @web-kits/audio
+# Contributing to Web Kits
 
 Thanks for your interest in contributing! This guide covers everything you need to get started.
 
@@ -10,8 +10,8 @@ Thanks for your interest in contributing! This guide covers everything you need 
 ## Setup
 
 ```bash
-git clone https://github.com/raphaelsalaja/audio.git
-cd audio
+git clone https://github.com/raphaelsalaja/web-kits.git
+cd web-kits
 pnpm install
 pnpm build
 ```
@@ -35,10 +35,13 @@ pnpm lint
 ## Monorepo layout
 
 ```
-packages/audio       Core library + CLI
-apps/web             Documentation site (Fumadocs)
-ui/                  Shared UI components
-.web-kits/           First-party sound patches & generated code
+apps/web                      Web Kits site
+apps/audio                    Audio docs and registry (Fumadocs)
+apps/audio-marketing          Audio launch video (Remotion)
+apps/springboard-playground   Springboard playground (Vite)
+packages/*                    Published packages
+internal/                     Shared UI and icons for the apps
+.web-kits/                    First-party sound patches & generated code
 ```
 
 ## Making changes
@@ -51,7 +54,7 @@ ui/                  Shared UI components
 
 ## Changesets
 
-We use [Changesets](https://github.com/changesets/changesets) to manage versioning and changelogs. Before opening a PR that affects the published package, run:
+We use [Changesets](https://github.com/changesets/changesets) to manage versioning and changelogs. Before opening a PR that affects a published package, run:
 
 ```bash
 pnpm changeset
@@ -63,16 +66,16 @@ Follow the prompts to describe what changed and the semver bump type. This creat
 
 The Release workflow on `main` versions packages with Changesets, or publishes
 unpublished package versions when no changesets remain. It typechecks, tests, and
-builds `@web-kits/audio` independently of the private website and marketing apps.
-It also installs a packed tarball in a temporary project and checks the library
-import and executable CLI. Run this check locally after building:
+builds every package under `packages/` independently of the private apps. It also
+installs a packed `@web-kits/audio` tarball in a temporary project and checks the
+library import and executable CLI. Run this check locally after building:
 
 ```bash
 bash scripts/smoke-package.sh
 ```
 
 Configure the repository's `NPM_TOKEN` Actions secret with permission to publish
-`@web-kits/audio`. The workflow passes this secret as both `NPM_TOKEN` for
+the `@web-kits` scope. The workflow passes this secret as both `NPM_TOKEN` for
 Changesets and `NODE_AUTH_TOKEN` for the npm configuration created by setup-node.
 
 If publishing fails after a version bump, fix the underlying error and rerun the

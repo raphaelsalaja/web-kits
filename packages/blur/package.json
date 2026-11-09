@@ -7,10 +7,10 @@
   "homepage": "https://www.raphaelsalaja.com/work/progressive-blur",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/raphaelsalaja/blur.git",
+    "url": "git+https://github.com/raphaelsalaja/web-kits.git",
     "directory": "packages/blur"
   },
-  "bugs": "https://github.com/raphaelsalaja/blur/issues",
+  "bugs": "https://github.com/raphaelsalaja/web-kits/issues",
   "type": "module",
   "sideEffects": false,
   "keywords": [

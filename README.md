@@ -1,89 +1,47 @@
-# @web-kits/audio
+# Web Kits
 
-[![npm](https://img.shields.io/npm/v/%40web-kits%2Faudio)](https://www.npmjs.com/package/@web-kits/audio)
-[![license](https://img.shields.io/github/license/raphaelsalaja/audio)](LICENSE)
-[![CI](https://github.com/raphaelsalaja/audio/actions/workflows/ci.yml/badge.svg)](https://github.com/raphaelsalaja/audio/actions/workflows/ci.yml)
+[![license](https://img.shields.io/github/license/raphaelsalaja/web-kits)](LICENSE)
+[![CI](https://github.com/raphaelsalaja/web-kits/actions/workflows/ci.yml/badge.svg)](https://github.com/raphaelsalaja/web-kits/actions/workflows/ci.yml)
 
-Declarative audio synthesis for the web. Describe sounds as plain objects, play them with one function call.
+Interface kits for the web.
 
-> ~11 kB gzipped, tree-shakeable, works with vanilla JS or React.
+## Packages
 
-## Install
+| Package | Description |
+| --- | --- |
+| [`@web-kits/audio`](./packages/audio) | Declarative audio synthesis, with a CLI for sound patches |
+| [`@web-kits/text`](./packages/text) | Fluid text transitions |
+| [`@web-kits/blur`](./packages/blur) | The progressive blur from the iOS scroll edge |
+| [`@web-kits/springboard`](./packages/springboard) | Apple's springs, curves, app launch and genie |
+| [`@web-kits/motion-blur`](./packages/motion-blur) | Motion blur for moving DOM elements |
 
-```bash
-npm install @web-kits/audio
-```
+Each package is versioned and published on its own.
 
-## Quick start
-
-```ts
-import { defineSound, ensureReady } from "@web-kits/audio";
-
-const click = defineSound({
-  source: { type: "sine", frequency: { start: 1200, end: 300 } },
-  envelope: { attack: 0.001, decay: 0.06, sustain: 0, release: 0.03 },
-  gain: 0.3,
-});
-
-await ensureReady();
-click();
-```
-
-### React
-
-```tsx
-import { usePatch } from "@web-kits/audio/react";
-
-function App() {
-  const patch = usePatch("/patches/core.json");
-
-  return (
-    <button onClick={() => patch.play("click")} disabled={!patch.ready}>
-      Click me
-    </button>
-  );
-}
-```
-
-## CLI
-
-Browse and install community sound patches directly from GitHub repos:
+## Develop
 
 ```bash
-# Browse the registry
-npx @web-kits/audio add
-
-# Install from a GitHub repo
-npx @web-kits/audio add user/repo
-
-# Create a new patch
-npx @web-kits/audio init
-
-# List installed patches
-npx @web-kits/audio list
+pnpm install
+pnpm build
+pnpm dev
 ```
 
-## Monorepo structure
+## Structure
 
 ```
-packages/audio       Core library + CLI (published to npm)
-apps/web             Documentation, registry, and homepage
-ui/                  Shared UI components
-.web-kits/           First-party sound patches & generated code
+apps/web                      Web Kits site
+apps/audio                    Audio docs and registry (audio.raphaelsalaja.com)
+apps/audio-marketing          Audio launch video (Remotion)
+apps/springboard-playground   Springboard playground (Vite)
+packages/*                    Published packages
+internal/ui                   Shared UI for the apps
+internal/icons                Shared icons for the apps
+skills/create-sound           Agent skill for writing audio patches
+.web-kits/                    First-party audio patches
 ```
-
-## Documentation
-
-Full docs at [audio.raphaelsalaja.com](https://audio.raphaelsalaja.com).
-
-## References
-
-- Built on the [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
-- Patch discovery and CLI inspired by [skills.sh](https://skills.sh) by Vercel
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for setup instructions and guidelines.
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 

@@ -126,4 +126,4 @@ Full docs at [audio.raphaelsalaja.com](https://audio.raphaelsalaja.com).
 
 ## License
 
-[MIT](https://github.com/raphaelsalaja/audio/blob/main/LICENSE)
+[MIT](https://github.com/raphaelsalaja/web-kits/blob/main/LICENSE)
