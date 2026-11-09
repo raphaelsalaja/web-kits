@@ -4,7 +4,7 @@ Thanks for your interest in contributing! This guide covers everything you need 
 
 ## Prerequisites
 
-- **Node.js** 20+ (enforced via `engines` in `package.json`)
+- **Node.js** 22+ (enforced via `engines` in `package.json`)
 - **pnpm** 9+
 
 ## Setup
@@ -28,8 +28,15 @@ pnpm build
 # Typecheck
 pnpm typecheck
 
-# Lint
+# Test
+pnpm test
+
+# Lint, or fix what it can
 pnpm lint
+pnpm format
+
+# Pack every package and check it installs and imports
+pnpm smoke
 ```
 
 ## Monorepo layout
@@ -48,7 +55,7 @@ internal/                     Shared UI and icons for the apps
 
 1. Create a new branch from `main`.
 2. Make your changes.
-3. Run `pnpm build && pnpm typecheck && pnpm lint` to verify everything passes.
+3. Run `pnpm lint && pnpm typecheck && pnpm test && pnpm smoke` to verify everything passes.
 4. Add a changeset describing your change (see below).
 5. Open a pull request.
 
@@ -66,13 +73,10 @@ Follow the prompts to describe what changed and the semver bump type. This creat
 
 The Release workflow on `main` versions packages with Changesets, or publishes
 unpublished package versions when no changesets remain. It typechecks, tests, and
-builds every package under `packages/` independently of the private apps. It also
-installs a packed `@web-kits/audio` tarball in a temporary project and checks the
-library import and executable CLI. Run this check locally after building:
-
-```bash
-bash scripts/smoke-package.sh
-```
+builds every package under `packages/` independently of the private apps. It then
+runs `pnpm smoke`, which packs every package, checks each tarball with publint and
+Are the Types Wrong, installs them all in a temporary project, imports every
+export, and runs the audio CLI.
 
 Configure the repository's `NPM_TOKEN` Actions secret with permission to publish
 the `@web-kits` scope. The workflow passes this secret as both `NPM_TOKEN` for

@@ -45,8 +45,8 @@ jobs:
       - name: Test packages
         run: pnpm --filter "./packages/*" --if-present run test
 
-      - name: Verify installed package
-        run: bash scripts/smoke-package.sh
+      - name: Verify packed packages
+        run: pnpm smoke
 
       - name: Create Release PR or publish
         uses: changesets/action@v1
