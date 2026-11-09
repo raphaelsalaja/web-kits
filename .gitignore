@@ -36,3 +36,7 @@ Thumbs.db
 !.vscode/settings.json
 .env*.local
 apps/*/next-env.d.ts
+
+# playwright
+test-results
+playwright-report

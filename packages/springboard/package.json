@@ -1,0 +1,65 @@
+{
+	"name": "@web-kits/springboard",
+	"version": "0.0.0",
+	"description": "Apple's springs, curves and transitions measured from iOS and macOS, with SpringBoard's app launch and the Dock's genie for any DOM element.",
+	"license": "MIT",
+	"author": "Raphael Salaja",
+	"homepage": "https://www.raphaelsalaja.com/work/apple",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/raphaelsalaja/springboard.git",
+		"directory": "packages/springboard"
+	},
+	"bugs": "https://github.com/raphaelsalaja/springboard/issues",
+	"type": "module",
+	"sideEffects": false,
+	"keywords": [
+		"spring",
+		"animation",
+		"ios",
+		"macos",
+		"genie",
+		"app launch",
+		"base ui",
+		"react"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		},
+		"./react": {
+			"types": "./dist/react.d.ts",
+			"default": "./dist/react.js"
+		},
+		"./motion": {
+			"types": "./dist/motion.d.ts",
+			"default": "./dist/motion.js"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"devDependencies": {
+		"@types/react": "^19.3.0",
+		"react": "19.3.1",
+		"typescript": "^7.0.2",
+		"vitest": "^5.1.0"
+	},
+	"peerDependencies": {
+		"react": ">=19"
+	},
+	"peerDependenciesMeta": {
+		"react": {
+			"optional": true
+		}
+	},
+	"scripts": {
+		"build": "rm -rf dist && tsc -p tsconfig.build.json",
+		"typecheck": "tsc -p tsconfig.build.json --noEmit",
+		"test": "vitest run"
+	}
+}

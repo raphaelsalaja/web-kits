@@ -1,0 +1,58 @@
+{
+  "name": "@web-kits/blur",
+  "version": "0.1.0",
+  "description": "Apple's progressive blur from the iOS 27 scroll edge, measured in the Simulator and rebuilt with backdrop-filter.",
+  "license": "MIT",
+  "author": "Raphael Salaja",
+  "homepage": "https://www.raphaelsalaja.com/work/progressive-blur",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raphaelsalaja/blur.git",
+    "directory": "packages/blur"
+  },
+  "bugs": "https://github.com/raphaelsalaja/blur/issues",
+  "type": "module",
+  "sideEffects": false,
+  "keywords": [
+    "progressive blur",
+    "variable blur",
+    "backdrop-filter",
+    "scroll edge",
+    "ios",
+    "react"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "default": "./dist/react.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.build.json --noEmit",
+    "prepublishOnly": "pnpm build"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "react": "19.3.1",
+    "typescript": "^7.0.2"
+  },
+  "peerDependencies": {
+    "react": ">=19"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  }
+}
