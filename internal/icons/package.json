@@ -8,14 +8,13 @@
     "./*/*": "./*/*.tsx"
   },
   "scripts": {
-    "convert": "node convert.mjs",
-    "lint": "biome check --fix --unsafe ."
+    "convert": "node convert.mjs"
   },
   "peerDependencies": {
     "react": ">=18"
   },
   "devDependencies": {
-    "@types/react": "^19.2.14",
+    "@types/react": "catalog:",
     "svgo": "^3.3.3"
   }
 }

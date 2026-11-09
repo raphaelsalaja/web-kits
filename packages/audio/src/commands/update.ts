@@ -10,7 +10,7 @@ import {
   getPatchesDir,
   regenerateIndex,
   validatePatch,
-} from "./utils.js";
+} from "./utils.ts";
 
 export async function update(_args: string[]) {
   p.intro("@web-kits/audio update");

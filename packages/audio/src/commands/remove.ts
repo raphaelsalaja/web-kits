@@ -5,7 +5,7 @@ import {
   getInstalledPatches,
   getPatchesDir,
   regenerateIndex,
-} from "./utils.js";
+} from "./utils.ts";
 
 export interface RemoveOptions {
   yes?: boolean;

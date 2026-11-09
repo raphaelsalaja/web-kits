@@ -1,9 +1,9 @@
-import { render } from "./engine";
+import { render } from "./engine.ts";
 import type {
   OfflineRenderOptions,
   PlayOptions,
   SoundDefinition,
-} from "./types";
+} from "./types.ts";
 
 /**
  * Renders a sound definition to an `AudioBuffer` using `OfflineAudioContext`.

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { parseAddOptions } from "../src/commands/add.js";
-import { parseRemoveOptions } from "../src/commands/remove.js";
+import { parseAddOptions } from "../src/commands/add.ts";
+import { parseRemoveOptions } from "../src/commands/remove.ts";
 
 describe("parseAddOptions", () => {
   it("parses source with no flags", () => {

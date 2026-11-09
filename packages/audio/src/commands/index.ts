@@ -1,11 +1,11 @@
 import * as p from "@clack/prompts";
-import { add } from "./add.js";
-import { check } from "./check.js";
-import { find } from "./find.js";
-import { init } from "./init.js";
-import { list } from "./list.js";
-import { remove } from "./remove.js";
-import { update } from "./update.js";
+import { add } from "./add.ts";
+import { check } from "./check.ts";
+import { find } from "./find.ts";
+import { init } from "./init.ts";
+import { list } from "./list.ts";
+import { remove } from "./remove.ts";
+import { update } from "./update.ts";
 
 const COMMANDS: Record<string, (args: string[]) => Promise<void>> = {
   add,
@@ -145,7 +145,7 @@ export async function run() {
       const { fileURLToPath } = await import("node:url");
       const __dirname = dirname(fileURLToPath(import.meta.url));
       const pkg = JSON.parse(
-        readFileSync(join(__dirname, "..", "package.json"), "utf-8"),
+        readFileSync(join(__dirname, "..", "..", "package.json"), "utf-8"),
       );
       console.log(pkg.version);
     } catch {

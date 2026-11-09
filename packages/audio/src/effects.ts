@@ -15,7 +15,7 @@ import type {
   StereoPanEffect,
   TremoloEffect,
   VibratoEffect,
-} from "./types";
+} from "./types.ts";
 
 type Disposable = { dispose?: () => void };
 

@@ -2,7 +2,7 @@ import { mkdirSync, realpathSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { getPatchesDir } from "../src/commands/utils.js";
+import { getPatchesDir } from "../src/commands/utils.ts";
 
 describe("getPatchesDir", () => {
   let tempDir: string;

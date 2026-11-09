@@ -5,7 +5,7 @@ import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import {
   discoverPatchesFromLocal,
   isLocalSource,
-} from "../src/commands/utils.js";
+} from "../src/commands/utils.ts";
 
 describe("isLocalSource", () => {
   let tempDir: string;

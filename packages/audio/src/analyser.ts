@@ -1,5 +1,5 @@
-import { getContext, getMasterBus } from "./context";
-import type { AnalyserOptions } from "./types";
+import { getContext, getMasterBus } from "./context.ts";
+import type { AnalyserOptions } from "./types.ts";
 
 /**
  * Wrapper around the native `AnalyserNode` with pre-allocated typed arrays

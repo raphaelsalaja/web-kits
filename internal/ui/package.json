@@ -9,7 +9,6 @@
     "./lib/*": "./lib/*.ts"
   },
   "scripts": {
-    "lint": "biome check --fix --unsafe .",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -22,8 +21,8 @@
     "react-dom": ">=19"
   },
   "devDependencies": {
-    "@types/react": "19.2.14",
-    "@types/react-dom": "19.2.3",
-    "typescript": "^5.9.3"
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "typescript": "catalog:"
   }
 }

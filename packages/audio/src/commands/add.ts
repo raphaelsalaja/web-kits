@@ -20,7 +20,7 @@ import {
   regenerateIndex,
   registerPatch,
   validatePatch,
-} from "./utils.js";
+} from "./utils.ts";
 
 export interface AddOptions {
   list?: boolean;
