@@ -1,4 +1,5 @@
 import { Greeting } from "@/components/greeting";
+import { KitIcon } from "@/components/kit-icon";
 import { kits, site } from "@/lib/kits";
 import styles from "./page.module.css";
 
@@ -18,11 +19,14 @@ export default function HomePage() {
           {kits.map((kit) => (
             <li key={kit.slug}>
               <a className={styles.row} href={kit.href}>
-                <span className={styles.title}>
-                  {kit.name}
-                  <span className={styles.version}>v{kit.version}</span>
+                <KitIcon slug={kit.slug} />
+                <span className={styles.text}>
+                  <span className={styles.title}>
+                    {kit.name}
+                    <span className={styles.version}>v{kit.version}</span>
+                  </span>
+                  <span className={styles.description}>{kit.description}</span>
                 </span>
-                <span className={styles.description}>{kit.description}</span>
               </a>
             </li>
           ))}
