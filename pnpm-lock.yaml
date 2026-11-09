@@ -302,6 +302,15 @@ importers:
       '@web-kits/audio':
         specifier: workspace:*
         version: link:../../packages/audio
+      '@web-kits/blur':
+        specifier: workspace:*
+        version: link:../../packages/blur
+      '@web-kits/motion-blur':
+        specifier: workspace:*
+        version: link:../../packages/motion-blur
+      '@web-kits/springboard':
+        specifier: workspace:*
+        version: link:../../packages/springboard
       calligraph:
         specifier: ^1.4.1
         version: 1.4.1(motion@12.34.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)

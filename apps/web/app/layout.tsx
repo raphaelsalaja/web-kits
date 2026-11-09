@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import { kits, site } from "@/lib/kits";
 import "./globals.css";
 
 const openRunde = localFont({
@@ -29,28 +30,28 @@ const openRunde = localFont({
   display: "swap",
 });
 
-const title = "Web Kits";
-const description = "Interface kits for the web.";
+const names = new Intl.ListFormat("en-GB").format(kits.map((kit) => kit.name));
+const description = `${site.description} ${names}.`;
 
 export const viewport: Viewport = {
   themeColor: "#ffffff",
 };
 
 export const metadata: Metadata = {
-  title: {
-    default: title,
-    template: `%s — ${title}`,
-  },
+  metadataBase: new URL(site.url),
+  title: site.name,
   description,
+  alternates: { canonical: "/" },
   openGraph: {
-    title,
+    title: site.name,
     description,
-    siteName: title,
+    siteName: site.name,
+    url: "/",
     type: "website",
   },
   twitter: {
-    card: "summary",
-    title,
+    card: "summary_large_image",
+    title: site.name,
     description,
   },
 };

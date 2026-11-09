@@ -2,7 +2,7 @@
 
 import { defineSound, ensureReady } from "@web-kits/audio";
 import { useEffect, useMemo, useState } from "react";
-import styles from "../app/page.module.css";
+import styles from "./previews.module.css";
 
 export function AudioPreview() {
   const [ready, setReady] = useState(false);
@@ -39,7 +39,7 @@ export function AudioPreview() {
   }, []);
 
   return (
-    <div className={styles.audioPreview}>
+    <div className={`${styles.fill} ${styles.audio}`}>
       {(
         [
           ["click", "Click"],

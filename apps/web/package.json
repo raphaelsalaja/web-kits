@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@web-kits/audio": "workspace:*",
+    "@web-kits/blur": "workspace:*",
+    "@web-kits/motion-blur": "workspace:*",
+    "@web-kits/springboard": "workspace:*",
     "calligraph": "^1.4.1",
     "motion": "catalog:",
     "next": "catalog:",
