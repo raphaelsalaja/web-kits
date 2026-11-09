@@ -9,6 +9,8 @@ export const site = {
   description: "Interface kits for the web.",
   url: "https://web-kits.dev",
   source: "https://github.com/raphaelsalaja/web-kits",
+  x: "https://x.com/raphaelsalaja",
+  linkedin: "https://www.linkedin.com/in/raphael-salaja/",
 };
 
 export type Kit = {

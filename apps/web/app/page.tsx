@@ -1,7 +1,15 @@
-import { Greeting } from "@/components/greeting";
+import Github from "@web-kits/icons/social-media/github";
+import Linkedin from "@web-kits/icons/social-media/linkedin";
+import XTwitter from "@web-kits/icons/social-media/x-twitter";
 import { KitIcon } from "@/components/kit-icon";
 import { kits, site } from "@/lib/kits";
 import styles from "./page.module.css";
+
+const social = [
+  { label: "GitHub", href: site.source, Icon: Github },
+  { label: "X", href: site.x, Icon: XTwitter },
+  { label: "LinkedIn", href: site.linkedin, Icon: Linkedin },
+];
 
 export default function HomePage() {
   return (
@@ -34,10 +42,15 @@ export default function HomePage() {
       </section>
 
       <footer className={styles.footer}>
-        <Greeting />
-        <a className={styles.link} href={site.source}>
-          GitHub
-        </a>
+        <ul className={styles.social}>
+          {social.map(({ label, href, Icon }) => (
+            <li key={label}>
+              <a className={styles.link} href={href} aria-label={label}>
+                <Icon aria-hidden="true" title={label} width={16} height={16} />
+              </a>
+            </li>
+          ))}
+        </ul>
       </footer>
     </main>
   );

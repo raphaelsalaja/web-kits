@@ -82,21 +82,24 @@
 
 .footer {
   display: flex;
-  gap: 16px;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding-top: 12px;
   margin-top: 48px;
-  font-size: 12px;
-  line-height: 16px;
   color: var(--text-quaternary);
   border-top: 1px solid var(--border-primary);
 }
 
-.greeting {
-  font-variant-numeric: tabular-nums;
+.social {
+  display: flex;
+  gap: 4px;
+  margin-right: -4px;
 }
 
 .link {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
   transition: color var(--duration-snappy) ease;
 
   @media (hover: hover) {

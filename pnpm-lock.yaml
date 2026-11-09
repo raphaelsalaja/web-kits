@@ -305,6 +305,9 @@ importers:
       '@web-kits/blur':
         specifier: workspace:*
         version: link:../../packages/blur
+      '@web-kits/icons':
+        specifier: workspace:*
+        version: link:../../internal/icons
       '@web-kits/motion-blur':
         specifier: workspace:*
         version: link:../../packages/motion-blur
