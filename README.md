@@ -10,7 +10,6 @@ Interface kits for the web.
 | Package | Description |
 | --- | --- |
 | [`@web-kits/audio`](./packages/audio) | Declarative audio synthesis, with a CLI for sound patches |
-| [`@web-kits/text`](./packages/text) | Fluid text transitions |
 | [`@web-kits/blur`](./packages/blur) | The progressive blur from the iOS scroll edge |
 | [`@web-kits/springboard`](./packages/springboard) | Apple's springs, curves, app launch and genie |
 | [`@web-kits/motion-blur`](./packages/motion-blur) | Motion blur for moving DOM elements |

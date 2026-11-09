@@ -1,8 +1,8 @@
+import audioPkg from "@web-kits/audio/package.json";
+import calligraphPkg from "calligraph/package.json";
 import { AudioPreview } from "@/components/audio-preview";
 import { Greeting } from "@/components/greeting";
 import { TextPreview } from "@/components/text-preview";
-import audioPkg from "@web-kits/audio/package.json";
-import textPkg from "@web-kits/text/package.json";
 import styles from "./page.module.css";
 
 const products = [
@@ -13,9 +13,9 @@ const products = [
     preview: <AudioPreview />,
   },
   {
-    name: "Text",
-    version: textPkg.version,
-    href: "https://www.npmjs.com/package/@web-kits/text",
+    name: "Calligraph",
+    version: calligraphPkg.version,
+    href: "https://www.npmjs.com/package/calligraph",
     preview: <TextPreview />,
   },
 ] as const;

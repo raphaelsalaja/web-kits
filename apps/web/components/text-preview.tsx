@@ -1,6 +1,6 @@
 "use client";
 
-import { Text } from "@web-kits/text";
+import { Calligraph } from "calligraph";
 import { useEffect, useState } from "react";
 import styles from "../app/page.module.css";
 
@@ -18,9 +18,9 @@ export function TextPreview() {
 
   return (
     <div className={styles.textPreview}>
-      <Text animation="smooth" drift={{ x: 18, y: 4 }} trend={-1}>
+      <Calligraph animation="smooth" drift={{ x: 18, y: 4 }} trend={-1}>
         {phrases[index]}
-      </Text>
+      </Calligraph>
     </div>
   );
 }
