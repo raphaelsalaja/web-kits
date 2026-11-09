@@ -9,27 +9,27 @@ import { uikit } from "../presets.ts";
 const { zoom: spec } = uikit;
 
 export const ZOOM = {
-	spring: spec.spring,
-	cornerRadius: spec.cornerRadius,
-	dimming: spec.dimming,
-	shadow: spec.shadow,
+  spring: spec.spring,
+  cornerRadius: spec.cornerRadius,
+  dimming: spec.dimming,
+  shadow: spec.shadow,
 };
 
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
 /** The screen behind's scale once receded: 34.67 points narrower, at least 0.8. */
 export function recededScale(width: number) {
-	return Math.max(1 - spec.recede / width, spec.minimumScale);
+  return Math.max(1 - spec.recede / width, spec.minimumScale);
 }
 
 /** Progress 0 is the source in place, 1 the pushed screen full size. */
 export function zoom(source: Rect, screen: Rect, progress: number) {
-	return {
-		x: lerp(source.x, screen.x, progress),
-		y: lerp(source.y, screen.y, progress),
-		width: lerp(source.width, screen.width, progress),
-		height: lerp(source.height, screen.height, progress),
-		background: lerp(1, recededScale(screen.width), progress),
-		dimming: spec.dimming * progress,
-	};
+  return {
+    x: lerp(source.x, screen.x, progress),
+    y: lerp(source.y, screen.y, progress),
+    width: lerp(source.width, screen.width, progress),
+    height: lerp(source.height, screen.height, progress),
+    background: lerp(1, recededScale(screen.width), progress),
+    dimming: spec.dimming * progress,
+  };
 }

@@ -7,9 +7,9 @@ import { join } from "node:path";
 import {
   parseFrontmatter,
   prefixOf,
+  RULES_DIR,
   readRuleFiles,
   readSections,
-  RULES_DIR,
   SKILL_ROOT,
 } from "./lib.mjs";
 

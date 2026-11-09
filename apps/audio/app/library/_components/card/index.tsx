@@ -44,7 +44,10 @@ export function Card({
     setPlaying(false);
   }, [stopVis]);
 
-  useEffect(() => registerStop(patch.id, stopPlayback), [patch.id, registerStop, stopPlayback]);
+  useEffect(
+    () => registerStop(patch.id, stopPlayback),
+    [patch.id, registerStop, stopPlayback],
+  );
 
   useEffect(() => {
     if (!isActive && playing) stopPlayback();

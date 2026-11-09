@@ -7,9 +7,9 @@ import { join } from "node:path";
 import {
   parseFrontmatter,
   prefixOf,
+  RULES_DIR,
   readRuleFiles,
   readSections,
-  RULES_DIR,
 } from "./lib.mjs";
 
 const REQUIRED = ["title", "impact"];
@@ -40,7 +40,8 @@ for (const file of ruleFiles) {
   const { data } = parseFrontmatter(raw);
 
   for (const key of REQUIRED) {
-    if (!data[key]) errors.push(`${file}: missing required frontmatter "${key}"`);
+    if (!data[key])
+      errors.push(`${file}: missing required frontmatter "${key}"`);
   }
 
   if (data.impact && !ALLOWED_IMPACTS.has(data.impact)) {
@@ -101,13 +102,17 @@ function validateExample(example, file, prefix) {
     if (freqErr) errs.push(freqErr);
 
     if (layer.envelope) {
-      if (typeof layer.envelope.decay !== "number" || layer.envelope.decay <= 0) {
+      if (
+        typeof layer.envelope.decay !== "number" ||
+        layer.envelope.decay <= 0
+      ) {
         errs.push(`${file}: layer[${i}].envelope.decay must be > 0`);
       }
       if (
         typeof layer.envelope.sustain === "number" &&
         layer.envelope.sustain > 0 &&
-        (typeof layer.envelope.release !== "number" || layer.envelope.release <= 0)
+        (typeof layer.envelope.release !== "number" ||
+          layer.envelope.release <= 0)
       ) {
         errs.push(
           `${file}: layer[${i}] sustain > 0 requires release > 0 (validate-envelope-sanity)`,
@@ -116,7 +121,9 @@ function validateExample(example, file, prefix) {
     }
 
     if (layer.filter) {
-      const filters = Array.isArray(layer.filter) ? layer.filter : [layer.filter];
+      const filters = Array.isArray(layer.filter)
+        ? layer.filter
+        : [layer.filter];
       for (const [fi, f] of filters.entries()) {
         if (typeof f.frequency === "number") {
           if (f.frequency < 20 || f.frequency > 20000) {
@@ -155,7 +162,12 @@ function checkFrequency(value, file, layerIdx) {
     }
     return null;
   }
-  if (value && typeof value === "object" && "start" in value && "end" in value) {
+  if (
+    value &&
+    typeof value === "object" &&
+    "start" in value &&
+    "end" in value
+  ) {
     if (value.start < 20 || value.start > 20000) {
       return `${file}: layer[${layerIdx}].source.frequency.start ${value.start} out of bounds`;
     }
