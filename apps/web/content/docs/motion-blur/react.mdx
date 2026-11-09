@@ -1,0 +1,48 @@
+---
+title: React
+description: The hook, the component and the provider.
+---
+
+```tsx
+import { useMotionBlur } from "@web-kits/motion-blur/react";
+
+function Card() {
+  const blur = useMotionBlur({ shutter: 180 });
+  return (
+    <motion.div ref={blur.ref} animate={{ x: open ? 320 : 0 }}>
+      <div className="card-face">…</div>
+    </motion.div>
+  );
+}
+```
+
+Options can change on any render, and the current blur picks them up without starting over.
+
+## Component
+
+There's also a component that sets up the host and layer for you:
+
+```tsx
+import { MotionBlur } from "@web-kits/motion-blur/react";
+
+<MotionBlur className="card" shutter={360}>
+  …
+</MotionBlur>;
+```
+
+Animate the outer element and style what's inside it.
+
+## Provider
+
+To set the technique, shutter or reduced motion for a whole tree, wrap it in a provider. Options a blur sets itself win, and a nested provider overrides its parent:
+
+```tsx
+import { echo } from "@web-kits/motion-blur";
+import { MotionBlurProvider } from "@web-kits/motion-blur/react";
+
+<MotionBlurProvider technique={echo({ spacing: 1 })} shutter={270}>
+  <App />
+</MotionBlurProvider>;
+```
+
+`shutter={0}` on a provider turns off every blur inside it.

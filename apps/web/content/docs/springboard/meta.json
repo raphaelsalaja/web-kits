@@ -1,0 +1,20 @@
+{
+  "title": "Springboard",
+  "root": true,
+  "pages": [
+    "---Getting Started---",
+    "index",
+    "installation",
+    "---Guides---",
+    "react",
+    "base-ui",
+    "---API---",
+    "options",
+    "instance",
+    "springs",
+    "---Resources---",
+    "changelog",
+    "external:[GitHub](https://github.com/raphaelsalaja/web-kits/tree/main/packages/springboard)",
+    "external:[npm](https://www.npmjs.com/package/@web-kits/springboard)"
+  ]
+}

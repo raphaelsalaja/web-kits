@@ -1,0 +1,22 @@
+{
+  "title": "Motion Blur",
+  "root": true,
+  "pages": [
+    "---Getting Started---",
+    "index",
+    "installation",
+    "---Guides---",
+    "react",
+    "your-own-positions",
+    "when-to-use-it",
+    "---API---",
+    "options",
+    "techniques",
+    "writing-a-technique",
+    "instance",
+    "---Resources---",
+    "changelog",
+    "external:[GitHub](https://github.com/raphaelsalaja/web-kits/tree/main/packages/motion-blur)",
+    "external:[npm](https://www.npmjs.com/package/@web-kits/motion-blur)"
+  ]
+}

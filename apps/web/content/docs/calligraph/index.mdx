@@ -1,0 +1,20 @@
+---
+title: Introduction
+description: Fluid text transitions powered by Motion.
+---
+
+Fluid text transitions powered by [Motion](https://motion.dev). Shared characters slide to their new positions while entering characters fade in and exiting ones fade out.
+
+<CalligraphPreview />
+
+Try every variant and preset in [the playground](https://calligraph.raphaelsalaja.com).
+
+## Quick Start
+
+```tsx
+import { Calligraph } from "calligraph";
+
+<Calligraph>Text</Calligraph>;
+```
+
+When `children` changes, characters common to both strings slide into their new positions. New characters fade in, removed characters fade out.

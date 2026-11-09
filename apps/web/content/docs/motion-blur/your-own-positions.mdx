@@ -1,0 +1,21 @@
+---
+title: Your Own Positions
+description: Blur motion you work out yourself, from a physics loop or a canvas.
+---
+
+For a physics loop, a canvas-driven position or anything else you set by hand, call `render` once a frame. The first call stops the automatic watching.
+
+```ts
+blur.render(previous, current);
+```
+
+## Curved Paths
+
+Pass a path instead when the motion bends, so Echo puts its copies along the curve instead of on a straight line between two frames:
+
+```ts
+el.style.transform = at(angle).toString();
+blur.render((t) => at(angle + t * speed * frameTime));
+```
+
+`t` is in frames, so `path(-0.5)` is half a frame back.

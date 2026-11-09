@@ -1,0 +1,48 @@
+---
+title: Changelog
+description: What's new in calligraph.
+---
+
+## 1.4.0
+
+Grapheme-safe text splitting via `Intl.Segmenter`, blur and scale on entering and exiting text, and a `trend` prop for directional vertical motion on the text variant.
+
+## 1.3.0
+
+Reworked the slots animation: clamped digit positioning, digit-based spin distance, popLayout exit with roll-out, a container-level gradient mask, and rendering without per-digit opacity.
+
+## 1.2.0
+
+Added the `"slots"` variant for slot-machine digit transitions and the `autoSize` prop, which animates the wrapper's width to match its content.
+
+## 1.1.2
+
+The number variant no longer animates currency and prefix symbols like `$` and `€` when the value changes. They slide into place without rolling, blurring or fading.
+
+## 1.1.1
+
+Fixed flashing during number transitions when the digit count changes, made the digit slide distance consistent in pixels, and improved how the text variant measures how much changed.
+
+## 1.1.0
+
+Added the `variant` prop (`"text"` or `"number"`) for rolling digit transitions, and the `animation` prop with spring presets (`"smooth"`, `"snappy"` and `"bouncy"`) inspired by SwiftUI.
+
+## 1.0.5
+
+Characters stagger by position, exits are faster, and drift scales with the share of characters that changed, so small edits move subtly and large rewrites get the full spread.
+
+## 1.0.4
+
+Default duration down to 0.38s and drift to 10px.
+
+## 1.0.2
+
+Better accessibility with `aria-label` and `aria-hidden`, faster diffing, and `children` narrowed to `string | number`.
+
+## 1.0.1
+
+Renamed from calligraphy to calligraph.
+
+## 1.0.0
+
+First major release.

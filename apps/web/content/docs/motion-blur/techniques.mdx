@@ -1,0 +1,19 @@
+---
+title: Techniques
+description: The four ways the streak can be drawn.
+---
+
+```ts
+import { echo, smear, squeeze, svg } from "@web-kits/motion-blur";
+
+motionBlur(el, { technique: squeeze({ factor: 16 }) });
+```
+
+| Technique   | Options                        |                                                                                                                                                                  |
+| ----------- | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `echo()`    | `spacing = 1.5`, `copies = 16` | Copies of the layer along the path at `1/n` opacity, added with `plus-lighter`. The only one shaped like a camera's blur, and the only one that follows a curve. |
+| `squeeze()` | `factor = 16`                  | A CSS blur stretched along the motion by scaling the layer before the filter. No copies, so it's the cheapest blur.                                              |
+| `svg()`     |                                | `feGaussianBlur` along one axis, rotated to the direction of motion.                                                                                             |
+| `smear()`   | `limit = 1.05`                 | Stretches the layer along the motion. Nothing is blurred, so keep the limit low on anything with text.                                                           |
+
+Echo gets one copy for every `spacing` px of streak, up to `copies`. Squeeze and SVG rotate the layer and its child in opposite directions, so the layer must have exactly one element child.

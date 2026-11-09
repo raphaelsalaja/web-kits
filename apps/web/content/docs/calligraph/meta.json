@@ -1,0 +1,20 @@
+{
+  "title": "Calligraph",
+  "root": true,
+  "pages": [
+    "---Getting Started---",
+    "index",
+    "installation",
+    "---Guides---",
+    "usage",
+    "animations",
+    "---API---",
+    "props",
+    "---Resources---",
+    "requirements",
+    "changelog",
+    "external:[Playground](https://calligraph.raphaelsalaja.com)",
+    "external:[GitHub](https://github.com/raphaelsalaja/calligraph)",
+    "external:[npm](https://www.npmjs.com/package/calligraph)"
+  ]
+}

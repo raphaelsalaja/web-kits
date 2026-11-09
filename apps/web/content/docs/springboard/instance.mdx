@@ -1,0 +1,17 @@
+---
+title: Instance
+description: The methods on what origin returns.
+---
+
+`origin` returns:
+
+| Method               |                                                      |
+| -------------------- | ---------------------------------------------------- |
+| `isOpen`             | Whether it's open or opening.                        |
+| `open({ instant })`  | Open, or turn round if it's closing.                 |
+| `close({ instant })` | Close, or turn round if it's opening.                |
+| `toggle()`           | Open if it's closed or closing, and close otherwise. |
+| `set(options)`       | Change any option except `open`.                     |
+| `destroy()`          | Stop, and remove anything it added.                  |
+
+`instant: true` jumps to the end with no animation. The meshes, springs and drivers the effects are built from are exported too, for drawing them some other way.

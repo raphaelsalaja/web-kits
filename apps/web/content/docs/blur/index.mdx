@@ -1,0 +1,35 @@
+---
+title: Introduction
+description: The progressive blur from the iOS 27 scroll edge, for the web.
+---
+
+The progressive blur from the iOS 27 scroll edge, for the web. It's the soft fade under the navigation bar and over the tab bar: the page's own background laid over the content, then a light blur that falls off down the edge and a much wider blur over that. I measured every value in the Simulator and fitted it to screenshots, then rebuilt it with `backdrop-filter`.
+
+<BlurPreview />
+
+Read how it was measured, with live examples, in [the write-up](https://www.raphaelsalaja.com/work/progressive-blur).
+
+## Quick Start
+
+The blur is drawn into an empty element you place over the content, the **host**. Size and position it yourself, the way you would a fixed strip under a header.
+
+```html
+<header class="bar">…</header>
+<div class="edge"></div>
+```
+
+```css
+.edge {
+  position: fixed;
+  inset: 0 0 auto;
+  height: 102px;
+}
+```
+
+```ts
+import { progressiveBlur } from "@web-kits/blur";
+
+const blur = progressiveBlur(document.querySelector(".edge")!);
+```
+
+The blur is strongest at the `side` you pass and fades out towards the other one. On iOS the edge runs 40 points past the bottom of the bar, so a 62-point status bar gets 102 points and a navigation bar ending at 116 gets 156.

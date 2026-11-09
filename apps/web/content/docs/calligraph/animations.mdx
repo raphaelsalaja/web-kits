@@ -1,0 +1,19 @@
+---
+title: Animations
+description: The timing presets Calligraph animates with.
+---
+
+`animation` picks how characters move:
+
+```tsx
+<Calligraph animation="bouncy">{text}</Calligraph>
+```
+
+| Preset      | Transition                                           |
+| ----------- | ---------------------------------------------------- |
+| `"default"` | `{ duration: 0.38, ease: [0.19, 1, 0.22, 1] }`       |
+| `"smooth"`  | `{ type: "spring", duration: 0.4, bounce: 0 }`       |
+| `"snappy"`  | `{ type: "spring", duration: 0.35, bounce: 0.15 }`   |
+| `"bouncy"`  | `{ type: "spring", duration: 0.5, bounce: 0.3 }`     |
+
+Text uses `"default"` and numbers use `"snappy"` unless you pick one. The same transition animates the wrapper's width when `autoSize` is on.

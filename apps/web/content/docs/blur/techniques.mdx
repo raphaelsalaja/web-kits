@@ -1,0 +1,17 @@
+---
+title: Techniques
+description: The three ways the web can blend the wide blur, and which browsers take each.
+---
+
+iOS lays the wide blur over the sharp one three times: normally, with lighten and with darken. The web can draw that in two ways, and neither works everywhere.
+
+| Technique  |                                                                                                                    |
+| ---------- | ------------------------------------------------------------------------------------------------------------------ |
+| `"blend"`  | One layer per blend mode with `mix-blend-mode`, the same as iOS. Only WebKit blends a `backdrop-filter` like this. |
+| `"filter"` | All three blends in one SVG filter, used as `backdrop-filter: url(#…)`. Only Chromium takes an SVG filter there.  |
+| `"plain"`  | The wide blur at one opacity, the average of the three. For Firefox and anything else.                             |
+| `"auto"`   | `"filter"` in Chromium, `"blend"` in Safari and `"plain"` everywhere else.                                         |
+
+## Accuracy
+
+Against the Simulator, on a 0 to 1 scale, the edge is within 0.0064 rms in Safari and 0.0089 in Chrome over black and white bars, and 0.0041 in Safari over saturated colours. Chrome blurs in the display's colour space, so on a P3 display saturated colours land 0.031 away. A page can't change that. `"plain"` comes to 0.0162 on the bars.
