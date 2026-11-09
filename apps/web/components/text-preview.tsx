@@ -2,7 +2,7 @@
 
 import { Calligraph } from "calligraph";
 import { useEffect, useState } from "react";
-import styles from "../app/page.module.css";
+import styles from "./previews.module.css";
 
 const phrases = ["Interfaces", "Motion", "Type", "Presence", "Web Kits"];
 
@@ -17,7 +17,7 @@ export function TextPreview() {
   }, []);
 
   return (
-    <div className={styles.textPreview}>
+    <div className={`${styles.fill} ${styles.text}`}>
       <Calligraph animation="smooth" drift={{ x: 18, y: 4 }} trend={-1}>
         {phrases[index]}
       </Calligraph>
