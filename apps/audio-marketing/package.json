@@ -14,27 +14,27 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@remotion/bundler": "4.0.450",
-    "@remotion/cli": "4.0.450",
-    "@remotion/google-fonts": "4.0.450",
-    "@remotion/media": "4.0.450",
-    "@remotion/motion-blur": "^4.0.450",
-    "@remotion/renderer": "4.0.450",
-    "@remotion/transitions": "^4.0.450",
+    "@remotion/bundler": "4.0.541",
+    "@remotion/cli": "4.0.541",
+    "@remotion/google-fonts": "4.0.541",
+    "@remotion/media": "4.0.541",
+    "@remotion/motion-blur": "^4.0.541",
+    "@remotion/renderer": "4.0.541",
+    "@remotion/transitions": "^4.0.541",
     "@web-kits/audio": "workspace:^",
     "@web-kits/ui": "workspace:^",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "remotion": "4.0.450"
+    "remotion": "4.0.541"
   },
   "devDependencies": {
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
-    "css-loader": "^7.1.4",
+    "css-loader": "^7.1.5",
     "node-web-audio-api": "^1.0.9",
     "style-loader": "^4.0.0",
-    "tsx": "^4.21.0",
+    "tsx": "^4.23.15",
     "typescript": "catalog:"
   }
 }
