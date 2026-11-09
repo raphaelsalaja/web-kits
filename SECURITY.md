@@ -2,9 +2,14 @@
 
 ## Supported Versions
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 0.0.x   | :white_check_mark: |
+Security fixes ship in the latest release of each package. Older versions don't get backports, so upgrade to the latest to pick up a fix.
+
+| Package                 | Supported      |
+| ----------------------- | -------------- |
+| `@web-kits/audio`       | Latest release |
+| `@web-kits/blur`        | Latest release |
+| `@web-kits/motion-blur` | Latest release |
+| `@web-kits/springboard` | Latest release |
 
 ## Reporting a Vulnerability
 

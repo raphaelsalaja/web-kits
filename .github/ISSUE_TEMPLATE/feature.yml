@@ -1,0 +1,29 @@
+name: Feature Request
+description: Something a kit should do that it doesn't yet.
+labels: [enhancement]
+body:
+  - type: dropdown
+    id: package
+    attributes:
+      label: Package
+      options:
+        - "@web-kits/audio"
+        - "@web-kits/blur"
+        - "@web-kits/motion-blur"
+        - "@web-kits/springboard"
+        - A new kit
+        - Website or docs
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What you're trying to build and where the kit gets in the way.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: The API or behaviour you'd like, with a reference if you have one.

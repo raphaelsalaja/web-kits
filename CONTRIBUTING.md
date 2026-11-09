@@ -113,6 +113,15 @@ Format: `<type>(<optional scope>): <description>`
 | `ops` | Infrastructure, deployment, CI/CD, backups |
 | `chore` | Maintenance tasks like `.gitignore`, initial commit |
 
+### Scopes
+
+A scope is optional, but when you use one it must name a workspace or area:
+
+- Packages: `audio`, `blur`, `motion-blur`, `springboard`
+- Apps: `web`, `audio-website`, `audio-marketing`, `springboard-playground`
+- Internal: `ui`, `icons`, `skills`
+- Repo: `ci`, `deps`, `deps-dev`, `release`, `repo`
+
 ### Rules
 
 - Use imperative, present tense: "add" not "added" or "adds"
@@ -124,7 +133,7 @@ Format: `<type>(<optional scope>): <description>`
 
 ```
 feat: add bandpass filter type
-fix(envelope): resolve attack timing drift
+fix(audio): resolve envelope attack timing drift
 refactor: extract audio context into shared module
 perf: cache frequency calculations in oscillator
 docs: add patch authoring guide
