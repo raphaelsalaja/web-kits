@@ -1,7 +1,7 @@
 .main {
   display: flex;
   flex-direction: column;
-  width: min(400px, 100% - 48px);
+  width: min(480px, 100% - 48px);
   padding: 60px 0;
 
   @media (width <= 640px) {
@@ -34,28 +34,36 @@
 .list {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  margin: 0 -12px;
+  gap: 8px;
 }
 
 .row {
   display: flex;
-  flex-direction: column;
-  padding: 10px 12px;
-  border-radius: 8px;
+  gap: 14px;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid var(--border-primary);
+  border-radius: 14px;
   transition: background-color var(--duration-snappy) ease;
 
   @media (hover: hover) {
     &:hover {
-      background-color: var(--background-tertiary);
+      background-color: var(--background-secondary);
     }
   }
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
 }
 
 .title {
   display: flex;
   gap: 6px;
   align-items: center;
+  font-variation-settings: var(--font-weight-500);
 }
 
 .version {
