@@ -127,11 +127,11 @@ async function bakePatch(
 ): Promise<Manifest["patches"][PatchId]> {
   const patchPath = join(patchesDir, `${patch}.json`);
   const patchUrl = pathToFileURL(patchPath).href;
-  const data = (await import(
-    patchUrl,
-    { with: { type: "json" } } as unknown as ImportCallOptions,
-  ))
-    .default as {
+  const data = (
+    await import(patchUrl, {
+      with: { type: "json" },
+    } as unknown as ImportCallOptions)
+  ).default as {
     name: string;
     sounds: Record<string, RawDefinition>;
   };

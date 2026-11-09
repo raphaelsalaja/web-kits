@@ -9,8 +9,8 @@ import { join } from "node:path";
 import {
   parseFrontmatter,
   prefixOf,
-  readRuleFiles,
   RULES_DIR,
+  readRuleFiles,
   SKILL_ROOT,
 } from "./lib.mjs";
 
@@ -61,6 +61,8 @@ function safeParse(text, file) {
   try {
     return JSON.parse(text);
   } catch (err) {
-    throw new Error(`extract-tests: ${file} example is not valid JSON: ${err.message}`);
+    throw new Error(
+      `extract-tests: ${file} example is not valid JSON: ${err.message}`,
+    );
   }
 }

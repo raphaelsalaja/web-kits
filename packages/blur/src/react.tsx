@@ -29,7 +29,8 @@ export function ProgressiveBlur({
   useLayoutEffect(() => {
     const options = { side, color, scheme, start, end, technique };
     if (instance.current) instance.current.set(options);
-    else if (host.current) instance.current = progressiveBlur(host.current, options);
+    else if (host.current)
+      instance.current = progressiveBlur(host.current, options);
   }, [side, color, scheme, start, end, technique]);
 
   useLayoutEffect(

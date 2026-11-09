@@ -6,12 +6,12 @@
 import { uikit } from "../presets.ts";
 
 export const SHEET = {
-	spring: uikit.sheet,
-	/** Where the sheet's top settles on a 402 × 874 point iPhone. */
-	top: 62,
+  spring: uikit.sheet,
+  /** Where the sheet's top settles on a 402 × 874 point iPhone. */
+  top: 62,
 };
 
 /** The sheet's top edge at progress 0 (off screen) to 1 (presented). */
 export function sheetTop(screenHeight: number, top: number, progress: number) {
-	return screenHeight + (top - screenHeight) * progress;
+  return screenHeight + (top - screenHeight) * progress;
 }

@@ -55,9 +55,15 @@ function mask(t: number, start: number, end: number) {
   return CURVE[i] + (CURVE[i + 1] - CURVE[i]) * (u - i);
 }
 
-function gradient(side: Side, start: number, end: number, alpha: (m: number) => number) {
+function gradient(
+  side: Side,
+  start: number,
+  end: number,
+  alpha: (m: number) => number,
+) {
   const stops = [0, start];
-  for (let i = 1; i < STOPS; i++) stops.push(start + ((end - start) * i) / STOPS);
+  for (let i = 1; i < STOPS; i++)
+    stops.push(start + ((end - start) * i) / STOPS);
   stops.push(end, 1);
   const list = stops.map((t) => {
     const a = Math.round(alpha(mask(t, start, end)) * 1000) / 1000;
@@ -74,7 +80,7 @@ function sharp(m: number) {
   while (i < SHARP.length - 1 && SHARP[i][0] < m) i++;
   const [m0, s0] = SHARP[i - 1];
   const [m1, s1] = SHARP[i];
-  return s0 + ((s1 - s0) * clamp((m - m0) / (m1 - m0)));
+  return s0 + (s1 - s0) * clamp((m - m0) / (m1 - m0));
 }
 
 /**
@@ -88,8 +94,11 @@ function reach(r: Recipe, m: number) {
 }
 
 function detect(): Exclude<Technique, "auto"> {
-  const nav = navigator as Navigator & { userAgentData?: { brands: { brand: string }[] } };
-  if (nav.userAgentData?.brands.some(({ brand }) => brand === "Chromium")) return "filter";
+  const nav = navigator as Navigator & {
+    userAgentData?: { brands: { brand: string }[] };
+  };
+  if (nav.userAgentData?.brands.some(({ brand }) => brand === "Chromium"))
+    return "filter";
   const ua = navigator.userAgent;
   if (/Chrome\//.test(ua)) return "filter";
   if (/AppleWebKit/.test(ua) && !/Android/.test(ua)) return "blend";
@@ -100,7 +109,8 @@ function detect(): Exclude<Technique, "auto"> {
 function backdropColor(element: HTMLElement) {
   for (let node = element.parentElement; node; node = node.parentElement) {
     const color = getComputedStyle(node).backgroundColor;
-    if (color && color !== "transparent" && !/^rgba\(.*,\s*0\)$/.test(color)) return color;
+    if (color && color !== "transparent" && !/^rgba\(.*,\s*0\)$/.test(color))
+      return color;
   }
   return "Canvas";
 }
@@ -130,9 +140,18 @@ function svgFilter(r: Recipe) {
   return id;
 }
 
-type Layer = { backdrop?: string; blend?: string; background?: string; alpha: (m: number) => number };
+type Layer = {
+  backdrop?: string;
+  blend?: string;
+  background?: string;
+  alpha: (m: number) => number;
+};
 
-function layers(r: Recipe, technique: Exclude<Technique, "auto">, color: string): Layer[] {
+function layers(
+  r: Recipe,
+  technique: Exclude<Technique, "auto">,
+  color: string,
+): Layer[] {
   // The veil goes under the blur, so the wide blur also smears its fade.
   const out: Layer[] = [{ background: color, alpha: (m) => r.veil * m }];
   const most = sharp(1);
@@ -142,13 +161,22 @@ function layers(r: Recipe, technique: Exclude<Technique, "auto">, color: string)
     // Each layer blurs what the ones under it already blurred, so their
     // variances add up to the level reached.
     const sigma = Math.sqrt(to * to - from * from);
-    out.push({ backdrop: `blur(${sigma.toFixed(2)}px)`, alpha: (m) => clamp((sharp(m) - from) / (to - from)) });
+    out.push({
+      backdrop: `blur(${sigma.toFixed(2)}px)`,
+      alpha: (m) => clamp((sharp(m) - from) / (to - from)),
+    });
   }
   const wide = `blur(${r.fill}px)`;
   if (technique === "blend") {
     if (r.normal) out.push({ backdrop: wide, alpha: (m) => r.normal * m });
-    if (r.lighten) out.push({ backdrop: wide, blend: "lighten", alpha: (m) => r.lighten * m });
-    if (r.darken) out.push({ backdrop: wide, blend: "darken", alpha: (m) => r.darken * m });
+    if (r.lighten)
+      out.push({
+        backdrop: wide,
+        blend: "lighten",
+        alpha: (m) => r.lighten * m,
+      });
+    if (r.darken)
+      out.push({ backdrop: wide, blend: "darken", alpha: (m) => r.darken * m });
   } else if (technique === "filter") {
     const full = reach(r, 1);
     out.push({
@@ -175,12 +203,19 @@ function layers(r: Recipe, technique: Exclude<Technique, "auto">, color: string)
  * Fills `host` with Apple's progressive blur. Size and position the element
  * yourself, over the content it should blur, and leave it empty.
  */
-export function progressiveBlur(host: HTMLElement, initial: ProgressiveBlurOptions = {}): ProgressiveBlur {
+export function progressiveBlur(
+  host: HTMLElement,
+  initial: ProgressiveBlurOptions = {},
+): ProgressiveBlur {
   let options = initial;
   let nodes: HTMLElement[] = [];
   const dark = matchMedia("(prefers-color-scheme: dark)");
-  const restore = { position: host.style.position, pointerEvents: host.style.pointerEvents };
-  if (getComputedStyle(host).position === "static") host.style.position = "relative";
+  const restore = {
+    position: host.style.position,
+    pointerEvents: host.style.pointerEvents,
+  };
+  if (getComputedStyle(host).position === "static")
+    host.style.position = "relative";
   host.style.pointerEvents = "none";
 
   function render() {
@@ -190,8 +225,12 @@ export function progressiveBlur(host: HTMLElement, initial: ProgressiveBlurOptio
     const start = options.start ?? edge.start;
     const end = options.end ?? edge.end;
     const scheme = options.scheme ?? "auto";
-    const recipe = SOFT[scheme === "auto" ? (dark.matches ? "dark" : "light") : scheme];
-    const technique = !options.technique || options.technique === "auto" ? detect() : options.technique;
+    const recipe =
+      SOFT[scheme === "auto" ? (dark.matches ? "dark" : "light") : scheme];
+    const technique =
+      !options.technique || options.technique === "auto"
+        ? detect()
+        : options.technique;
     const color = options.color ?? backdropColor(host);
 
     nodes = layers(recipe, technique, color).map((layer) => {

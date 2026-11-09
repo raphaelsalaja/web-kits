@@ -4,7 +4,7 @@ import { App } from "./app.tsx";
 import "./global.css";
 
 createRoot(document.getElementById("root") as HTMLElement).render(
-	<StrictMode>
-		<App />
-	</StrictMode>,
+  <StrictMode>
+    <App />
+  </StrictMode>,
 );
