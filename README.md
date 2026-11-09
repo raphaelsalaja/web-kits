@@ -27,8 +27,7 @@ pnpm dev
 ## Structure
 
 ```
-apps/web                      Web Kits site
-apps/audio                    Audio docs and registry (audio.raphaelsalaja.com)
+apps/web                      Web Kits site, docs and audio registry (web-kits.dev)
 apps/springboard-playground   Springboard playground (Vite)
 packages/*                    Published packages
 internal/ui                   Shared UI for the apps
