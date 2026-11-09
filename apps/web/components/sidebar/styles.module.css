@@ -1,0 +1,198 @@
+.sidebar {
+  --sidebar-item-height: 28px;
+
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  width: var(--sidebar-width);
+  height: 100dvh;
+  padding: 24px 16px 32px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  background: var(--background-secondary);
+  border-right: 1px solid var(--border-primary);
+
+  @typography 13, 400;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 24px;
+}
+
+.home {
+  align-self: flex-start;
+  color: var(--text-quaternary);
+  transition: color 0.15s;
+  @typography 12, 400;
+}
+
+.home:hover {
+  color: var(--text-primary);
+}
+
+.kit {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--text-primary);
+  @typography 14, 500;
+}
+
+.version {
+  padding: 0 6px;
+  color: var(--text-quaternary);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-full);
+  @typography 10, 500, 1.6;
+}
+
+.nav {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.sectionLabel {
+  display: flex;
+  align-items: center;
+  height: var(--sidebar-item-height);
+  color: var(--text-quaternary);
+  @typography 12, 400;
+}
+
+.sectionLabel:not(:first-child) {
+  margin-top: 20px;
+}
+
+.link {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  height: var(--sidebar-item-height);
+  color: var(--text-tertiary);
+  transition: color 0.15s;
+}
+
+.link:hover {
+  color: var(--text-primary);
+}
+
+.active {
+  font-variation-settings: var(--font-weight-500);
+  color: var(--text-primary);
+}
+
+.folder {
+  display: flex;
+  flex-direction: column;
+}
+
+.folderLabel,
+.folderLabelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: var(--sidebar-item-height);
+  color: var(--text-tertiary);
+  transition: color 0.15s;
+}
+
+.folderLabel {
+  cursor: pointer;
+  background: none;
+}
+
+.folderLabelLink {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  min-width: 0;
+  color: inherit;
+}
+
+.folderLabel:hover,
+.folderLabelRow:hover,
+.folderLabelActive {
+  color: var(--text-primary);
+}
+
+.chevronButton {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-quaternary);
+  cursor: pointer;
+  background: none;
+  transition: color 0.15s;
+}
+
+.chevronButton:hover {
+  color: var(--text-primary);
+}
+
+.chevron {
+  flex-shrink: 0;
+}
+
+.folderChildren {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding-left: 14px;
+}
+
+.folderChildren::before,
+.folderChildren::after {
+  position: absolute;
+  inset-inline-start: 0;
+  width: 1px;
+  pointer-events: none;
+  content: "";
+}
+
+.folderChildren::before {
+  inset-block: 0;
+  background: var(--border-secondary);
+}
+
+.folderChildren::after {
+  inset-block: 0;
+  height: var(--sidebar-item-height);
+  background: var(--text-primary);
+  opacity: var(--active-opacity, 0);
+  transform: translateY(var(--active-top, 0));
+  transition: 0.26s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition-property: transform, opacity;
+}
+
+.externalArrow {
+  flex-shrink: 0;
+  margin-left: auto;
+  color: var(--text-quaternary);
+}
+
+.divider {
+  height: 1px;
+  margin: 8px 0;
+  background: var(--border-primary);
+}
+
+@media (width <= 1024px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .folderChildren::after {
+    transition: none;
+  }
+}

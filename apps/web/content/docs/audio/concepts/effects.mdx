@@ -1,0 +1,177 @@
+---
+title: Effects
+description: 14 built-in effects you can apply per-layer or globally.
+---
+
+Effects shape the output of your sounds. Apply them to individual layers or to the entire mix. Most support a `mix` parameter for dry/wet balance. Internal oscillators (chorus, flanger, phaser, tremolo, vibrato) are cleaned up automatically when the voice ends.
+
+## Per-layer
+
+```ts
+defineSound({
+  source: { type: "sine", frequency: 880 },
+  envelope: { decay: 1.2 },
+  gain: 0.2,
+  effects: [{ type: "reverb", decay: 0.8, damping: 0.4, mix: 0.3 }],
+});
+```
+
+## Global
+
+Applied after all layers are mixed together:
+
+```ts
+defineSound({
+  layers: [/* ... */],
+  effects: [
+    { type: "chorus", rate: 1.5, depth: 0.003, mix: 0.3 },
+    { type: "reverb", decay: 1.2, damping: 0.5, roomSize: 1.2, mix: 0.35 },
+  ],
+});
+```
+
+## Reverb
+
+Algorithmic reverb with pre-delay, damping, and room size control.
+
+| Property   | Type     | Description                         |
+| ---------- | -------- | ----------------------------------- |
+| `decay`    | `number` | Tail length in seconds              |
+| `preDelay` | `number` | Gap before reverb onset             |
+| `damping`  | `number` | High-frequency rolloff (0-1)        |
+| `roomSize` | `number` | Size multiplier                     |
+| `mix`      | `number` | Dry/wet                             |
+
+## Convolver
+
+Impulse response reverb from a file or buffer.
+
+| Property | Type          | Description             |
+| -------- | ------------- | ----------------------- |
+| `url`    | `string`      | URL to impulse response |
+| `buffer` | `AudioBuffer` | Pre-decoded buffer      |
+| `mix`    | `number`      | Dry/wet                 |
+
+## Delay
+
+Feedback delay with an optional filter in the feedback path for analog-style darkening.
+
+| Property         | Type     | Description                            |
+| ---------------- | -------- | -------------------------------------- |
+| `time`           | `number` | Delay time in seconds                  |
+| `feedback`       | `number` | Feedback amount (0-1)                  |
+| `feedbackFilter` | `object` | `{ type, frequency, Q? }` in the loop |
+| `mix`            | `number` | Dry/wet                                |
+
+```ts
+{ type: "delay", time: 0.3, feedback: 0.45, feedbackFilter: { type: "lowpass", frequency: 2000 }, mix: 0.3 }
+```
+
+## Distortion
+
+Waveshaper distortion.
+
+| Property | Type     | Description          |
+| -------- | -------- | -------------------- |
+| `amount` | `number` | Distortion intensity |
+| `mix`    | `number` | Dry/wet              |
+
+## Chorus
+
+Modulated delay for stereo width and movement.
+
+| Property | Type     | Description    |
+| -------- | -------- | -------------- |
+| `rate`   | `number` | LFO rate (Hz)  |
+| `depth`  | `number` | Mod depth      |
+| `mix`    | `number` | Dry/wet        |
+
+## Flanger
+
+Short modulated delay with feedback.
+
+| Property   | Type     | Description   |
+| ---------- | -------- | ------------- |
+| `rate`     | `number` | LFO rate (Hz) |
+| `depth`    | `number` | Mod depth     |
+| `feedback` | `number` | Feedback      |
+| `mix`      | `number` | Dry/wet       |
+
+## Phaser
+
+Multi-stage allpass filter sweep.
+
+| Property   | Type     | Description       |
+| ---------- | -------- | ----------------- |
+| `rate`     | `number` | Sweep rate (Hz)   |
+| `depth`    | `number` | Sweep depth       |
+| `stages`   | `number` | Allpass stages    |
+| `feedback` | `number` | Feedback          |
+| `mix`      | `number` | Dry/wet           |
+
+## Tremolo
+
+Amplitude modulation.
+
+| Property | Type     | Description    |
+| -------- | -------- | -------------- |
+| `rate`   | `number` | LFO rate (Hz)  |
+| `depth`  | `number` | Mod depth      |
+
+## Vibrato
+
+Pitch modulation.
+
+| Property | Type     | Description    |
+| -------- | -------- | -------------- |
+| `rate`   | `number` | LFO rate (Hz)  |
+| `depth`  | `number` | Mod depth      |
+
+## Bitcrusher
+
+Lo-fi bit depth and sample rate reduction.
+
+| Property              | Type     | Description              |
+| --------------------- | -------- | ------------------------ |
+| `bits`                | `number` | Bit depth                |
+| `sampleRateReduction` | `number` | Reduction factor (int)   |
+| `mix`                 | `number` | Dry/wet                  |
+
+## Compressor
+
+Dynamic range compression.
+
+| Property    | Type     | Description       |
+| ----------- | -------- | ----------------- |
+| `threshold` | `number` | Threshold (dB)    |
+| `knee`      | `number` | Knee width (dB)   |
+| `ratio`     | `number` | Compression ratio |
+| `attack`    | `number` | Attack time (s)   |
+| `release`   | `number` | Release time (s)  |
+
+## EQ
+
+Multi-band parametric equalizer.
+
+```ts
+{
+  type: "eq",
+  bands: [
+    { type: "lowshelf", frequency: 200, gain: 3 },
+    { type: "peaking", frequency: 1000, gain: -2, Q: 1.5 },
+    { type: "highshelf", frequency: 8000, gain: 2 },
+  ],
+}
+```
+
+## Gain
+
+| Property | Type     | Description     |
+| -------- | -------- | --------------- |
+| `value`  | `number` | Gain multiplier |
+
+## Pan
+
+| Property | Type     | Description           |
+| -------- | -------- | --------------------- |
+| `value`  | `number` | Position (-1 to 1)    |

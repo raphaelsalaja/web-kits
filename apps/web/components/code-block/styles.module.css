@@ -1,0 +1,250 @@
+/* shared */
+
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 24px;
+  overflow: hidden;
+  background: var(--background-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: 12px;
+}
+
+.preFrame {
+  position: relative;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.floatingCopy {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  z-index: 1;
+}
+
+.preScroll {
+  --code-fade: 24px;
+
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  border-radius: inherit;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &[data-fade="right"] {
+    mask-image: linear-gradient(
+      to right,
+      black calc(100% - var(--code-fade)),
+      transparent 100%
+    );
+  }
+
+  &[data-fade="left"] {
+    mask-image: linear-gradient(
+      to left,
+      black calc(100% - var(--code-fade)),
+      transparent 100%
+    );
+  }
+
+  &[data-fade="both"] {
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black var(--code-fade),
+      black calc(100% - var(--code-fade)),
+      transparent 100%
+    );
+  }
+}
+
+.root pre {
+  width: max-content;
+  min-width: 100%;
+  padding-block: 12px;
+  padding-inline: 16px;
+  margin-bottom: 0;
+  overflow-x: visible;
+  text-wrap: nowrap;
+  white-space: pre;
+  border: none;
+  border-radius: var(--radius-none);
+  box-shadow: none;
+  @typography 13;
+}
+
+.root pre code {
+  display: inline-block;
+  min-width: 100%;
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  counter-reset: line;
+  background: none;
+  border-radius: var(--radius-none);
+  box-shadow: none;
+}
+
+.root pre code > :global(.line) {
+  display: inline-block;
+  min-width: 100%;
+  white-space: pre;
+}
+
+.root pre code > :global(.line)::before {
+  display: inline-block;
+  width: 2ch;
+  margin-right: 16px;
+  color: var(--ds-gray-a6);
+  text-align: right;
+  user-select: none;
+  content: counter(line);
+  counter-increment: line;
+}
+
+.root pre[data-line-numbers="false"] code > :global(.line)::before {
+  display: none;
+}
+
+.root
+  pre
+  code:not(:has(> :global(.line) + :global(.line)))
+  > :global(.line)::before {
+  display: none;
+}
+
+.root pre code > :global(.line.highlighted) {
+  width: calc(100% + 32px);
+  padding: 0 16px;
+  margin: 0 -16px;
+  background: var(--ds-gray-a3);
+}
+
+.root pre code span {
+  color: var(--shiki-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  .root pre code span {
+    color: var(--shiki-dark);
+  }
+}
+
+.copyButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  margin-left: auto;
+  color: var(--ds-gray-9);
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: var(--radius-small);
+  transition:
+    color 0.15s,
+    background 0.15s;
+}
+
+.copyButton:hover {
+  color: var(--ds-gray-12);
+  background: var(--ds-gray-a3);
+}
+
+/* pre header */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 36px;
+  padding: 0 7px 0 14px;
+  color: var(--text-quaternary);
+  border-bottom: 1px solid var(--border-primary);
+  @typography 12, 400;
+}
+
+.title {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  opacity: 0.6;
+}
+
+.icon :global(svg) {
+  width: 14px;
+  height: 14px;
+}
+
+/* tabs */
+
+.list {
+  position: relative;
+  z-index: 0;
+  display: flex;
+  gap: 0;
+  align-items: center;
+  height: 36px;
+  padding: 0 7px 0 4px;
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.tab {
+  position: relative;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  height: 28px;
+  padding-inline: 8px;
+  color: var(--ds-gray-9);
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition:
+    color 0.15s,
+    border-color 0.15s;
+
+  @typography 13, 500;
+}
+
+.tab:hover {
+  color: var(--ds-gray-11);
+}
+
+.tab[data-active] {
+  color: var(--ds-gray-12);
+}
+
+.indicator {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: -1;
+  width: var(--active-tab-width);
+  height: var(--active-tab-height);
+  background: var(--ds-gray-3);
+  border-radius: var(--radius-small);
+  translate: var(--active-tab-left) -50%;
+  transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+  transition-duration: 0.4s;
+  transition-property: translate, width;
+}
+
+.panel {
+  min-width: 0;
+}
+
+.panel pre {
+  padding-inline: 16px;
+}

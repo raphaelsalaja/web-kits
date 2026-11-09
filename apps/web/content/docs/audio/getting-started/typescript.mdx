@@ -1,0 +1,61 @@
+---
+title: TypeScript
+description: Use @web-kits/audio with plain TypeScript or JavaScript.
+---
+
+Audio provides a type-safe, low-level API client for interacting with the Web Audio API. It offers a lightweight abstraction over the Web Audio API and is ideal for server-to-server communication.
+
+<Steps>
+<Step>
+
+## Install Package
+
+Install `@web-kits/audio` with your package manager of choice.
+
+<Tabs items={[
+  { label: "npm", value: "npm install @web-kits/audio" },
+  { label: "yarn", value: "yarn add @web-kits/audio" },
+  { label: "pnpm", value: "pnpm add @web-kits/audio" },
+  { label: "bun", value: "bun add @web-kits/audio" },
+]} />
+
+</Step>
+<Step>
+
+## Resume AudioContext
+
+Browsers block audio until a user gesture fires. Call `ensureReady` once to resume the `AudioContext`. Place this in a click or pointer handler before playing any sound.
+
+```ts title="setup.ts"
+import { ensureReady } from "@web-kits/audio";
+
+button.addEventListener("click", async () => {
+  await ensureReady();
+});
+```
+
+After the first call resolves, subsequent calls return immediately.
+
+</Step>
+<Step>
+
+## Play Your First Sound
+
+Define a sound as a plain object and call the returned function to play it.
+
+```ts title="app.ts"
+import { defineSound } from "@web-kits/audio";
+
+const pop = defineSound({
+  source: { type: "sine", frequency: { start: 400, end: 150 } },
+  envelope: { decay: 0.05 },
+  gain: 0.35,
+});
+
+pop();
+```
+
+`defineSound` compiles the definition once and returns a zero-allocation play function. Call it as many times as you need.
+
+</Step>
+</Steps>
