@@ -18,6 +18,8 @@ jobs:
       contents: write
       pull-requests: write
       id-token: write
+    env:
+      HUSKY: "0"
 
     steps:
       - uses: actions/checkout@v5
