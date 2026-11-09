@@ -160,3 +160,7 @@ blur.render((t) => at(angle + t * speed * frameTime));
 Blur what the eye can't follow: a thrown card, a sheet being dismissed, a panel snapping in, a spinner. Leave it off anything the reader tracks or reads, like scrolling, carousels and lists sliding into place. The screen already blurs what the eye follows, and more blur on top turns text into grey bars.
 
 A background tab throttles `requestAnimationFrame`, which stretches the frame time and every streak with it, so check streak lengths in a focused tab.
+
+## License
+
+[MIT](LICENSE)

@@ -1,5 +1,5 @@
 {
-  "name": "audio",
+  "name": "web-kits",
   "private": true,
   "scripts": {
     "build": "turbo run build",
@@ -25,7 +25,7 @@
   },
   "packageManager": "pnpm@9.15.4",
   "engines": {
-    "node": ">=20.0.0",
+    "node": ">=22",
     "pnpm": ">=9.0.0"
   },
   "pnpm": {

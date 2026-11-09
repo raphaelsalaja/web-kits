@@ -11,8 +11,6 @@
     "directory": "packages/motion-blur"
   },
   "bugs": "https://github.com/raphaelsalaja/web-kits/issues",
-  "type": "module",
-  "sideEffects": false,
   "keywords": [
     "motion blur",
     "animation",
@@ -21,6 +19,8 @@
     "echo",
     "shutter"
   ],
+  "type": "module",
+  "sideEffects": false,
   "exports": {
     ".": "./src/index.ts",
     "./react": "./src/react.tsx"
@@ -46,10 +46,8 @@
     "typecheck": "tsc",
     "prepublishOnly": "pnpm build"
   },
-  "devDependencies": {
-    "@types/react": "catalog:",
-    "react": "catalog:",
-    "typescript": "catalog:ts7"
+  "engines": {
+    "node": ">=22"
   },
   "peerDependencies": {
     "react": ">=19"
@@ -58,5 +56,10 @@
     "react": {
       "optional": true
     }
+  },
+  "devDependencies": {
+    "@types/react": "catalog:",
+    "react": "catalog:",
+    "typescript": "catalog:ts7"
   }
 }

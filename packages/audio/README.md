@@ -2,13 +2,13 @@
 
 Declarative audio synthesis for the web. Describe sounds as plain objects, play them with one function call.
 
-## Install
+Read the full docs at [audio.raphaelsalaja.com](https://audio.raphaelsalaja.com).
 
-```bash
+```sh
 npm install @web-kits/audio
 ```
 
-## Usage
+## Quick Start
 
 ### Define and play a sound
 
@@ -120,10 +120,6 @@ npx @web-kits/audio add your-username/your-repo
 | `definePatch(json)` | Create a patch from a JSON object |
 | `usePatch(url)` | React hook for loading and playing patches |
 
-## Documentation
-
-Full docs at [audio.raphaelsalaja.com](https://audio.raphaelsalaja.com).
-
 ## License
 
-[MIT](https://github.com/raphaelsalaja/web-kits/blob/main/LICENSE)
+[MIT](LICENSE)
