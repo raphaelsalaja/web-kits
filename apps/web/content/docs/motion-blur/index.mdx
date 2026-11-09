@@ -1,0 +1,28 @@
+---
+title: Introduction
+description: Motion blur for elements that move on the web.
+---
+
+Motion blur for elements that move on the web. It reads the element's transform every frame, works out how far it travelled while a virtual shutter was open, and draws the streak with the technique you pick. It works with CSS transitions, CSS animations, the Web Animations API, Motion, or positions you set yourself.
+
+<MotionBlurPreview />
+
+Read how it works, with live examples, in [the write-up](https://www.raphaelsalaja.com/work/motion-blur).
+
+## Quick Start
+
+The element that moves is the **host**. Its first child is the **layer**, which holds everything you can see. The blur is drawn into the layer, so the host itself has to stay transparent: put backgrounds, borders and shadows on the layer or inside it.
+
+```html
+<div class="card">
+  <div class="card-face">…</div>
+</div>
+```
+
+```ts
+import { motionBlur } from "@web-kits/motion-blur";
+
+const blur = motionBlur(document.querySelector(".card")!);
+```
+
+That's all for CSS. The host is watched whenever a transition or animation starts on it, or its inline `transform`, `translate`, `rotate` or `scale` changes, and the blur clears itself once it stops.

@@ -1,0 +1,29 @@
+---
+title: Base UI
+description: Follow a Base UI popup's own open state.
+---
+
+Leave out `open` on a Base UI popup and the hook follows the popup's own open state. Base UI keeps a closing popup mounted until its animations finish, and every effect holds an animation on the popup until they land, so the popup stays until it's back in its button:
+
+```tsx
+import { Menu } from "@base-ui/react/menu";
+import { genie } from "@web-kits/springboard";
+import { useOrigin } from "@web-kits/springboard/react";
+
+function More() {
+  const trigger = useRef<HTMLButtonElement>(null);
+  const popup = useOrigin({ from: trigger, effect: genie() });
+  return (
+    <Menu.Root>
+      <Menu.Trigger ref={trigger}>More</Menu.Trigger>
+      <Menu.Portal>
+        <Menu.Positioner>
+          <Menu.Popup ref={popup}>…</Menu.Popup>
+        </Menu.Positioner>
+      </Menu.Portal>
+    </Menu.Root>
+  );
+}
+```
+
+It works on Dialog, Popover, Menu and Select. Other libraries, and Radix's `data-state`, need `open`.

@@ -1,0 +1,20 @@
+{
+  "title": "Blur",
+  "root": true,
+  "pages": [
+    "---Getting Started---",
+    "index",
+    "installation",
+    "---Guides---",
+    "react",
+    "layout",
+    "---API---",
+    "options",
+    "techniques",
+    "instance",
+    "---Resources---",
+    "limits",
+    "external:[GitHub](https://github.com/raphaelsalaja/web-kits/tree/main/packages/blur)",
+    "external:[npm](https://www.npmjs.com/package/@web-kits/blur)"
+  ]
+}
