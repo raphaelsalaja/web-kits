@@ -1,6 +1,7 @@
 import Github from "@web-kits/icons/social-media/github";
 import Linkedin from "@web-kits/icons/social-media/linkedin";
 import XTwitter from "@web-kits/icons/social-media/x-twitter";
+import Link from "next/link";
 import { KitIcon } from "@/components/kit-icon";
 import { kits, site } from "@/lib/kits";
 import styles from "./page.module.css";
@@ -26,7 +27,7 @@ export default function HomePage() {
         <ul className={styles.list}>
           {kits.map((kit) => (
             <li key={kit.slug}>
-              <a className={styles.row} href={kit.href}>
+              <Link className={styles.row} href={kit.href}>
                 <KitIcon slug={kit.slug} />
                 <span className={styles.text}>
                   <span className={styles.title}>
@@ -35,7 +36,7 @@ export default function HomePage() {
                   </span>
                   <span className={styles.description}>{kit.description}</span>
                 </span>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
