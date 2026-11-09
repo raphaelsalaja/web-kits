@@ -1,11 +1,11 @@
-import { getContext, getDestination } from "./context";
-import { render } from "./engine";
+import { getContext, getDestination } from "./context.ts";
+import { render } from "./engine.ts";
 import type {
   PlayOptions,
   SoundDefinition,
   SoundPatch,
   VoiceHandle,
-} from "./types";
+} from "./types.ts";
 
 /**
  * A loaded sound patch with methods to play individual sounds by name.

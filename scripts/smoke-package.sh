@@ -7,8 +7,8 @@ trap 'rm -rf "$smoke_dir"' EXIT
 
 cd "$repo_dir/packages/audio"
 expected_version="$(node -p 'require("./package.json").version')"
-npm pack --pack-destination "$smoke_dir" --json > "$smoke_dir/pack.json"
-tarball="$(node -p 'JSON.parse(require("node:fs").readFileSync(process.argv[1], "utf8"))[0].filename' "$smoke_dir/pack.json")"
+pnpm pack --pack-destination "$smoke_dir" > /dev/null
+tarball="$(cd "$smoke_dir" && ls *.tgz)"
 
 npm install --prefix "$smoke_dir/consumer" "$smoke_dir/$tarball" \
   --ignore-scripts --no-audit --no-fund

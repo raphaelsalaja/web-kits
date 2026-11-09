@@ -1,12 +1,12 @@
-import { getDestination } from "./context";
-import { render } from "./engine";
+import { getDestination } from "./context.ts";
+import { render } from "./engine.ts";
 import type {
   PlayOptions,
   SequenceOptions,
   SequenceStep,
   SoundDefinition,
   VoiceHandle,
-} from "./types";
+} from "./types.ts";
 
 function isDefinition(sound: SequenceStep["sound"]): sound is SoundDefinition {
   return typeof sound !== "function";

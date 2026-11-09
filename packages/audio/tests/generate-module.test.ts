@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { generateModule } from "../src/commands/utils.js";
+import { generateModule } from "../src/commands/utils.ts";
 
 describe("generateModule", () => {
   it("produces a TS module with defineSound exports", () => {

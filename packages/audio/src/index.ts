@@ -1,4 +1,4 @@
-import { createAnalyser, createMasterAnalyser } from "./analyser";
+import { createAnalyser, createMasterAnalyser } from "./analyser.ts";
 import {
   dispose,
   ensureReady,
@@ -8,11 +8,11 @@ import {
   getMasterBus,
   setListener,
   setMasterVolume,
-} from "./context";
-import { render } from "./engine";
-import { bufferToWav, renderToBuffer, renderToWav } from "./offline";
-import { createPatchInstance, definePatch, loadPatch } from "./patch";
-import { playSequence } from "./sequence";
+} from "./context.ts";
+import { render } from "./engine.ts";
+import { bufferToWav, renderToBuffer, renderToWav } from "./offline.ts";
+import { createPatchInstance, definePatch, loadPatch } from "./patch.ts";
+import { playSequence } from "./sequence.ts";
 import type {
   OscillatorSource,
   PlayOptions,
@@ -20,7 +20,7 @@ import type {
   SequenceStep,
   SoundDefinition,
   VoiceHandle,
-} from "./types";
+} from "./types.ts";
 
 /**
  * Binds a {@link SoundDefinition} into a reusable play function.
@@ -177,8 +177,8 @@ export function noise(
   });
 }
 
-export type { AudioAnalyser } from "./analyser";
-export type { AudioPatch } from "./patch";
+export type { AudioAnalyser } from "./analyser.ts";
+export type { AudioPatch } from "./patch.ts";
 export type {
   AnalyserOptions,
   BiquadFilter,
@@ -225,7 +225,7 @@ export type {
   VibratoEffect,
   VoiceHandle,
   WavetableSource,
-} from "./types";
+} from "./types.ts";
 export {
   bufferToWav,
   createAnalyser,

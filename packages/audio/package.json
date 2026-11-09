@@ -22,19 +22,11 @@
     "ui-sounds"
   ],
   "type": "module",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "bin": "./dist/bin.js",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    },
-    "./react": {
-      "types": "./dist/react.d.ts",
-      "default": "./dist/react.js"
-    },
-    "./bin": "./dist/bin.js",
+    ".": "./src/index.ts",
+    "./react": "./src/react.tsx",
+    "./bin": "./src/bin.ts",
     "./package.json": "./package.json"
   },
   "files": [
@@ -43,15 +35,27 @@
   ],
   "sideEffects": false,
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "./react": {
+        "types": "./dist/react.d.ts",
+        "default": "./dist/react.js"
+      },
+      "./bin": "./dist/bin.js",
+      "./package.json": "./package.json"
+    }
   },
   "scripts": {
-    "build": "bunchee",
-    "dev": "bunchee --watch",
-    "lint": "biome check --fix --unsafe .",
-    "typecheck": "tsc --noEmit",
-    "prepublishOnly": "bunchee",
-    "test": "vitest run"
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "typecheck": "tsc",
+    "test": "vitest run",
+    "prepublishOnly": "pnpm build"
   },
   "engines": {
     "node": ">=20.0.0"
@@ -69,11 +73,10 @@
     "picocolors": "^1.1.1"
   },
   "devDependencies": {
-    "@types/node": "^25.2.3",
-    "@types/react": "^19.0.0",
-    "bunchee": "latest",
-    "react": "^19.0.0",
-    "typescript": "^5.9.3",
-    "vitest": "^4.1.3"
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "react": "catalog:",
+    "typescript": "catalog:ts7",
+    "vitest": "catalog:"
   }
 }

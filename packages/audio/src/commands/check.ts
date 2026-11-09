@@ -1,5 +1,5 @@
 import * as p from "@clack/prompts";
-import { fetchPatchIndex, getInstalledPatches } from "./utils.js";
+import { fetchPatchIndex, getInstalledPatches } from "./utils.ts";
 
 export async function check(_args: string[]) {
   p.intro("@web-kits/audio check");

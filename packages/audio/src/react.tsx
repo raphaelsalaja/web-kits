@@ -10,15 +10,15 @@ import {
   useState,
   useSyncExternalStore,
 } from "react";
-import { type AudioAnalyser, createMasterAnalyser } from "./analyser";
+import { type AudioAnalyser, createMasterAnalyser } from "./analyser.ts";
 import {
   getContext as getAudioContext,
   getDestination,
   setListener,
-} from "./context";
-import { render } from "./engine";
-import { type AudioPatch, createPatchInstance, loadPatch } from "./patch";
-import { playSequence } from "./sequence";
+} from "./context.ts";
+import { render } from "./engine.ts";
+import { type AudioPatch, createPatchInstance, loadPatch } from "./patch.ts";
+import { playSequence } from "./sequence.ts";
 import type {
   AnalyserOptions,
   Listener,
@@ -28,7 +28,7 @@ import type {
   SoundDefinition,
   SoundPatch,
   VoiceHandle,
-} from "./types";
+} from "./types.ts";
 
 function subscribeToReducedMotion(cb: () => void) {
   const mql = window.matchMedia("(prefers-reduced-motion: reduce)");

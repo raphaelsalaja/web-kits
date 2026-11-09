@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { validatePatch } from "../src/commands/utils.js";
+import { validatePatch } from "../src/commands/utils.ts";
 
 describe("validatePatch", () => {
   it("returns true for a valid patch with name and sounds", () => {

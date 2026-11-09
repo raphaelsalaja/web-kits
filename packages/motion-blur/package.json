@@ -43,13 +43,13 @@
   },
   "scripts": {
     "build": "rm -rf dist && tsc -p tsconfig.build.json",
-    "typecheck": "tsc -p tsconfig.build.json --noEmit",
+    "typecheck": "tsc",
     "prepublishOnly": "pnpm build"
   },
   "devDependencies": {
-    "@types/react": "^19.3.0",
-    "react": "19.3.1",
-    "typescript": "^7.0.2"
+    "@types/react": "catalog:",
+    "react": "catalog:",
+    "typescript": "catalog:ts7"
   },
   "peerDependencies": {
     "react": ">=19"

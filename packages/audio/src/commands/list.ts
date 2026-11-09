@@ -1,5 +1,5 @@
 import * as p from "@clack/prompts";
-import { getInstalledPatches, getPatchesDir } from "./utils.js";
+import { getInstalledPatches, getPatchesDir } from "./utils.ts";
 
 export async function list(_args: string[]) {
   p.intro("@web-kits/audio list");

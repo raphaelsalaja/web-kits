@@ -1,4 +1,4 @@
-import type { ContextOptions, Listener } from "./types";
+import type { ContextOptions, Listener } from "./types.ts";
 
 let ctx: AudioContext | null = null;
 let masterGain: GainNode | null = null;

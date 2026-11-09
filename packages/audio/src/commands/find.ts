@@ -1,5 +1,5 @@
 import * as p from "@clack/prompts";
-import { fetchPatchIndex } from "./utils.js";
+import { fetchPatchIndex } from "./utils.ts";
 
 export async function find(args: string[]) {
   const query = args.join(" ").toLowerCase();

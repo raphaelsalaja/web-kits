@@ -1,4 +1,4 @@
-import { createEffect } from "./effects";
+import { createEffect } from "./effects.ts";
 import type {
   BiquadFilter,
   ConstantSource,
@@ -18,7 +18,7 @@ import type {
   StreamSource,
   VoiceHandle,
   WavetableSource,
-} from "./types";
+} from "./types.ts";
 
 const SILENCE = 0.0001;
 
@@ -613,8 +613,12 @@ export function render(
     if (sourceResult.detuneParam && (opts?.detune || detuneJitter !== 0)) {
       sourceResult.detuneParam.value += (opts?.detune ?? 0) + detuneJitter;
     }
-    if (sourceResult.playbackRateParam && (opts?.playbackRate || rateJitter !== 1)) {
-      sourceResult.playbackRateParam.value *= (opts?.playbackRate ?? 1) * rateJitter;
+    if (
+      sourceResult.playbackRateParam &&
+      (opts?.playbackRate || rateJitter !== 1)
+    ) {
+      sourceResult.playbackRateParam.value *=
+        (opts?.playbackRate ?? 1) * rateJitter;
     }
 
     let tail: AudioNode = sourceResult.node;

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isGitHubSource, parseGitHubSource } from "../src/commands/utils.js";
+import { isGitHubSource, parseGitHubSource } from "../src/commands/utils.ts";
 
 describe("parseGitHubSource", () => {
   it("parses owner/repo shorthand", () => {

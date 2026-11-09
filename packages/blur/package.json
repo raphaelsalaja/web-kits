@@ -22,30 +22,34 @@
     "react"
   ],
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    },
-    "./react": {
-      "types": "./dist/react.d.ts",
-      "default": "./dist/react.js"
-    }
+    ".": "./src/index.ts",
+    "./react": "./src/react.tsx"
   },
   "files": [
     "dist"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "./react": {
+        "types": "./dist/react.d.ts",
+        "default": "./dist/react.js"
+      }
+    }
   },
   "scripts": {
     "build": "rm -rf dist && tsc -p tsconfig.build.json",
-    "typecheck": "tsc -p tsconfig.build.json --noEmit",
+    "typecheck": "tsc",
     "prepublishOnly": "pnpm build"
   },
   "devDependencies": {
-    "@types/react": "^19.3.0",
-    "react": "19.3.1",
-    "typescript": "^7.0.2"
+    "@types/react": "catalog:",
+    "react": "catalog:",
+    "typescript": "catalog:ts7"
   },
   "peerDependencies": {
     "react": ">=19"
