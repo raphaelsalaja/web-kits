@@ -13,9 +13,13 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      HUSKY: "0"
 
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - uses: pnpm/action-setup@v5
 
@@ -24,15 +28,18 @@ jobs:
           node-version: 24
           cache: pnpm
 
+      - uses: actions/cache@v6
+        with:
+          path: .turbo/cache
+          key: turbo-${{ runner.os }}-${{ github.sha }}
+          restore-keys: turbo-${{ runner.os }}-
+
       - run: pnpm install --frozen-lockfile
-
-      - run: pnpm build
-
-      - run: pnpm typecheck
 
       - run: pnpm lint
 
-      - run: pnpm test
+      - name: Build, typecheck and test
+        run: pnpm turbo run build typecheck test ${{ github.event_name == 'pull_request' && '--affected' || '' }}
 
-      - name: Verify installed package
-        run: bash scripts/smoke-package.sh
+      - name: Verify packed packages
+        run: pnpm smoke

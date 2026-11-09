@@ -8,11 +8,12 @@
     "lint": "biome ci . && prettier --check \"**/*.mdx\"",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
-    "publish-packages": "turbo run build lint && changeset version && changeset publish",
+    "smoke": "bash scripts/smoke-packages.sh",
     "prepare": "husky",
     "format": "biome check --write . && prettier --write \"**/*.mdx\""
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
     "@biomejs/biome": "2.6.6",
     "@changesets/cli": "^2.31.0",
     "@commitlint/cli": "^20.5.0",
@@ -20,6 +21,7 @@
     "@web-kits/audio": "workspace:^",
     "husky": "^9.1.7",
     "prettier": "^3.8.3",
+    "publint": "^0.3.25",
     "turbo": "^2.9.6",
     "typescript": "catalog:"
   },
