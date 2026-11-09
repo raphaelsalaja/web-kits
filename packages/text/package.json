@@ -1,0 +1,61 @@
+{
+  "name": "@web-kits/text",
+  "version": "0.1.0",
+  "description": "Fluid text transitions powered by Motion",
+  "author": "Raphael Salaja",
+  "license": "MIT",
+  "homepage": "https://github.com/raphaelsalaja/web-kits",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raphaelsalaja/web-kits.git",
+    "directory": "packages/text"
+  },
+  "bugs": {
+    "url": "https://github.com/raphaelsalaja/web-kits/issues"
+  },
+  "keywords": [
+    "react",
+    "animation",
+    "text",
+    "transition",
+    "motion"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "bunchee",
+    "dev": "bunchee --watch",
+    "lint": "biome check --write --unsafe .",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "bunchee"
+  },
+  "peerDependencies": {
+    "motion": ">=11",
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "bunchee": "latest",
+    "motion": "^12.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.9.3"
+  }
+}
