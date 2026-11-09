@@ -1,12 +1,5 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  transpilePackages: [
-    "@web-kits/audio",
-    "@web-kits/blur",
-    "@web-kits/motion-blur",
-    "@web-kits/springboard",
-  ],
-};
+const nextConfig: NextConfig = {};
 
 export default nextConfig;

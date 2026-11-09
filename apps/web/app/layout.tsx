@@ -1,32 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 import { kits, site } from "@/lib/kits";
 import "./globals.css";
 
-const openRunde = localFont({
-  src: [
-    {
-      path: "../fonts/open-runde/regular.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../fonts/open-runde/medium.woff2",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../fonts/open-runde/semibold.woff2",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "../fonts/open-runde/bold.woff2",
-      weight: "700",
-      style: "normal",
-    },
-  ],
-  variable: "--font-sans",
+const inter = Inter({
+  subsets: ["latin"],
+  axes: ["opsz"],
   display: "swap",
 });
 
@@ -34,7 +13,10 @@ const names = new Intl.ListFormat("en-GB").format(kits.map((kit) => kit.name));
 const description = `${site.description} ${names}.`;
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#080808" },
+  ],
 };
 
 export const metadata: Metadata = {
@@ -62,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={openRunde.variable}>
+    <html lang="en" className={inter.className}>
       <body>{children}</body>
     </html>
   );
