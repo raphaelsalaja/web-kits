@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HUSKY: "0"
+      TURBO_SCM_BASE: origin/${{ github.base_ref || 'main' }}
 
     steps:
       - uses: actions/checkout@v5
