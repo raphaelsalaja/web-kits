@@ -19,8 +19,23 @@ function isRateLimited(ip: string): boolean {
   return entry.count > RATE_LIMIT;
 }
 
+const LEGACY_AUDIO_HOST = "audio.raphaelsalaja.com";
+const SITE_PATHS = new Set(["/llms.txt", "/robots.txt", "/sitemap.xml"]);
+
 export function proxy(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+  const { pathname, search } = request.nextUrl;
+  const host = request.headers.get("host");
+
+  // Older CLI releases still call the registry API on the legacy host.
+  if (host === LEGACY_AUDIO_HOST && !pathname.startsWith("/api/")) {
+    const path = SITE_PATHS.has(pathname)
+      ? pathname
+      : `/audio${pathname === "/" ? "" : pathname}`;
+    return NextResponse.redirect(
+      new URL(`${path}${search}`, "https://web-kits.dev"),
+      308,
+    );
+  }
 
   if (pathname.startsWith("/api/")) {
     const ip =
