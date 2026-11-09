@@ -87,3 +87,7 @@ The measured values are exported too, as `SOFT`, `SHARP`, `CURVE`, `TOP` and `BO
 ## Limits
 
 Reduce Transparency isn't handled, because I haven't measured what iOS draws under it. The hard scroll edge and the macOS toolbar edge aren't in the package yet.
+
+## License
+
+[MIT](LICENSE)

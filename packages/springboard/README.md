@@ -184,3 +184,7 @@ import { swiftui } from "@web-kits/springboard/motion";
 ```
 
 `toMotion(spring, speed)` converts any other spring, and `speed` plays it faster or slower, like SwiftUI's `.speed()`.
+
+## License
+
+[MIT](LICENSE)

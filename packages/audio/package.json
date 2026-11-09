@@ -2,17 +2,15 @@
   "name": "@web-kits/audio",
   "version": "0.2.0",
   "description": "A declarative synthesizer for the web",
-  "author": "Raphael Salaja",
   "license": "MIT",
+  "author": "Raphael Salaja",
   "homepage": "https://audio.raphaelsalaja.com",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/raphaelsalaja/web-kits.git",
     "directory": "packages/audio"
   },
-  "bugs": {
-    "url": "https://github.com/raphaelsalaja/web-kits/issues"
-  },
+  "bugs": "https://github.com/raphaelsalaja/web-kits/issues",
   "keywords": [
     "audio",
     "sound",
@@ -22,6 +20,7 @@
     "ui-sounds"
   ],
   "type": "module",
+  "sideEffects": false,
   "bin": "./dist/bin.js",
   "exports": {
     ".": "./src/index.ts",
@@ -33,7 +32,6 @@
     "dist",
     "schemas"
   ],
-  "sideEffects": false,
   "publishConfig": {
     "access": "public",
     "main": "./dist/index.js",
@@ -58,7 +56,7 @@
     "prepublishOnly": "pnpm build"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=22"
   },
   "peerDependencies": {
     "react": ">=18"
