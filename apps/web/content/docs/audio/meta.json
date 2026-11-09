@@ -1,0 +1,21 @@
+{
+  "title": "Audio",
+  "root": true,
+  "pages": [
+    "---Getting Started---",
+    "index",
+    "...getting-started",
+    "cli",
+    "[Library](/audio/library)",
+    "---Concepts---",
+    "...concepts",
+    "---Integrations---",
+    "...integrations",
+    "---API---",
+    "...api",
+    "---Resources---",
+    "...resources",
+    "external:[GitHub](https://github.com/raphaelsalaja/web-kits/tree/main/packages/audio)",
+    "external:[npm](https://www.npmjs.com/package/@web-kits/audio)"
+  ]
+}

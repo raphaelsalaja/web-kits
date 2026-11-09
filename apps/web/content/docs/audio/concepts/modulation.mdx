@@ -1,0 +1,58 @@
+---
+title: Modulation
+description: Animate any parameter with low-frequency oscillators.
+---
+
+LFOs (low-frequency oscillators) continuously modulate a parameter over time - wobbling a filter cutoff, pulsing the gain, or sweeping the pan. Attach one or an array to any layer. They're automatically cleaned up when the voice ends.
+
+## Basic usage
+
+```ts
+{
+  source: { type: "sawtooth", frequency: 80 },
+  filter: { type: "lowpass", frequency: 600, resonance: 8 },
+  gain: 0.3,
+  lfo: {
+    type: "sine",
+    frequency: 6,
+    depth: 500,
+    target: "filter.frequency",
+  },
+}
+```
+
+## Multiple LFOs
+
+Stack modulations on a single layer:
+
+```ts
+{
+  lfo: [
+    { type: "sine", frequency: 4, depth: 300, target: "filter.frequency" },
+    { type: "triangle", frequency: 0.5, depth: 0.1, target: "gain" },
+  ],
+}
+```
+
+## Parameters
+
+| Property    | Type     | Description                  |
+| ----------- | -------- | ---------------------------- |
+| `type`      | `string` | Waveform: sine, triangle, square, sawtooth |
+| `frequency` | `number` | LFO rate in Hz               |
+| `depth`     | `number` | Modulation amount             |
+| `target`    | `string` | Which parameter to modulate  |
+
+## Available targets
+
+| Target              | What it does                    |
+| ------------------- | ------------------------------- |
+| `frequency`         | Pitch vibrato                   |
+| `detune`            | Fine pitch modulation           |
+| `gain`              | Tremolo / volume swell          |
+| `pan`               | Auto-pan                        |
+| `filter.frequency`  | Wah / filter sweep              |
+| `filter.detune`     | Filter pitch shift              |
+| `filter.Q`          | Resonance modulation            |
+| `filter.gain`       | Shelf/peaking boost modulation  |
+| `playbackRate`      | Speed modulation (samples)      |

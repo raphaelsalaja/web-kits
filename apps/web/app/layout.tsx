@@ -21,7 +21,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: site.name,
+  title: { default: site.name, template: `%s › ${site.name}` },
   description,
   alternates: { canonical: "/" },
   openGraph: {
