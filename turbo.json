@@ -25,7 +25,7 @@
         "^build"
       ]
     },
-    "@web-kits/marketing#bake": {
+    "@web-kits/audio-marketing#bake": {
       "inputs": [
         "scripts/bake-sounds.ts",
         "../../.web-kits/*.json",
@@ -36,16 +36,16 @@
         "src/generated/sounds.ts"
       ]
     },
-    "@web-kits/marketing#dev": {
+    "@web-kits/audio-marketing#dev": {
       "dependsOn": [
-        "@web-kits/marketing#bake"
+        "@web-kits/audio-marketing#bake"
       ],
       "cache": false,
       "persistent": true
     },
-    "@web-kits/marketing#render": {
+    "@web-kits/audio-marketing#render": {
       "dependsOn": [
-        "@web-kits/marketing#bake"
+        "@web-kits/audio-marketing#bake"
       ],
       "outputs": [
         "out/**"

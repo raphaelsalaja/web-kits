@@ -12,10 +12,10 @@ exact frame the on-screen interaction happens.
 ## Commands
 
 ```bash
-pnpm --filter @web-kits/marketing studio          # interactive preview (Remotion Studio)
-pnpm --filter @web-kits/marketing bake            # re-render WAVs from .web-kits/*.json
-pnpm --filter @web-kits/marketing music           # generate the backing track (cached)
-pnpm --filter @web-kits/marketing render          # 1920x1080 mp4 → out/launch-video.mp4
+pnpm --filter @web-kits/audio-marketing studio          # interactive preview (Remotion Studio)
+pnpm --filter @web-kits/audio-marketing bake            # re-render WAVs from .web-kits/*.json
+pnpm --filter @web-kits/audio-marketing music           # generate the backing track (cached)
+pnpm --filter @web-kits/audio-marketing render          # 1920x1080 mp4 → out/launch-video.mp4
 ```
 
 `bake` and `music` both run automatically before any `render` script.
@@ -53,7 +53,7 @@ cached to `public/music/backing.mp3`.
 
 ```bash
 export ELEVENLABS_API_KEY=…
-pnpm --filter @web-kits/marketing music
+pnpm --filter @web-kits/audio-marketing music
 ```
 
 The script hashes the prompt + duration + model and skips the API call when
@@ -86,7 +86,7 @@ exact frame an interaction "lands."
 ## Adding a sound to a scene
 
 1. Author the patch in `.web-kits/<patch>.json` (or use an existing one).
-2. `pnpm --filter @web-kits/marketing bake` to regenerate WAVs + `src/generated/sounds.ts`.
+2. `pnpm --filter @web-kits/audio-marketing bake` to regenerate WAVs + `src/generated/sounds.ts`.
 3. In a scene, import from `../../generated/sounds` and wrap an `<Audio>` in a
    `<Sequence from={hitFrame} layout="none">`.
 
