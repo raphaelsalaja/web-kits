@@ -1,6 +1,5 @@
 "use client";
 
-import ArrowUpRight from "@web-kits/icons/outline/arrow-up-right";
 import type {
   Folder,
   Item,
@@ -20,6 +19,7 @@ import {
   useRef,
   useState,
 } from "react";
+import ArrowUpRight from "@/components/icons/outline/arrow-up-right";
 import styles from "./styles.module.css";
 
 interface SidebarContextValue {

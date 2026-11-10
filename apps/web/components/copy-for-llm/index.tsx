@@ -1,14 +1,14 @@
 "use client";
 
 import { Menu } from "@base-ui/react/menu";
-import Check from "@web-kits/icons/outline/check";
-import ChevronDown from "@web-kits/icons/outline/chevron-down";
-import Clone from "@web-kits/icons/outline/clone";
-import Markdown from "@web-kits/icons/outline/markdown";
 import { Calligraph } from "calligraph";
 import { AnimatePresence, motion } from "motion/react";
 import { usePathname } from "next/navigation";
 import { useCallback, useState } from "react";
+import Check from "@/components/icons/outline/check";
+import ChevronDown from "@/components/icons/outline/chevron-down";
+import Clone from "@/components/icons/outline/clone";
+import Markdown from "@/components/icons/outline/markdown";
 import styles from "./styles.module.css";
 
 const cache = new Map<string, Promise<string>>();

@@ -1,16 +1,16 @@
 "use client";
 
 import { Tabs as BaseTabs } from "@base-ui/react/tabs";
-import Check from "@web-kits/icons/outline/check";
-import Clone from "@web-kits/icons/outline/clone";
-import BunIcon from "@web-kits/icons/social-media/bun";
-import NpmIcon from "@web-kits/icons/social-media/npm";
-import PnpmIcon from "@web-kits/icons/social-media/pnpm";
-import YarnIcon from "@web-kits/icons/social-media/yarn";
 import { Calligraph } from "calligraph";
 import { AnimatePresence, motion } from "motion/react";
 import type { CSSProperties } from "react";
 import { useCallback, useRef, useState } from "react";
+import Check from "@/components/icons/outline/check";
+import Clone from "@/components/icons/outline/clone";
+import BunIcon from "@/components/icons/social-media/bun";
+import NpmIcon from "@/components/icons/social-media/npm";
+import PnpmIcon from "@/components/icons/social-media/pnpm";
+import YarnIcon from "@/components/icons/social-media/yarn";
 import { useScrollFade } from "@/lib/hooks/use-scroll-fade";
 import styles from "./styles.module.css";
 

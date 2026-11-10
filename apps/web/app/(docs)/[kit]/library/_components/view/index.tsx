@@ -1,9 +1,9 @@
 "use client";
 
 import { Field } from "@base-ui/react";
-import MagnifierSlash from "@web-kits/icons/fill/magnifier-slash";
-import Magnifier from "@web-kits/icons/outline/magnifier";
 import { useCallback, useMemo, useRef, useState } from "react";
+import MagnifierSlash from "@/components/icons/fill/magnifier-slash";
+import Magnifier from "@/components/icons/outline/magnifier";
 import type { Patch } from "@/lib/registry";
 import { Card } from "../card";
 import styles from "./styles.module.css";
