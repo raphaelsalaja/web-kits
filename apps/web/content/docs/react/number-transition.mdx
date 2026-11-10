@@ -1,0 +1,73 @@
+---
+title: Number Transition
+description: A number that animates between values, like SwiftUI's numericText and Family's wallet.
+---
+
+A number that animates between values. It formats with `Intl.NumberFormat`, so currencies, percentages, units and every locale work as they do there.
+
+<Example>
+  <NumberTransitionExample />
+</Example>
+
+```tsx
+import { NumberTransition } from "@web-kits/react/number-transition";
+
+<NumberTransition
+  value={balance}
+  format={{ style: "currency", currency: "EUR" }}
+/>;
+```
+
+## Transitions
+
+| Transition     |                                                                                             |
+| -------------- | ------------------------------------------------------------------------------------------- |
+| `numericText`  | SwiftUI's `.numericText(value:)`, the default. Changed digits blur, shrink and roll.        |
+| `opacity`      | SwiftUI's `.opacity`. The number crossfades.                                                |
+| `interpolate`  | SwiftUI's `.interpolate`. A crossfade that also eases colour, size and weight.              |
+| `identity`     | SwiftUI's `.identity`. The number swaps.                                                    |
+| `family`       | Family's balance. Each digit spins through the digits in between.                           |
+| `family-input` | Family's keypad. Typed digits rise in and the rest slide over.                              |
+
+### Numeric Text
+
+Digits are matched by place, so going from 9 to 10 changes the units and brings the tens in while every other digit stays put. Each changed digit leaves upwards, shrinking to 40% and blurring, while its replacement comes up from below. They start one after another, left to right, across 0.15 seconds, which is how SwiftUI staggers them.
+
+SwiftUI runs the blur, scale, fade and roll on springs of its own, whatever the `Animation`. They are the ones in SwiftUICore: mass 1, stiffness 344 and damping 37 for the fade, and mass 2, stiffness 470 and damping 34 for the roll.
+
+### Family
+
+Each digit is a wheel that spins through every digit between the old one and the new, on a spring with a response of 0.276 seconds and a damping ratio of 0.95. Digits that appear or disappear fade, and the width and everything around the digits slide on Family's layout spring.
+
+### Family Input
+
+The amount on Family's send screen, typed on its keypad. A typed digit rises in from 1.6 cap heights below, behind a soft-edged mask, and the old digits slide over to make room. A deleted digit drops away. Group separators always leave downwards and come back at their new place.
+
+<Example>
+  <Keypad />
+</Example>
+
+```tsx
+<NumberTransition
+  value={Number(amount)}
+  format={{ style: "currency", currency: "USD", maximumFractionDigits: 2 }}
+  transition="family-input"
+/>
+```
+
+## Direction
+
+Digits roll up when the value grows and down when it shrinks. For `family-input`, they follow the number of digits instead. `countsDown` fixes the direction, as `.numericText(countsDown:)` does.
+
+## Props
+
+| Prop         | Type                                     | Default         |
+| ------------ | ---------------------------------------- | --------------- |
+| `value`      | `number`                                 |                 |
+| `format`     | `Intl.NumberFormatOptions`               |                 |
+| `locales`    | `Intl.LocalesArgument`                   | The browser's   |
+| `transition` | One of the transitions above             | `"numericText"` |
+| `countsDown` | `boolean`                                | By the value    |
+| `animation`  | `"smooth"`, `"snappy"`, `"bouncy"` or a spring | `"smooth"`, or Family's spring for `family` and `family-input` |
+
+`animation` sets what follows SwiftUI's `Animation`: the width, the digits that slide over, and crossfades. Every other prop goes to the `span` it renders.

@@ -16,6 +16,7 @@
     "@web-kits/audio": "workspace:*",
     "@web-kits/blur": "workspace:*",
     "@web-kits/motion-blur": "workspace:*",
+    "@web-kits/react": "workspace:*",
     "@web-kits/springboard": "workspace:*",
     "calligraph": "^1.4.1",
     "fumadocs-core": "catalog:",

@@ -11,6 +11,9 @@ import { Edge } from "@/components/examples/blur/edge";
 import { Example } from "@/components/examples/frame";
 import { Examples as MotionBlurExamples } from "@/components/examples/motion-blur/examples";
 import { Lab, Orbit, Snap, Throw } from "@/components/examples/motion-blur/lab";
+import { Keypad } from "@/components/examples/react/keypad";
+import { NumberTransitionExample } from "@/components/examples/react/number-transition";
+import { TextTransitionExample } from "@/components/examples/react/text-transition";
 import { Genie } from "@/components/examples/springboard/genie";
 import { GlassMenu } from "@/components/examples/springboard/glass-menu";
 import { Launch } from "@/components/examples/springboard/launch";
@@ -72,9 +75,11 @@ export default async function Page(props: Props) {
               Example,
               Genie,
               GlassMenu,
+              Keypad,
               Lab,
               Launch,
               MotionBlurExamples,
+              NumberTransitionExample,
               Orbit,
               Playground,
               Snap,
@@ -82,6 +87,7 @@ export default async function Page(props: Props) {
               Step,
               Steps,
               Tabs,
+              TextTransitionExample,
               Throw,
             }}
           />

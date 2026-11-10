@@ -39,6 +39,11 @@ const icons: Record<string, ReactNode> = {
       </span>
     </span>
   ),
+  react: (
+    <span className={styles.glyphs}>
+      1<span className={styles.morph}>2</span>
+    </span>
+  ),
   calligraph: (
     <span className={styles.glyphs}>
       A<span className={styles.morph}>a</span>

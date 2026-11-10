@@ -1,3 +1,10 @@
 {
-  "pages": ["audio", "springboard", "blur", "motion-blur", "calligraph"]
+  "pages": [
+    "audio",
+    "springboard",
+    "blur",
+    "motion-blur",
+    "react",
+    "calligraph"
+  ]
 }

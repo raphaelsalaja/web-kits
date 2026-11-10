@@ -1,6 +1,7 @@
 import audio from "@web-kits/audio/package.json";
 import blur from "@web-kits/blur/package.json";
 import motionBlur from "@web-kits/motion-blur/package.json";
+import react from "@web-kits/react/package.json";
 import springboard from "@web-kits/springboard/package.json";
 import calligraph from "calligraph/package.json";
 
@@ -54,6 +55,14 @@ export const kits: Kit[] = [
     version: motionBlur.version,
     description: "Motion blur sized from speed, frame time and shutter.",
     href: "/motion-blur",
+  },
+  {
+    slug: "react",
+    name: "React",
+    package: react.name,
+    version: react.version,
+    description: "SwiftUI's and Family's text and number transitions.",
+    href: "/react",
   },
   {
     slug: "calligraph",

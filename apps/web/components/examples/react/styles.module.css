@@ -1,0 +1,46 @@
+.stage {
+  display: grid;
+  place-items: center;
+  padding: 48px 24px;
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.text {
+  font-size: 40px;
+}
+
+.wallet {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 64px);
+  gap: 4px;
+}
+
+.key {
+  height: 48px;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text-primary);
+  border-radius: 12px;
+  transition: background-color 150ms var(--ease-out-quart);
+
+  &:hover {
+    background: var(--gray-3);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring, var(--gray-8));
+    outline-offset: -2px;
+  }
+}
