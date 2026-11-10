@@ -10,7 +10,6 @@ module.exports = {
         "motion-blur",
         "springboard",
         "web",
-        "springboard-playground",
         "skills",
         "ci",
         "deps",

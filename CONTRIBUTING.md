@@ -43,7 +43,6 @@ pnpm smoke
 
 ```
 apps/web                      Web Kits site, docs and audio registry (web-kits.dev)
-apps/springboard-playground   Springboard playground (Vite)
 packages/*                    Published packages
 .web-kits/                    First-party sound patches & generated code
 ```
@@ -115,7 +114,7 @@ Format: `<type>(<optional scope>): <description>`
 A scope is optional, but when you use one it must name a workspace or area:
 
 - Packages: `audio`, `blur`, `motion-blur`, `springboard`
-- Apps: `web`, `springboard-playground`
+- Apps: `web`
 - Repo: `skills`, `ci`, `deps`, `deps-dev`, `release`, `repo`
 
 ### Rules

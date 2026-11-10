@@ -28,7 +28,6 @@ pnpm dev
 
 ```
 apps/web                      Web Kits site, docs and audio registry (web-kits.dev)
-apps/springboard-playground   Springboard playground (Vite)
 packages/*                    Published packages
 skills/create-sound           Agent skill for writing audio patches
 .web-kits/                    First-party audio patches
