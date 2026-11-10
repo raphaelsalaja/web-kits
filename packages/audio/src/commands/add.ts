@@ -18,7 +18,6 @@ import {
   isLocalSource,
   type PatchIndexEntry,
   regenerateIndex,
-  registerPatch,
   validatePatch,
 } from "./utils.ts";
 
@@ -186,7 +185,6 @@ async function addFromGitHub(source: string, options: AddOptions) {
         continue;
       }
       await writePatch(patch.name, data);
-      registerPatch(patch.downloadUrl);
       results.push(data.name);
     } catch (err) {
       p.log.warn(`Failed to install ${patch.name}: ${err}`);
@@ -223,7 +221,6 @@ async function addFromUrl(url: string, options: AddOptions) {
     }
 
     await writePatch(data.name, data);
-    registerPatch(url);
   } catch (err) {
     s.stop("Failed to fetch patch.");
     p.log.error(String(err));
