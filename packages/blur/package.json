@@ -62,6 +62,6 @@
   "devDependencies": {
     "@types/react": "catalog:",
     "react": "catalog:",
-    "typescript": "catalog:ts7"
+    "typescript": "catalog:"
   }
 }

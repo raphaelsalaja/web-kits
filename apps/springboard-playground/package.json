@@ -18,7 +18,7 @@
     "@types/react-dom": "catalog:",
     "@vitejs/plugin-react": "^6.2.1",
     "playwright-core": "^1.64.1",
-    "typescript": "catalog:ts7",
+    "typescript": "catalog:",
     "vite": "^8.3.6"
   }
 }
