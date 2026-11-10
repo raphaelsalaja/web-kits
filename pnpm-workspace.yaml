@@ -1,7 +1,6 @@
 packages:
   - "apps/*"
   - "packages/*"
-  - "internal/*"
 
 catalog:
   "@base-ui/react": ^1.9.0

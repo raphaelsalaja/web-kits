@@ -12,9 +12,9 @@ import { Slider } from "@base-ui/react/slider";
 import { Tabs } from "@base-ui/react/tabs";
 import type { SoundDefinition } from "@web-kits/audio";
 import { defineSound, ensureReady } from "@web-kits/audio";
-import CheckIcon from "@web-kits/icons/outline/check";
 import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useRef, useState } from "react";
+import CheckIcon from "@/components/icons/outline/check";
 import styles from "./styles.module.css";
 
 const sounds: Record<string, SoundDefinition> = {

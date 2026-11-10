@@ -1,12 +1,12 @@
 "use client";
 
 import { loadPatch } from "@web-kits/audio";
-import MediaPause from "@web-kits/icons/fill/media-pause";
-import MediaPlay from "@web-kits/icons/fill/media-play";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useVisualizer } from "@/components/audio/controls/visualizer";
+import MediaPause from "@/components/icons/fill/media-pause";
+import MediaPlay from "@/components/icons/fill/media-play";
 import { colorScale } from "@/lib/colors";
 import type { Patch } from "@/lib/registry";
 import styles from "./styles.module.css";

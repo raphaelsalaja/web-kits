@@ -1,9 +1,9 @@
 "use client";
 
-import ChevronLeft from "@web-kits/icons/fill/chevron-left";
-import ChevronRight from "@web-kits/icons/fill/chevron-right";
 import type { Item } from "fumadocs-core/page-tree";
 import Link from "next/link";
+import ChevronLeft from "@/components/icons/fill/chevron-left";
+import ChevronRight from "@/components/icons/fill/chevron-right";
 import styles from "./styles.module.css";
 
 interface PageNavProps {

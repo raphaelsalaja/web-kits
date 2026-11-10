@@ -1,7 +1,7 @@
-import Github from "@web-kits/icons/social-media/github";
-import Linkedin from "@web-kits/icons/social-media/linkedin";
-import XTwitter from "@web-kits/icons/social-media/x-twitter";
 import Link from "next/link";
+import Github from "@/components/icons/social-media/github";
+import Linkedin from "@/components/icons/social-media/linkedin";
+import XTwitter from "@/components/icons/social-media/x-twitter";
 import { KitIcon } from "@/components/kit-icon";
 import { kits, site } from "@/lib/kits";
 import styles from "./page.module.css";

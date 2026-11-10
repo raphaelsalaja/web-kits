@@ -11,8 +11,6 @@ module.exports = {
         "springboard",
         "web",
         "springboard-playground",
-        "ui",
-        "icons",
         "skills",
         "ci",
         "deps",

@@ -2,11 +2,6 @@
 
 import { click } from "@audio/core";
 import { usePatch, useSound } from "@web-kits/audio/react";
-import ChevronRight from "@web-kits/icons/fill/chevron-right";
-import CircleUser from "@web-kits/icons/fill/circle-user";
-import Playlist4 from "@web-kits/icons/fill/playlist-4";
-import Check from "@web-kits/icons/outline/check";
-import Clone from "@web-kits/icons/outline/clone";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import {
@@ -18,6 +13,11 @@ import {
   useRef,
   useState,
 } from "react";
+import ChevronRight from "@/components/icons/fill/chevron-right";
+import CircleUser from "@/components/icons/fill/circle-user";
+import Playlist4 from "@/components/icons/fill/playlist-4";
+import Check from "@/components/icons/outline/check";
+import Clone from "@/components/icons/outline/clone";
 import { colorScale } from "@/lib/colors";
 import type { Patch } from "@/lib/registry";
 import styles from "./styles.module.css";
