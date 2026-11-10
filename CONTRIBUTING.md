@@ -77,9 +77,9 @@ runs `pnpm smoke`, which packs every package, checks each tarball with publint a
 Are the Types Wrong, installs them all in a temporary project, imports every
 export, and runs the audio CLI.
 
-Configure the repository's `NPM_TOKEN` Actions secret with permission to publish
-the `@web-kits` scope. The workflow passes this secret as both `NPM_TOKEN` for
-Changesets and `NODE_AUTH_TOKEN` for the npm configuration created by setup-node.
+Publishing uses npm trusted publishing, so there is no token to rotate. Each
+package on npmjs.com has a trusted publisher for this repository and the
+`release.yml` workflow.
 
 If publishing fails after a version bump, fix the underlying error and rerun the
 Release workflow from Actions on `main` using **Run workflow**. Keep the existing
