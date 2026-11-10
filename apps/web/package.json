@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",
-    "@neondatabase/serverless": "^0.10.4",
+    "@radix-ui/colors": "^3.0.0",
     "@shikijs/transformers": "^4.0.1",
     "@web-kits/audio": "workspace:*",
     "@web-kits/blur": "workspace:*",
@@ -20,12 +20,10 @@
     "@web-kits/springboard": "workspace:*",
     "@web-kits/ui": "workspace:*",
     "calligraph": "^1.4.1",
-    "drizzle-orm": "^0.45.2",
     "fumadocs-core": "16.8.1",
     "fumadocs-mdx": "14.3.1",
     "motion": "catalog:",
     "next": "catalog:",
-    "nuqs": "^2.8.9",
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-knob-headless": "0.4.0",
@@ -36,7 +34,6 @@
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
-    "drizzle-kit": "^0.31.10",
     "typescript": "catalog:"
   }
 }

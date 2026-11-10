@@ -3,17 +3,16 @@
 import { Field } from "@base-ui/react";
 import MagnifierSlash from "@web-kits/icons/fill/magnifier-slash";
 import Magnifier from "@web-kits/icons/outline/magnifier";
-import { parseAsString, useQueryState } from "nuqs";
 import { useCallback, useMemo, useRef, useState } from "react";
-import type { PatchWithStats } from "@/lib/db/patches";
+import type { Patch } from "@/lib/registry";
 import { Card } from "../card";
 import styles from "./styles.module.css";
 
-export function View({ patches }: { patches: PatchWithStats[] }) {
-  const [activePatchId, setActivePatchId] = useState<number | null>(null);
-  const stopByPatchIdRef = useRef<Map<number, () => void>>(new Map());
+export function View({ patches }: { patches: Patch[] }) {
+  const [activePatchId, setActivePatchId] = useState<string | null>(null);
+  const stopByPatchIdRef = useRef<Map<string, () => void>>(new Map());
 
-  const registerStop = useCallback((patchId: number, stop: () => void) => {
+  const registerStop = useCallback((patchId: string, stop: () => void) => {
     stopByPatchIdRef.current.set(patchId, stop);
     return () => {
       stopByPatchIdRef.current.delete(patchId);
@@ -21,7 +20,7 @@ export function View({ patches }: { patches: PatchWithStats[] }) {
   }, []);
 
   const requestPlay = useCallback(
-    (patchId: number) => {
+    (patchId: string) => {
       if (activePatchId && activePatchId !== patchId) {
         stopByPatchIdRef.current.get(activePatchId)?.();
       }
@@ -30,16 +29,11 @@ export function View({ patches }: { patches: PatchWithStats[] }) {
     [activePatchId],
   );
 
-  const clearActive = useCallback((patchId: number) => {
+  const clearActive = useCallback((patchId: string) => {
     setActivePatchId((prev) => (prev === patchId ? null : prev));
   }, []);
 
-  const [query, setQuery] = useQueryState(
-    "q",
-    parseAsString
-      .withDefault("")
-      .withOptions({ shallow: true, throttleMs: 300 }),
-  );
+  const [query, setQuery] = useState("");
 
   const filtered = useMemo(() => {
     const term = query.trim().toLowerCase();
@@ -60,7 +54,7 @@ export function View({ patches }: { patches: PatchWithStats[] }) {
           autoComplete="off"
           placeholder="Search..."
           className={styles.control}
-          onValueChange={(value) => setQuery(value)}
+          onValueChange={setQuery}
         />
       </Field.Root>
 
@@ -78,9 +72,9 @@ export function View({ patches }: { patches: PatchWithStats[] }) {
         <div className={styles.grid}>
           {filtered.map((patch) => (
             <Card
-              key={patch.id}
+              key={patch.name}
               patch={patch}
-              isActive={activePatchId === patch.id}
+              isActive={activePatchId === patch.name}
               registerStop={registerStop}
               requestPlay={requestPlay}
               clearActive={clearActive}

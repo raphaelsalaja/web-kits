@@ -1,19 +1,22 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getPatchByName, getPatchSounds } from "@/lib/db/patches";
+import { getPatch, patches } from "@/lib/registry";
 import styles from "../styles.module.css";
 import * as View from "./_components/view";
 
-export const dynamic = "force-dynamic";
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return patches.map(({ name }) => ({ kit: "audio", name }));
+}
 
 type Props = {
   params: Promise<{ kit: string; name: string }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { kit, name } = await params;
-  if (kit !== "audio") return {};
-  const patch = await getPatchByName(name);
+  const { name } = await params;
+  const patch = getPatch(name);
   if (!patch) return { title: "Not Found" };
 
   const title = `${patch.name} by ${patch.author}`;
@@ -25,25 +28,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: { canonical: url },
     openGraph: {
       title,
-      description: patch.description ?? undefined,
+      description: patch.description,
       url,
     },
   };
 }
 
 export default async function Page({ params }: Props) {
-  const { kit, name } = await params;
-  if (kit !== "audio") notFound();
-
-  const patch = await getPatchByName(name);
-
+  const { name } = await params;
+  const patch = getPatch(name);
   if (!patch) notFound();
-
-  const sounds = await getPatchSounds(patch.id);
 
   return (
     <div className={styles.page}>
-      <View.Root patch={patch} sounds={sounds}>
+      <View.Root patch={patch}>
         <View.Breadcrumb />
         <View.Main>
           <View.Header />

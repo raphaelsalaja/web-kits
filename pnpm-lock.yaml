@@ -302,9 +302,9 @@ importers:
       '@base-ui/react':
         specifier: ^1.2.0
         version: 1.9.0(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      '@neondatabase/serverless':
-        specifier: ^0.10.4
-        version: 0.10.4
+      '@radix-ui/colors':
+        specifier: ^3.0.0
+        version: 3.0.0
       '@shikijs/transformers':
         specifier: ^4.0.1
         version: 4.0.2
@@ -329,9 +329,6 @@ importers:
       calligraph:
         specifier: ^1.4.1
         version: 1.4.1(motion@12.34.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      drizzle-orm:
-        specifier: ^0.45.2
-        version: 0.45.2(@neondatabase/serverless@0.10.4)(@opentelemetry/api@1.9.0)(@types/pg@8.11.6)
       fumadocs-core:
         specifier: 16.8.1
         version: 16.8.1(@mdx-js/mdx@3.1.1)(@types/estree-jsx@1.0.5)(@types/hast@3.0.4)(@types/mdast@4.0.4)(@types/react@19.2.14)(lucide-react@1.8.0(react@19.2.4))(next@16.1.6(@opentelemetry/api@1.9.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.97.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(zod@4.3.6)
@@ -344,9 +341,6 @@ importers:
       next:
         specifier: 'catalog:'
         version: 16.1.6(@opentelemetry/api@1.9.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.97.3)
-      nuqs:
-        specifier: ^2.8.9
-        version: 2.8.9(next@16.1.6(@opentelemetry/api@1.9.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.97.3))(react@19.2.4)
       react:
         specifier: 'catalog:'
         version: 19.2.4
@@ -372,9 +366,6 @@ importers:
       '@types/react-dom':
         specifier: 'catalog:'
         version: 19.2.3(@types/react@19.2.14)
-      drizzle-kit:
-        specifier: ^0.31.10
-        version: 0.31.10
       typescript:
         specifier: 'catalog:'
         version: 6.0.3
