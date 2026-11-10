@@ -275,16 +275,6 @@ export async function fetchPatchJson(
   return res.json() as Promise<Record<string, unknown>>;
 }
 
-export async function registerPatch(url: string): Promise<void> {
-  try {
-    await fetch(`${REGISTRY_BASE}/patches`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ url }),
-    });
-  } catch {}
-}
-
 export function validatePatch(
   data: Record<string, unknown>,
 ): data is { name: string; sounds: Record<string, unknown> } {
