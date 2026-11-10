@@ -3,24 +3,23 @@
 import { loadPatch } from "@web-kits/audio";
 import MediaPause from "@web-kits/icons/fill/media-pause";
 import MediaPlay from "@web-kits/icons/fill/media-play";
-import { generateRadixColorsScaleFromName } from "@web-kits/ui/lib/colors";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
-import type { CSSProperties } from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useVisualizer } from "@/components/audio/controls/visualizer";
-import type { PatchWithStats } from "@/lib/db/patches";
+import { colorScale } from "@/lib/colors";
+import type { Patch } from "@/lib/registry";
 import styles from "./styles.module.css";
 
 const MotionPause = motion.create(MediaPause);
 const MotionPlay = motion.create(MediaPlay);
 
 interface CardProps {
-  patch: PatchWithStats;
+  patch: Patch;
   isActive: boolean;
-  registerStop: (patchId: number, stop: () => void) => () => void;
-  requestPlay: (patchId: number) => void;
-  clearActive: (patchId: number) => void;
+  registerStop: (name: string, stop: () => void) => () => void;
+  requestPlay: (name: string) => void;
+  clearActive: (name: string) => void;
 }
 
 export function Card({
@@ -48,8 +47,8 @@ export function Card({
   }, [stopVis]);
 
   useEffect(
-    () => registerStop(patch.id, stopPlayback),
-    [patch.id, registerStop, stopPlayback],
+    () => registerStop(patch.name, stopPlayback),
+    [patch.name, registerStop, stopPlayback],
   );
 
   useEffect(() => {
@@ -63,11 +62,11 @@ export function Card({
 
       if (isActive && voiceRef.current) {
         stopPlayback();
-        clearActive(patch.id);
+        clearActive(patch.name);
         return;
       }
 
-      requestPlay(patch.id);
+      requestPlay(patch.name);
       playRequestRef.current += 1;
       const requestId = playRequestRef.current;
 
@@ -91,32 +90,20 @@ export function Card({
           if (requestId !== playRequestRef.current) return;
           if (voiceRef.current === voice) {
             stopPlayback();
-            clearActive(patch.id);
+            clearActive(patch.name);
           }
         }, 400);
       } catch {
         if (requestId !== playRequestRef.current) return;
         stopPlayback();
-        clearActive(patch.id);
+        clearActive(patch.name);
         setPlaying(false);
       }
     },
-    [
-      isActive,
-      stopPlayback,
-      clearActive,
-      patch.id,
-      requestPlay,
-      patch.name,
-      startVis,
-    ],
+    [isActive, stopPlayback, clearActive, patch.name, requestPlay, startVis],
   );
 
-  const colorVars = useMemo(
-    () =>
-      generateRadixColorsScaleFromName(patch.name) as Record<string, string>,
-    [patch.name],
-  );
+  const colorVars = useMemo(() => colorScale(patch.name), [patch.name]);
 
   const props = {
     width: 18,
@@ -127,7 +114,7 @@ export function Card({
   };
 
   return (
-    <div className={styles.card} style={colorVars as CSSProperties}>
+    <div className={styles.card} style={colorVars}>
       <div className={styles.preview} data-playing={playing || undefined}>
         <canvas ref={canvasRef} className={styles.canvas} />
         <motion.button

@@ -82,13 +82,6 @@
       color: var(--ds-gray-10);
       @typography 14;
     }
-
-    .separator {
-      width: 1px;
-      height: 14px;
-      margin-block: auto;
-      background: var(--ds-gray-4);
-    }
   }
 }
 

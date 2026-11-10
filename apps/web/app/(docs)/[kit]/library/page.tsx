@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { getPatchesAllTime } from "@/lib/db/patches";
+import { patches } from "@/lib/registry";
 import { View } from "./_components/view";
 import styles from "./styles.module.css";
 
-export const dynamic = "force-dynamic";
+const description = "Browse sound patches for your UI.";
 
-const description = "Browse and discover community sound patches for your UI.";
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return [{ kit: "audio" }];
+}
 
 export const metadata: Metadata = {
   title: "Library › Audio",
@@ -15,16 +18,7 @@ export const metadata: Metadata = {
   openGraph: { title: "Library › Audio", description, url: "/audio/library" },
 };
 
-export default async function LibraryPage({
-  params,
-}: {
-  params: Promise<{ kit: string }>;
-}) {
-  const { kit } = await params;
-  if (kit !== "audio") notFound();
-
-  const patches = await getPatchesAllTime();
-
+export default function LibraryPage() {
   return (
     <div className={styles.page}>
       <View patches={patches} />

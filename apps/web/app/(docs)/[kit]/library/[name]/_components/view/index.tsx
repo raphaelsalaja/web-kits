@@ -2,17 +2,13 @@
 
 import { click } from "@audio/core";
 import { usePatch, useSound } from "@web-kits/audio/react";
-import CalendarPen from "@web-kits/icons/fill/calendar-pen";
 import ChevronRight from "@web-kits/icons/fill/chevron-right";
 import CircleUser from "@web-kits/icons/fill/circle-user";
-import Download4 from "@web-kits/icons/fill/download-4";
 import Playlist4 from "@web-kits/icons/fill/playlist-4";
 import Check from "@web-kits/icons/outline/check";
 import Clone from "@web-kits/icons/outline/clone";
-import { generateRadixColorsScaleFromName } from "@web-kits/ui/lib/colors";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
-import type { CSSProperties } from "react";
 import {
   createContext,
   use,
@@ -22,29 +18,15 @@ import {
   useRef,
   useState,
 } from "react";
-import type { PatchSoundsByCategory, PatchWithStats } from "@/lib/db/patches";
+import { colorScale } from "@/lib/colors";
+import type { Patch } from "@/lib/registry";
 import styles from "./styles.module.css";
 
 const MotionCheck = motion.create(Check);
 const MotionClone = motion.create(Clone);
 
-function formatLoads(n: number): string {
-  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
-  if (n >= 1000) return `${(n / 1000).toFixed(1)}K`;
-  return String(Math.round(n));
-}
-
-function formatDate(date: Date): string {
-  return new Date(date).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-}
-
 interface PatchDetailContextValue {
-  patch: PatchWithStats;
-  sounds: PatchSoundsByCategory[];
+  patch: Patch;
 }
 
 const PatchDetailContext = createContext<PatchDetailContextValue | null>(null);
@@ -59,18 +41,14 @@ function usePatchDetail(): PatchDetailContextValue {
 
 function Root({
   patch,
-  sounds,
   children,
 }: {
-  patch: PatchWithStats;
-  sounds: PatchSoundsByCategory[];
+  patch: Patch;
   children: React.ReactNode;
 }) {
   return (
     <div className={styles.main}>
-      <PatchDetailContext value={{ patch, sounds }}>
-        {children}
-      </PatchDetailContext>
+      <PatchDetailContext value={{ patch }}>{children}</PatchDetailContext>
     </div>
   );
 }
@@ -126,17 +104,6 @@ function Header() {
           <CircleUser width={16} height={16} />
           {patch.author}
         </span>
-        <div className={styles.separator} />
-        <span className={styles.detail}>
-          <Download4 width={16} height={16} />
-          {formatLoads(patch.loads)} Installs
-        </span>
-        <div className={styles.separator} />
-
-        <span className={styles.detail}>
-          <CalendarPen width={16} height={16} />
-          <span className={styles.detail}>{formatDate(patch.createdAt)}</span>
-        </span>
       </div>
     </div>
   );
@@ -186,7 +153,7 @@ function Install() {
 }
 
 function Sounds() {
-  const { patch: patchData, sounds } = usePatchDetail();
+  const { patch: patchData } = usePatchDetail();
 
   const patch = usePatch(`/api/patch/${patchData.name}`);
 
@@ -197,11 +164,6 @@ function Sounds() {
   const playingRef = useRef<string | null>(null);
 
   const soundSet = useMemo(() => new Set(patch.sounds), [patch.sounds]);
-
-  const allSounds = useMemo(
-    () => sounds.flatMap((group) => group.sounds),
-    [sounds],
-  );
 
   const handlePlay = useCallback(
     (soundName: string) => {
@@ -242,7 +204,7 @@ function Sounds() {
     [],
   );
 
-  if (allSounds.length === 0) return null;
+  if (patchData.sounds.length === 0) return null;
 
   return (
     <div className={styles.preview}>
@@ -253,25 +215,21 @@ function Sounds() {
         <span className={styles.text}>Preview Sounds</span>
       </h2>
       <div className={styles.grid}>
-        {allSounds.map((sound) => {
-          const isAvailable = patch.ready && soundSet.has(sound.name);
-          const isPlaying = playing === sound.name;
+        {patchData.sounds.map((sound) => {
+          const isAvailable = patch.ready && soundSet.has(sound);
+          const isPlaying = playing === sound;
           return (
             <button
-              key={sound.id}
+              key={sound}
               type="button"
               className={styles.card}
               data-playing={isPlaying}
               data-available={isAvailable}
-              onClick={() => handlePlay(sound.name)}
+              onClick={() => handlePlay(sound)}
               disabled={!patch.ready}
-              style={
-                {
-                  ...generateRadixColorsScaleFromName(sound.name),
-                } as CSSProperties
-              }
+              style={colorScale(sound)}
             >
-              {sound.name}
+              {sound}
             </button>
           );
         })}
