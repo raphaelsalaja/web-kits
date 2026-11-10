@@ -60,6 +60,9 @@
   "engines": {
     "node": ">=22"
   },
+  "dependencies": {
+    "@web-kits/react": "workspace:*"
+  },
   "peerDependencies": {
     "react": ">=19"
   },
