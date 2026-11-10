@@ -10,9 +10,9 @@
     "start": "next start"
   },
   "dependencies": {
-    "@base-ui/react": "^1.2.0",
+    "@base-ui/react": "catalog:",
     "@radix-ui/colors": "^3.0.0",
-    "@shikijs/transformers": "^4.0.1",
+    "@shikijs/transformers": "catalog:",
     "@web-kits/audio": "workspace:*",
     "@web-kits/blur": "workspace:*",
     "@web-kits/icons": "workspace:*",
@@ -20,14 +20,14 @@
     "@web-kits/springboard": "workspace:*",
     "@web-kits/ui": "workspace:*",
     "calligraph": "^1.4.1",
-    "fumadocs-core": "16.8.1",
-    "fumadocs-mdx": "14.3.1",
+    "fumadocs-core": "catalog:",
+    "fumadocs-mdx": "catalog:",
     "motion": "catalog:",
     "next": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-knob-headless": "0.4.0",
-    "shiki": "^4.0.2"
+    "shiki": "catalog:"
   },
   "devDependencies": {
     "@types/mdx": "^2.0.0",
