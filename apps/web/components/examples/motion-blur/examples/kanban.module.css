@@ -1,0 +1,85 @@
+/* The columns run off the bottom of the tile, so the cards making room
+   slide under its edge */
+.board {
+  position: absolute;
+  top: 28px;
+  left: 28px;
+  display: flex;
+  gap: 12px;
+  width: 336px;
+  height: 320px;
+}
+
+.column {
+  flex: 1;
+  padding: 0 8px;
+  overflow: hidden;
+  background: var(--example-well);
+  border-radius: 14px;
+}
+
+.head {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  height: 32px;
+  padding-left: 4px;
+  font-size: 13px;
+  font-variation-settings: var(--font-weight-600);
+  color: var(--text-primary);
+}
+
+.count {
+  font-variation-settings: var(--font-weight-500);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-quaternary);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card,
+.task {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  justify-content: center;
+  height: 52px;
+  padding: 0 12px;
+  background: var(--example-surface);
+  border-radius: 10px;
+  box-shadow: var(--example-shadow);
+}
+
+.bar {
+  height: 6px;
+  background: var(--example-bar);
+  border-radius: 3px;
+
+  &[data-faint] {
+    height: 5px;
+    background: var(--example-bar-faint);
+  }
+}
+
+.host {
+  position: absolute;
+  top: 32px;
+  left: 8px;
+  width: 146px;
+}
+
+.task {
+  box-shadow: var(--example-lift);
+}
+
+.title {
+  font-size: 14px;
+  font-variation-settings: var(--font-weight-500);
+  line-height: 18px;
+  color: var(--text-primary);
+}

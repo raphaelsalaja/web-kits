@@ -16,4 +16,10 @@ motionBlur(el, { technique: squeeze({ factor: 16 }) });
 | `svg()`     |                                | `feGaussianBlur` along one axis, rotated to the direction of motion.                                                                                             |
 | `smear()`   | `limit = 1.05`                 | Stretches the layer along the motion. Nothing is blurred, so keep the limit low on anything with text.                                                           |
 
+Pick a technique, then slow it down or press Still to stop the square at its fastest point, where the shape of each blur is easiest to see. Blur is a plain CSS `blur()` for comparison.
+
+<Example>
+  <Lab />
+</Example>
+
 Echo gets one copy for every `spacing` px of streak, up to `copies`. Squeeze and SVG rotate the layer and its child in opposite directions, so the layer must have exactly one element child.

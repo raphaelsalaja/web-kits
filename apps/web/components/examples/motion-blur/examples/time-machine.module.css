@@ -1,0 +1,79 @@
+/* The front window keeps a full gutter below; the ones behind climb and
+   shrink toward the top and fade before they reach it */
+.stack {
+  position: absolute;
+  top: 100px;
+  left: 46px;
+  width: 300px;
+  height: 190px;
+}
+
+.host {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 0;
+}
+
+.window {
+  height: 190px;
+  overflow: hidden;
+  background: var(--example-surface);
+  border-radius: 12px;
+  box-shadow: var(--example-lift);
+}
+
+.bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  box-shadow: inset 0 -1px var(--border-primary);
+}
+
+.dots {
+  position: absolute;
+  left: 12px;
+  display: flex;
+  gap: 6px;
+
+  & i {
+    width: 9px;
+    height: 9px;
+    background: var(--example-well);
+    border-radius: 50%;
+  }
+}
+
+.title {
+  font-size: 12px;
+  font-variation-settings: var(--font-weight-600);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-secondary);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  background: var(--example-well);
+  border-radius: 7px;
+}
+
+.line {
+  height: 6px;
+  background: var(--example-bar-faint);
+  border-radius: 3px;
+}

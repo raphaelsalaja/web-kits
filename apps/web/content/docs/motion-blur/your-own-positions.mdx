@@ -9,6 +9,12 @@ For a physics loop, a canvas-driven position or anything else you set by hand, c
 blur.render(previous, current);
 ```
 
+Drag the ball and let go, or press Throw. Its position comes from a physics loop, and the blur fades out on its own as it slows down.
+
+<Example>
+  <Throw />
+</Example>
+
 ## Curved Paths
 
 Pass a path instead when the motion bends, so Echo puts its copies along the curve instead of on a straight line between two frames:
@@ -19,3 +25,9 @@ blur.render((t) => at(angle + t * speed * frameTime));
 ```
 
 `t` is in frames, so `path(-0.5)` is half a frame back.
+
+The dot goes round three and a half times a second. With Echo, the copies follow the circle, so the streak bends with it. The other techniques blur along a straight line.
+
+<Example>
+  <Orbit />
+</Example>

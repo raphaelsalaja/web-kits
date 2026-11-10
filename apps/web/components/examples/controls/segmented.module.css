@@ -1,0 +1,37 @@
+.control {
+  display: inline-flex;
+  padding: 3px;
+  background: var(--gray-3);
+  border-radius: 10px;
+}
+
+.option {
+  position: relative;
+  height: 28px;
+  padding: 0 12px;
+  font-size: 13px;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  border-radius: 7px;
+  transition: color 150ms ease;
+
+  &:hover,
+  &[aria-pressed="true"] {
+    color: var(--text-primary);
+  }
+}
+
+.pill {
+  position: absolute;
+  inset: 0;
+  background: var(--gray-1);
+  border-radius: 7px;
+  box-shadow: var(--shadow-raised);
+}
+
+.label {
+  position: relative;
+  z-index: 1;
+  font-size: inherit;
+  color: inherit;
+}
