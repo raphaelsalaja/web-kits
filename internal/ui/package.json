@@ -12,7 +12,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@base-ui/react": "^1.2.0",
+    "@base-ui/react": "catalog:",
     "@radix-ui/colors": "^3.0.0",
     "@radix-ui/themes": "^3.3.0"
   },
