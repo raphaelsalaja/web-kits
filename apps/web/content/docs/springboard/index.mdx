@@ -5,7 +5,9 @@ description: Apple's motion for the web, from the values iOS and macOS ship.
 
 Apple's motion for the web, from the values iOS and macOS ship. Open a popup out of its button the way SpringBoard opens an app, minimise a window into its icon the way the Dock does, morph a menu out of a glass button the way iOS 27 does, or use SwiftUI's, UIKit's and SpringBoard's springs on anything else. It works with plain DOM, React, Base UI and Motion.
 
-<SpringboardPreview />
+<Example>
+  <Launch />
+</Example>
 
 Read how they work, with live examples, in the write-ups on [opening an app](https://www.raphaelsalaja.com/work/apple), [the genie](https://www.raphaelsalaja.com/work/genie) and [the glass menu](https://www.raphaelsalaja.com/work/glass-menu).
 
@@ -36,6 +38,18 @@ import { genie, launch, swiftui } from "@web-kits/springboard";
 launch({ springs: { open: swiftui.snappy }, grid: { columns: 8, rows: 6 } });
 genie({ edge: "left", duration: 0.6 });
 ```
+
+`genie()` minimises a window into its Dock icon. Tap a window to minimise it and its icon to bring it back:
+
+<Example>
+  <Genie />
+</Example>
+
+`morph()` pours a menu out of a glass button:
+
+<Example>
+  <GlassMenu />
+</Example>
 
 An effect is a plain value, so to share one, export it and use it everywhere:
 

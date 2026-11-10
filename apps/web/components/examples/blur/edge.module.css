@@ -1,0 +1,79 @@
+.stage {
+  position: relative;
+  height: 420px;
+}
+
+.scroll {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  padding: 72px 20px 24px;
+  margin: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  list-style: none;
+  scrollbar-width: none;
+}
+
+.row {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.art {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--from), var(--to));
+  border-radius: 8px;
+}
+
+.text {
+  display: grid;
+  gap: 2px;
+}
+
+.title {
+  font-size: 15px;
+  font-variation-settings: var(--font-weight-500);
+  color: var(--text-primary);
+}
+
+.artist {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* The bar is 56px, and iOS runs the edge 40 past it */
+.top {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 96px;
+  pointer-events: none;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+}
+
+.one {
+  backdrop-filter: blur(20px);
+  mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+.bar {
+  position: absolute;
+  inset: 0 0 auto;
+  display: grid;
+  place-items: center;
+  height: 56px;
+  margin: 0;
+  font-size: 15px;
+  font-variation-settings: var(--font-weight-600);
+  color: var(--text-primary);
+  pointer-events: none;
+}

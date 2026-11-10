@@ -1,0 +1,41 @@
+.stage {
+  position: relative;
+  height: 360px;
+  overflow: hidden;
+  isolation: isolate;
+
+  & > :global([data-launch]) {
+    filter: drop-shadow(
+      0 6px 12px oklch(0 0 0 / calc(6% * var(--shadow-strength)))
+    );
+  }
+}
+
+/* The list behind the note, which recedes like the home screen */
+.notes {
+  position: absolute;
+  inset: 48px 32px 88px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.note {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  background: var(--background-secondary);
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px var(--border-primary);
+
+  & > span {
+    height: 8px;
+    background: var(--gray-4);
+    border-radius: 4px;
+  }
+
+  & > span + span {
+    width: 60%;
+  }
+}

@@ -7,11 +7,15 @@ import { Playground } from "@/components/audio/playground";
 import { Card, CardGrid } from "@/components/card";
 import { Pre, Tabs } from "@/components/code-block";
 import { CopyForLLM } from "@/components/copy-for-llm";
+import { Edge } from "@/components/examples/blur/edge";
+import { Example } from "@/components/examples/frame";
+import { Examples as MotionBlurExamples } from "@/components/examples/motion-blur/examples";
+import { Lab, Orbit, Snap, Throw } from "@/components/examples/motion-blur/lab";
+import { Genie } from "@/components/examples/springboard/genie";
+import { GlassMenu } from "@/components/examples/springboard/glass-menu";
+import { Launch } from "@/components/examples/springboard/launch";
 import { PageNav } from "@/components/page-nav";
-import { BlurPreview } from "@/components/previews/blur";
 import { CalligraphPreview } from "@/components/previews/calligraph";
-import { MotionBlurPreview } from "@/components/previews/motion-blur";
-import { SpringboardPreview } from "@/components/previews/springboard";
 import proseStyles from "@/components/prose/styles.module.css";
 import { TableWrapper } from "@/components/prose/table-wrapper";
 import { Step, Steps } from "@/components/steps";
@@ -59,19 +63,26 @@ export default async function Page(props: Props) {
             components={{
               pre: Pre,
               table: Table,
-              BlurPreview,
               CalligraphPreview,
               Card,
               CardGrid,
               Demo,
               DemoGrid,
-              MotionBlurPreview,
+              Edge,
+              Example,
+              Genie,
+              GlassMenu,
+              Lab,
+              Launch,
+              MotionBlurExamples,
+              Orbit,
               Playground,
+              Snap,
               SoundBuilder,
-              SpringboardPreview,
               Step,
               Steps,
               Tabs,
+              Throw,
             }}
           />
         </div>
