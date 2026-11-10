@@ -113,8 +113,8 @@ Format: `<type>(<optional scope>): <description>`
 
 A scope is optional, but when you use one it must name a workspace or area:
 
-- Packages: `audio`, `blur`, `motion-blur`, `springboard`
-- Apps: `web`
+- Packages: `audio`, `blur`, `motion-blur`, `react`, `springboard`
+- Apps: `web`, `playground`
 - Repo: `skills`, `ci`, `deps`, `deps-dev`, `release`, `repo`
 
 ### Rules
