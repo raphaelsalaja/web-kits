@@ -28,7 +28,7 @@
     "shiki": "catalog:"
   },
   "devDependencies": {
-    "@types/mdx": "^2.0.0",
+    "@types/mdx": "^2.0.14",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
