@@ -44,7 +44,6 @@ pnpm smoke
 ```
 apps/web                      Web Kits site
 apps/audio                    Audio docs and registry (Fumadocs)
-apps/audio-marketing          Audio launch video (Remotion)
 apps/springboard-playground   Springboard playground (Vite)
 packages/*                    Published packages
 internal/                     Shared UI and icons for the apps
@@ -118,7 +117,7 @@ Format: `<type>(<optional scope>): <description>`
 A scope is optional, but when you use one it must name a workspace or area:
 
 - Packages: `audio`, `blur`, `motion-blur`, `springboard`
-- Apps: `web`, `audio-website`, `audio-marketing`, `springboard-playground`
+- Apps: `web`, `audio-website`, `springboard-playground`
 - Internal: `ui`, `icons`, `skills`
 - Repo: `ci`, `deps`, `deps-dev`, `release`, `repo`
 

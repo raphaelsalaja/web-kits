@@ -11,7 +11,6 @@ module.exports = {
         "springboard",
         "web",
         "audio-website",
-        "audio-marketing",
         "springboard-playground",
         "ui",
         "icons",
