@@ -1,0 +1,399 @@
+:root {
+  --surface: #fff;
+  --page: #f7f7f7;
+  --hairline: oklch(0 0 0 / 9%);
+  --text: #171717;
+  --muted: #6f6f6f;
+  --accent: #3e63dd;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 13px;
+  color: var(--text);
+  background: var(--page);
+}
+
+body {
+  margin: 0;
+}
+
+button,
+select,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  padding: 6px 10px;
+  cursor: pointer;
+  background: var(--surface);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px var(--hairline);
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.4;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+}
+
+select,
+input:not([type]),
+input[type="number"] {
+  min-width: 0;
+  padding: 5px 8px;
+  background: var(--surface);
+  border: 0;
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px var(--hairline);
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  min-height: 100dvh;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  padding: 16px 12px;
+  overflow-y: auto;
+  background: var(--surface);
+  box-shadow: 1px 0 0 var(--hairline);
+
+  h1 {
+    margin: 0 8px 12px;
+    font-size: 15px;
+  }
+
+  h2 {
+    margin: 16px 8px 4px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    padding: 6px 8px;
+    text-align: left;
+    background: none;
+    box-shadow: none;
+
+    &:hover {
+      background: var(--page);
+    }
+
+    &[aria-pressed="true"] {
+      font-weight: 600;
+      background: var(--page);
+    }
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  padding: 20px 24px 48px;
+}
+
+header {
+  display: flex;
+  gap: 24px;
+  align-items: start;
+  justify-content: space-between;
+
+  h2 {
+    margin: 0;
+    font-size: 18px;
+  }
+}
+
+.notes,
+.keys {
+  max-width: 64ch;
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.keys {
+  flex: none;
+}
+
+.panes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.reference,
+.stage {
+  overflow: hidden;
+  background: var(--surface);
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px var(--hairline);
+}
+
+.reference.empty {
+  display: grid;
+  place-items: center;
+  min-height: 240px;
+  color: var(--muted);
+}
+
+.crop {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #000;
+
+  video {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  video.cropped {
+    position: absolute;
+    max-width: none;
+    max-height: none;
+  }
+}
+
+.missing {
+  padding: 24px;
+  color: #fff;
+  text-align: center;
+}
+
+.meta {
+  display: flex;
+  gap: 12px;
+  padding: 8px 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+
+.stage {
+  display: grid;
+  place-items: center;
+  min-height: 240px;
+  padding: 24px;
+  line-height: 1.2;
+
+  &.light {
+    color: #171717;
+    background: #fff;
+  }
+
+  &.dark {
+    color: #fff;
+    background: #000;
+  }
+
+  &.layers [data-glyph] {
+    color: #00f;
+  }
+
+  &.layers > span > span:last-child > span {
+    color: #f00;
+  }
+
+  &.boxes [data-glyph] {
+    outline: 1px solid oklch(0.6 0.2 250 / 50%);
+  }
+
+  &.boxes > span {
+    outline: 1px dashed oklch(0.6 0.2 30 / 60%);
+  }
+}
+
+.timeline {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  input[type="range"] {
+    flex: 1;
+  }
+
+  output {
+    min-width: 13ch;
+    font-variant-numeric: tabular-nums;
+    color: var(--muted);
+    text-align: right;
+  }
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  padding: 16px;
+  background: var(--surface);
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px var(--hairline);
+
+  h3 {
+    margin: 8px 0 0;
+    font-size: 12px;
+    font-weight: 600;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  label {
+    display: grid;
+    gap: 4px;
+    color: var(--muted);
+
+    span {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    output {
+      font-variant-numeric: tabular-nums;
+      color: var(--text);
+    }
+  }
+
+  label.toggle {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    color: var(--text);
+  }
+
+  .reset {
+    margin-top: 8px;
+  }
+}
+
+.steps {
+  display: grid;
+  gap: 6px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 7ch auto auto auto;
+    gap: 6px;
+    align-items: center;
+    padding: 4px;
+    border-radius: 8px;
+
+    &[aria-current="true"] {
+      background: oklch(0.6 0.15 260 / 10%);
+    }
+  }
+
+  .at {
+    font-variant-numeric: tabular-nums;
+    color: var(--muted);
+  }
+}
+
+.rows {
+  width: 100%;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 4px 6px;
+    vertical-align: top;
+    text-align: left;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  th {
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  td:last-child {
+    word-break: break-word;
+  }
+}
+
+.charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.chart {
+  margin: 0;
+
+  figcaption {
+    margin-bottom: 6px;
+    color: var(--muted);
+  }
+
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .axis {
+    stroke: oklch(0 0 0 / 25%);
+  }
+
+  .grid {
+    stroke: oklch(0 0 0 / 7%);
+  }
+
+  .cursor {
+    stroke: var(--accent);
+    stroke-dasharray: 3 3;
+  }
+
+  .tick {
+    font-size: 9px;
+    fill: var(--muted);
+  }
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  padding: 0;
+  margin: 6px 0 0;
+  color: var(--muted);
+  list-style: none;
+
+  span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 6px;
+  }
+}
