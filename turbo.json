@@ -13,23 +13,6 @@
     "test": {},
     "typecheck": {
       "dependsOn": ["^build"]
-    },
-    "@web-kits/audio-marketing#bake": {
-      "inputs": [
-        "scripts/bake-sounds.ts",
-        "../../.web-kits/*.json",
-        "../../packages/audio/src/**"
-      ],
-      "outputs": ["public/sounds/**", "src/generated/sounds.ts"]
-    },
-    "@web-kits/audio-marketing#dev": {
-      "dependsOn": ["@web-kits/audio-marketing#bake"],
-      "cache": false,
-      "persistent": true
-    },
-    "@web-kits/audio-marketing#render": {
-      "dependsOn": ["@web-kits/audio-marketing#bake"],
-      "outputs": ["out/**"]
     }
   },
   "ui": "tui"

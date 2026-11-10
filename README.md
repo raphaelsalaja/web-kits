@@ -29,7 +29,6 @@ pnpm dev
 ```
 apps/web                      Web Kits site
 apps/audio                    Audio docs and registry (audio.raphaelsalaja.com)
-apps/audio-marketing          Audio launch video (Remotion)
 apps/springboard-playground   Springboard playground (Vite)
 packages/*                    Published packages
 internal/ui                   Shared UI for the apps
