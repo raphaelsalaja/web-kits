@@ -14,6 +14,7 @@ import { Lab, Orbit, Snap, Throw } from "@/components/examples/motion-blur/lab";
 import { Keypad } from "@/components/examples/react/keypad";
 import { NumberTransitionExample } from "@/components/examples/react/number-transition";
 import { TextTransitionExample } from "@/components/examples/react/text-transition";
+import { TransactionStatus } from "@/components/examples/react/transaction-status";
 import { Genie } from "@/components/examples/springboard/genie";
 import { GlassMenu } from "@/components/examples/springboard/glass-menu";
 import { Launch } from "@/components/examples/springboard/launch";
@@ -89,6 +90,7 @@ export default async function Page(props: Props) {
               Tabs,
               TextTransitionExample,
               Throw,
+              TransactionStatus,
             }}
           />
         </div>

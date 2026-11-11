@@ -21,5 +21,27 @@ import { fromBounce, spring } from "@web-kits/react/springs";
 | `solve(spring, time, from, to, velocity)`| Where the spring is after `time` seconds.                           |
 | `settle(spring)`                         | How long it takes to settle, in seconds.                            |
 | `toLinear(spring)`                       | A CSS `linear()` easing and its duration in milliseconds.           |
+| `toMotion(spring)`                       | A [Motion](https://motion.dev) spring transition.                   |
 
 These are the same springs [Springboard](/springboard/springs) uses.
+
+## Transaction Status
+
+A pill that checks a transaction, after [Fluidity](https://benji.org/fluidity). The words sit on one track that slides as one, so "Transaction" moves over as "Analyzing" fades out and "Safe" fades in, and the pill's width follows on the same spring.
+
+<Example>
+  <TransactionStatus />
+</Example>
+
+```tsx
+import { fromPhysics, toMotion } from "@web-kits/react/springs";
+import { motion } from "motion/react";
+
+const spring = toMotion(fromPhysics(4, 800, 80));
+
+<motion.span animate={{ width }} transition={spring}>
+  <motion.span animate={{ x: analyzing ? 0 : -shift }} transition={spring}>
+    {/* Analyzing Transaction Safe */}
+  </motion.span>
+</motion.span>;
+```
