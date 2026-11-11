@@ -39,3 +39,15 @@ for pass in base colored; do
     echo "swiftui $pass: not found at $source"
   fi
 done
+
+# Family sets its amounts in SF Pro Rounded, which Chrome's ui-rounded is not,
+# and their currency signs in SF Compact Rounded.
+mkdir -p "$target/fonts"
+for font in SFNSRounded SFCompactRounded; do
+  if [ -f "/System/Library/Fonts/$font.ttf" ]; then
+    cp "/System/Library/Fonts/$font.ttf" "$target/fonts/"
+    echo "fonts: $target/fonts/$font.ttf"
+  else
+    echo "fonts: no $font.ttf in /System/Library/Fonts"
+  fi
+done

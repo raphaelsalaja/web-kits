@@ -7,10 +7,13 @@ export function ReferenceVideo({
   reference,
   video,
   zoom,
+  scale,
 }: {
   reference: Reference;
   video: RefObject<HTMLVideoElement | null>;
   zoom: boolean;
+  /** Pane pixels per point. */
+  scale: number;
 }) {
   const [size, setSize] = useState<{ w: number; h: number } | null>(null);
   const [time, setTime] = useState(0);
@@ -37,10 +40,13 @@ export function ReferenceVideo({
       : undefined;
 
   return (
-    <div className="reference">
+    <div className={reference.crop ? "reference sized" : "reference"}>
       <div
         className="crop"
         style={{
+          width: reference.crop
+            ? (reference.crop.w / (reference.scale ?? 3)) * scale
+            : undefined,
           aspectRatio: crop
             ? `${crop.w} / ${crop.h}`
             : size

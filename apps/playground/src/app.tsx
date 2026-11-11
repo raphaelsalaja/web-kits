@@ -14,9 +14,12 @@ import {
   animations as presets,
 } from "../../../packages/react/src/internal/presets.ts";
 import { Curves } from "./curves.tsx";
+import { Fit } from "./fit.tsx";
 import { FPS, ReferenceVideo } from "./reference.tsx";
 import {
   type AnimationChoice,
+  FONTS,
+  type Font,
   SCENARIOS,
   type Scenario,
   type Step,
@@ -37,15 +40,6 @@ const TEXT: TextTransitionKind[] = [
   "numericText",
   "family",
 ];
-const FONTS = {
-  System: "system-ui, -apple-system, sans-serif",
-  Rounded: "ui-rounded, system-ui, sans-serif",
-  Serif: "ui-serif, Georgia, serif",
-  Mono: "ui-monospace, Menlo, monospace",
-  Inter: "Inter, system-ui, sans-serif",
-} as const;
-type Font = keyof typeof FONTS;
-
 type Settings = {
   transition: string;
   animation: AnimationChoice;
@@ -55,6 +49,7 @@ type Settings = {
   size: number;
   weight: number;
   font: Font;
+  fit: number;
   theme: "light" | "dark";
   layers: boolean;
   boxes: boolean;
@@ -62,6 +57,7 @@ type Settings = {
   stepping: boolean;
   offset: number;
   zoom: boolean;
+  scale: number;
   format: Intl.NumberFormatOptions;
   locales: string;
 };
@@ -69,9 +65,9 @@ type Settings = {
 function defaults(scenario: Scenario): Settings {
   return {
     transition: scenario.transition,
-    animation: scenario.animation ?? "default",
-    response: 0.5,
-    damping: 1,
+    animation: scenario.spring ? "custom" : (scenario.animation ?? "default"),
+    response: scenario.spring?.response ?? 0.5,
+    damping: scenario.spring?.dampingRatio ?? 1,
     direction:
       scenario.countsDown === undefined
         ? "auto"
@@ -80,7 +76,8 @@ function defaults(scenario: Scenario): Settings {
           : "up",
     size: scenario.size,
     weight: scenario.weight,
-    font: "System",
+    font: scenario.font ?? "System",
+    fit: scenario.fit ?? 0,
     theme: scenario.theme,
     layers: scenario.layers ?? false,
     boxes: false,
@@ -88,6 +85,7 @@ function defaults(scenario: Scenario): Settings {
     stepping: false,
     offset: 0,
     zoom: true,
+    scale: 1,
     format: scenario.format ?? {},
     locales: scenario.locales ?? "en-US",
   };
@@ -267,6 +265,23 @@ export function App() {
     seekVideo(step, clamped);
   }
 
+  const api = useRef({ go, instant, scrub, set, setId, scenario, steps });
+  api.current = { go, instant, scrub, set, setId, scenario, steps };
+  useEffect(() => {
+    if (!import.meta.env.DEV) return;
+    Object.assign(window, {
+      playground: {
+        scenario: () => ({ ...api.current.scenario, steps: api.current.steps }),
+        open: (id: string) => api.current.setId(id),
+        settle: (index: number) => api.current.instant(index),
+        start: (index: number) => api.current.go(index),
+        seek: (ms: number) => api.current.scrub(ms),
+        set: <K extends keyof Settings>(key: K, value: Settings[K]) =>
+          api.current.set(key, value),
+      },
+    });
+  }, []);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.target as HTMLElement).closest("input, select, textarea")) return;
@@ -291,6 +306,8 @@ export function App() {
 
   const current = steps[step] ?? steps[0];
   const options = scenario.component === "number" ? NUMBER : TEXT;
+  const crop = scenario.reference?.crop;
+  const points = scenario.reference?.scale ?? 3;
   const componentKey = `${scenario.id}-${settings.transition}-${settings.locales}-${JSON.stringify(settings.format)}`;
   const shared = {
     animation: layout,
@@ -334,6 +351,7 @@ export function App() {
               reference={scenario.reference}
               video={video}
               zoom={settings.zoom}
+              scale={settings.scale}
             />
           ) : (
             <div className="reference empty">
@@ -345,6 +363,8 @@ export function App() {
             className={[
               "stage",
               settings.theme,
+              crop ? "sized" : "",
+              scenario.className ?? "",
               settings.layers ? "layers" : "",
               settings.boxes ? "boxes" : "",
             ].join(" ")}
@@ -352,26 +372,32 @@ export function App() {
               fontSize: settings.size,
               fontWeight: settings.weight,
               fontFamily: FONTS[settings.font],
+              letterSpacing: scenario.tracking && `${scenario.tracking}em`,
+              width: crop && crop.w / points,
+              height: crop && crop.h / points,
+              zoom: settings.scale,
             }}
           >
-            {scenario.component === "number" ? (
-              <NumberTransition
-                key={componentKey}
-                value={current.value ?? 0}
-                format={settings.format}
-                locales={settings.locales}
-                transition={settings.transition as NumberTransitionKind}
-                {...shared}
-              />
-            ) : (
-              <TextTransition
-                key={componentKey}
-                transition={settings.transition as TextTransitionKind}
-                {...shared}
-              >
-                {current.text ?? ""}
-              </TextTransition>
-            )}
+            <Fit width={settings.fit} spring={family.input.slide}>
+              {scenario.component === "number" ? (
+                <NumberTransition
+                  key={componentKey}
+                  value={current.value ?? 0}
+                  format={settings.format}
+                  locales={settings.locales}
+                  transition={settings.transition as NumberTransitionKind}
+                  {...shared}
+                />
+              ) : (
+                <TextTransition
+                  key={componentKey}
+                  transition={settings.transition as TextTransitionKind}
+                  {...shared}
+                >
+                  {current.text ?? ""}
+                </TextTransition>
+              )}
+            </Fit>
           </div>
         </div>
 
@@ -501,6 +527,28 @@ export function App() {
               >
                 {Object.keys(FONTS).map((f) => (
                   <option key={f}>{f}</option>
+                ))}
+              </select>
+            </label>
+            <Slider
+              label="Fit width (0 is off)"
+              value={settings.fit}
+              min={0}
+              max={600}
+              step={1}
+              unit="pt"
+              onChange={(v) => set("fit", v)}
+            />
+            <label>
+              Pane scale
+              <select
+                value={settings.scale}
+                onChange={(e) => set("scale", Number(e.target.value))}
+              >
+                {[1, 1.5, 2].map((o) => (
+                  <option key={o} value={o}>
+                    {o}× points
+                  </option>
                 ))}
               </select>
             </label>

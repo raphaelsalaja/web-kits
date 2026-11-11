@@ -7,7 +7,18 @@ export type Reference = {
   src: string;
   /** The part of the frame to show, in video pixels. */
   crop?: Crop;
+  /** Video pixels per point. The simulator and the phone record at 3. */
+  scale?: number;
 };
+
+export const FONTS = {
+  System: "system-ui, -apple-system, sans-serif",
+  "SF Pro Rounded": '"SF Pro Rounded", ui-rounded, system-ui, sans-serif',
+  Serif: "ui-serif, Georgia, serif",
+  Mono: "ui-monospace, Menlo, monospace",
+  Inter: "Inter, system-ui, sans-serif",
+} as const;
+export type Font = keyof typeof FONTS;
 
 /** A state the component shows, and when the reference clip changes to it. */
 export type Step = { value?: number; text?: string; at?: number };
@@ -32,11 +43,23 @@ export type Scenario = {
   component: "number" | "text";
   transition: NumberTransitionKind | TextTransitionKind;
   animation?: AnimationChoice;
+  /** A spring of the clip's own, picked as the custom animation. */
+  spring?: { response: number; dampingRatio: number };
   countsDown?: boolean;
   format?: Intl.NumberFormatOptions;
   locales?: string;
   size: number;
   weight: number;
+  font?: Font;
+  /** Shrinks the text to fit this many points, like `minimumScaleFactor`. */
+  fit?: number;
+  /** Extra stage classes, for styling like Family's small raised currency. */
+  className?: string;
+  /**
+   * Letter spacing in em. CoreText applies a font's `trak` table for its
+   * size and Chrome doesn't, so this puts it back.
+   */
+  tracking?: number;
   theme: "light" | "dark";
   layers?: boolean;
   steps: Step[];
@@ -46,8 +69,8 @@ export type Scenario = {
 };
 
 const SIM = { x: 0, y: 900, w: 1206, h: 820 };
-const KEYPAD = { x: 0, y: 450, w: 1290, h: 700 };
-const BALANCE = { x: 0, y: 250, w: 1290, h: 560 };
+const KEYPAD = { x: 0, y: 559, w: 1290, h: 702 };
+const BALANCE = { x: 0, y: 360, w: 1290, h: 270 };
 const MESSAGE = { x: 195, y: 1050, w: 900, h: 140 };
 const FULL = undefined;
 
@@ -296,30 +319,56 @@ export const SCENARIOS: Scenario[] = [
     group: "Family",
     name: "Send keypad",
     notes:
-      "Each step is one key press, timed from when its spring starts, a couple of frames before the digit clears the mask. Later presses delete and retype, so only the first run is scripted.",
+      "Every key press in the clip, timed from the frame the amount starts to move. Past seven digits the amount shrinks to fit the screen.",
     component: "number",
     transition: "family-input",
     format: { maximumFractionDigits: 2 },
     locales: "en-US",
-    size: 64,
-    weight: 600,
+    size: 79,
+    weight: 700,
+    font: "SF Pro Rounded",
+    fit: 334,
     theme: "dark",
+    className: "keypad",
     reference: {
       src: "/reference/family/recording/send-keypad.mp4",
       crop: KEYPAD,
     },
-    steps: [
-      { value: 0 },
-      { value: 1, at: 2.436 },
-      { value: 12, at: 2.953 },
-      { value: 125, at: 3.37 },
-      { value: 1256, at: 3.936 },
-      { value: 12565, at: 4.403 },
-      { value: 125654, at: 4.903 },
-      { value: 1256542, at: 5.604 },
-      { value: 12565423, at: 6.087 },
-      { value: 125654235, at: 6.637 },
-    ],
+    steps: (
+      [
+        [0],
+        [1, 2.466],
+        [12, 2.983],
+        [125, 3.4],
+        [1256, 3.966],
+        [12565, 4.433],
+        [125654, 4.933],
+        [1256542, 5.633],
+        [12565423, 6.116],
+        [125654235, 6.666],
+        [12565423, 8.041],
+        [1256542, 8.224],
+        [125654, 8.491],
+        [12565, 8.674],
+        [1256, 8.941],
+        [12567, 9.833],
+        [125675, 10.1],
+        [1256752, 10.3],
+        [12567525, 10.483],
+        [1256752, 11.058],
+        [125675, 11.241],
+        [12567, 11.374],
+        [1256, 11.541],
+        [125, 11.674],
+        [1252, 12.066],
+        [12525, 12.25],
+        [125255, 12.383],
+        [1252558, 12.55],
+        [12525585, 12.733],
+        [125255852, 12.883],
+        [1252558522, 13.033],
+      ] as const
+    ).map(([value, at]) => ({ value, at })),
     fixture: "keypad",
   },
   {
@@ -332,7 +381,10 @@ export const SCENARIOS: Scenario[] = [
     format: EUR,
     locales: "en-IE",
     size: 56,
-    weight: 600,
+    weight: 700,
+    font: "SF Pro Rounded",
+    tracking: -0.018,
+    className: "currency",
     theme: "light",
     reference: {
       src: "/reference/family/recording/balance-tabs.mp4",
@@ -340,8 +392,8 @@ export const SCENARIOS: Scenario[] = [
     },
     steps: [
       { value: 502.75 },
-      { value: 0.21, at: 3.793 },
-      { value: 502.75, at: 4.427 },
+      { value: 0.21, at: 3.784 },
+      { value: 502.75, at: 4.433 },
     ],
   },
   {
@@ -349,23 +401,30 @@ export const SCENARIOS: Scenario[] = [
     group: "Family",
     name: "Still not enough ETH → Not enough ETH",
     notes:
-      "The message under the amount, while the keypad deletes and retypes digits.",
+      "The message under the amount, while the keypad types, deletes and retypes digits. Family also shakes it on every key press, which isn't part of the transition.",
     component: "text",
     transition: "family",
-    size: 32,
+    size: 17,
     weight: 500,
+    font: "SF Pro Rounded",
+    tracking: 45 / 2048,
+    className: "danger",
     theme: "dark",
     reference: {
       src: "/reference/family/recording/send-keypad.mp4",
       crop: MESSAGE,
     },
     steps: [
-      { text: "Still not enough ETH 😳" },
-      { text: "Still not enough ETH", at: 8.49 },
-      { text: "Still not enough ETH 😳", at: 10.31 },
-      { text: "Still not enough ETH", at: 11.24 },
-      { text: "Not enough ETH", at: 11.675 },
-      { text: "Still not enough ETH 😳", at: 12.575 },
+      { text: "Not enough ETH" },
+      { text: "Still not enough ETH", at: 3.95 },
+      { text: "Still not enough ETH 😳", at: 5.633 },
+      { text: "Still not enough ETH", at: 8.483 },
+      { text: "Still not enough ETH 😳", at: 10.283 },
+      { text: "Still not enough ETH", at: 11.233 },
+      { text: "Not enough ETH", at: 11.667 },
+      { text: "Still not enough ETH", at: 12.05 },
+      { text: "Still not enough ETH 😳", at: 12.55 },
+      { text: "Still not enough ETH", at: 14.167 },
     ],
   },
   {
@@ -376,14 +435,21 @@ export const SCENARIOS: Scenario[] = [
     transition: "family",
     format: EUR,
     locales: "en-IE",
-    size: 56,
+    size: 20,
     weight: 600,
+    tracking: -46 / 2048,
     theme: "light",
+    className: "end",
     reference: {
       src: "/reference/family/recording/collectibles-balance.mp4",
-      crop: BALANCE,
+      crop: { x: 870, y: 520, w: 360, h: 99 },
     },
-    steps: [{ value: 502.75 }, { value: 0.21 }],
+    steps: [
+      { value: 2473.48 },
+      { value: 45091.67, at: 0.333 },
+      { value: 2473.48, at: 2.2 },
+      { value: 45091.67, at: 2.95 },
+    ],
   },
   {
     id: "family-swap",
@@ -394,13 +460,29 @@ export const SCENARIOS: Scenario[] = [
     format: { maximumFractionDigits: 2 },
     locales: "en-US",
     size: 64,
-    weight: 600,
+    weight: 700,
+    font: "SF Pro Rounded",
+    className: "card keypad",
     theme: "dark",
     reference: {
       src: "/reference/family/recording/swap-keypad.mp4",
-      crop: FULL,
+      crop: { x: 0, y: 797, w: 1290, h: 282 },
     },
-    steps: [{ value: 0 }, { value: 1 }, { value: 12 }, { value: 125 }],
+    steps: (
+      [
+        [0],
+        [5, 1.45],
+        [55, 1.683],
+        [558, 1.817],
+        [5585, 2.033],
+        [55855, 2.183],
+        [5585, 2.908],
+        [558, 3.058],
+        [55, 3.191],
+        [5, 3.391],
+        [0, 3.941],
+      ] as const
+    ).map(([value, at]) => ({ value, at })),
   },
   {
     id: "family-wallet-name",
@@ -418,15 +500,114 @@ export const SCENARIOS: Scenario[] = [
     steps: [{ text: "Wallet" }, { text: "Wallet 2" }],
   },
 
+  {
+    id: "values-22",
+    group: "Family Values",
+    name: "22 · Craft ↔ Creative",
+    notes:
+      "The title morphing back and forth, on the article's own spring rather than the wallet's. The clip was recorded at 30 fps, so steps are only good to a frame either way.",
+    component: "text",
+    transition: "family",
+    spring: { response: 0.296, dampingRatio: 0.9 },
+    size: 40,
+    weight: 700,
+    font: "SF Pro Rounded",
+    tracking: 20 / 2048,
+    theme: "light",
+    reference: {
+      src: "/reference/family/values/22.mp4",
+      crop: { x: 0, y: 353, w: 1179, h: 180 },
+    },
+    steps: [
+      { text: "Craft" },
+      { text: "Creative", at: 0.583 },
+      { text: "Craft", at: 2.05 },
+      { text: "Creative", at: 3.316 },
+      { text: "Craft", at: 4.716 },
+    ],
+  },
+
+  {
+    id: "values-40",
+    group: "Family Values",
+    name: "40 · Typing to a billion",
+    notes:
+      "Zeros typed one after another until the amount shrinks to fit, then cleared back to 0.",
+    component: "number",
+    transition: "family-input",
+    format: { maximumFractionDigits: 2 },
+    locales: "en-US",
+    size: 79,
+    weight: 700,
+    font: "SF Pro Rounded",
+    fit: 297,
+    theme: "dark",
+    className: "keypad",
+    reference: {
+      src: "/reference/family/values/40.mp4",
+      crop: { x: 0, y: 620, w: 1179, h: 339 },
+    },
+    steps: (
+      [
+        [0],
+        [1, 0.9],
+        [10, 1.4],
+        [100, 1.833],
+        [1000, 2.5],
+        [10000, 2.783],
+        [100000, 3.567],
+        [1000000, 3.883],
+        [10000000, 4.85],
+        [100000000, 5.366],
+        [1000000000, 5.933],
+        [0, 7.624],
+      ] as const
+    ).map(([value, at]) => ({ value, at })),
+  },
+
+  {
+    id: "values-39",
+    group: "Family Values",
+    name: "39 · Typing to ten million",
+    notes:
+      "Zeros typed after $100 until the amount shrinks to fit, then deleted back to $100.",
+    component: "number",
+    transition: "family-input",
+    format: { style: "currency", currency: "USD", maximumFractionDigits: 0 },
+    locales: "en-US",
+    size: 79,
+    weight: 700,
+    font: "SF Pro Rounded",
+    fit: 307,
+    theme: "dark",
+    className: "keypad dollar",
+    reference: {
+      src: "/reference/family/values/39.mp4",
+      crop: { x: 0, y: 620, w: 1179, h: 339 },
+    },
+    steps: (
+      [
+        [100],
+        [1000, 0.75],
+        [10000, 1.233],
+        [100000, 1.783],
+        [1000000, 2.366],
+        [10000000, 3.316],
+        [1000000, 4.341],
+        [100000, 4.758],
+        [10000, 5.158],
+        [1000, 5.574],
+        [100, 6.558],
+      ] as const
+    ).map(([value, at]) => ({ value, at })),
+  },
+
   ...(
     [
       ["18", "Price chart"],
       ["20", "Name your wallet"],
       ["21", "Confirm $1.00"],
-      ["22", "Craft ↔ Creative"],
       ["23", "Add wallets"],
-      ["39", "Confirm, dark"],
-      ["40", "Clip 40"],
       ["44", "Clip 44"],
       ["47", "Clip 47"],
       ["51", "Send $299.52"],
@@ -439,7 +620,8 @@ export const SCENARIOS: Scenario[] = [
       id: `values-${clip}`,
       group: "Family Values",
       name: `${clip} · ${name}`,
-      component: clip === "22" ? "text" : "number",
+      notes: "Not timed yet: the steps are placeholders next to the clip.",
+      component: "number",
       transition: "family",
       format: EUR,
       locales: "en-IE",
@@ -447,10 +629,7 @@ export const SCENARIOS: Scenario[] = [
       weight: 600,
       theme: "light",
       reference: { src: `/reference/family/values/${clip}.mp4`, crop: FULL },
-      steps:
-        clip === "22"
-          ? [{ text: "Craft" }, { text: "Creative" }, { text: "Craft" }]
-          : [{ value: 1 }, { value: 299.52 }, { value: 100000 }],
+      steps: [{ value: 1 }, { value: 299.52 }, { value: 100000 }],
     }),
   ),
 

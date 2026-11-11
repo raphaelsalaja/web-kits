@@ -1,3 +1,15 @@
+@font-face {
+  font-family: "SF Pro Rounded";
+  font-weight: 1 1000;
+  src: url("/reference/fonts/SFNSRounded.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "SF Compact Rounded";
+  font-weight: 1 1000;
+  src: url("/reference/fonts/SFCompactRounded.ttf") format("truetype");
+}
+
 :root {
   --surface: #fff;
   --page: #f7f7f7;
@@ -132,17 +144,25 @@ header {
 }
 
 .panes {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 12px;
+  align-items: start;
 }
 
 .reference,
 .stage {
+  flex: 1 1 0;
+  min-width: 0;
   overflow: hidden;
   background: var(--surface);
   border-radius: 12px;
   box-shadow: 0 0 0 1px var(--hairline);
+}
+
+.reference.sized,
+.stage.sized {
+  flex: none;
 }
 
 .reference.empty {
@@ -187,10 +207,17 @@ header {
 
 .stage {
   display: grid;
+  place-content: center;
   place-items: center;
   min-height: 240px;
   padding: 24px;
   line-height: 1.2;
+
+  &.sized {
+    box-sizing: border-box;
+    min-height: 0;
+    padding: 0;
+  }
 
   &.light {
     color: #171717;
@@ -206,15 +233,64 @@ header {
     color: #00f;
   }
 
-  &.layers > span > span:last-child > span {
+  &.layers [aria-hidden]:last-child > span {
     color: #f00;
+  }
+
+  /* Family's balance sits 4pt left of the screen's centre. */
+  &.currency > * {
+    translate: -4pt 0;
+  }
+
+  &.currency [data-glyph^="currency"] {
+    margin-inline-end: 0.12em;
+    font-family: "SF Compact Rounded", "SF Pro Rounded", ui-rounded, sans-serif;
+    font-size: 0.675em;
+    vertical-align: 0.33em;
+  }
+
+  /* The card Family's swap amount sits on. */
+  &.dark.card {
+    background: #0d0d0d;
+  }
+
+  /* iOS's dark red, as Family's send screen draws it. */
+  &.danger {
+    color: #ff2c3d;
+  }
+
+  /* Family's tab row ends the collectibles balance 3.17pt from the crop. */
+  &.end {
+    justify-content: end;
+    justify-items: end;
+    padding-inline-end: 3.17pt;
+  }
+
+  /*
+   * The send screen's dollar sign, small and hung from the cap height. The
+   * digits are centred on their own and the sign hangs off their start.
+   */
+  &.dollar [data-glyph^="currency"] {
+    margin-inline-start: -0.612em;
+    font-family: "SF Compact Rounded", "SF Pro Rounded", ui-rounded, sans-serif;
+    font-size: 0.615em;
+    vertical-align: 0.42em;
+  }
+
+  &.dollar > * {
+    translate: 2pt 0;
+  }
+
+  /* iOS's SF Pro Rounded draws its comma a little higher than the Mac's. */
+  &.keypad [data-glyph^="group"] {
+    top: -0.019em;
   }
 
   &.boxes [data-glyph] {
     outline: 1px solid oklch(0.6 0.2 250 / 50%);
   }
 
-  &.boxes > span {
+  &.boxes span:has(> [aria-hidden]) {
     outline: 1px dashed oklch(0.6 0.2 30 / 60%);
   }
 }
