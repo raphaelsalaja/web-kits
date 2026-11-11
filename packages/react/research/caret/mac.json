@@ -1,0 +1,31 @@
+{
+  "source": "NSTextView caret (NSTextInsertionIndicator) on macOS 27.2, read from Core Animation every 4ms",
+  "units": "lengths in points at a 13pt system font; times in seconds",
+  "shape": {
+    "width": 2,
+    "offsetX": -1,
+    "height": "line height",
+    "heightAt13pt": 16,
+    "heightAt28pt": 33,
+    "cornerRadius": 1.1,
+    "color": "accent"
+  },
+  "blink": {
+    "holdAfterReset": 0.65,
+    "loop": {
+      "period": 1,
+      "keyTimes": [0, 0.0375, 0.075, 0.1125, 0.15, 0.3875, 0.425, 0.4625, 0.5, 1],
+      "opacity": [1, 0.75, 0.5, 0.25, 0, 0.25, 0.5, 0.75, 1, 1],
+      "calculationMode": "discrete"
+    },
+    "restartsOn": ["selection change", "keystroke", "focus"],
+    "solidWhileTyping": true,
+    "accessibility": "prefersNonBlinkingTextInsertionIndicator turns the blink off"
+  },
+  "move": "jump",
+  "fade": {
+    "duration": 0.25,
+    "easing": [0.25, 0.1, 0.25, 1],
+    "on": ["range selection", "blur", "focus", "collapse to a caret"]
+  }
+}

@@ -16,7 +16,6 @@
     "calculationMode": "discrete",
     "restartsOn": ["selection change", "keystroke"],
     "solidWhileTyping": true,
-    "resumesAfterLastKey": 0.56,
     "hiddenWithRangeSelection": true
   },
   "programmaticMove": "jump",
