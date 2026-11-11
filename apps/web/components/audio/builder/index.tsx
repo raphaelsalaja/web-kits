@@ -1,11 +1,11 @@
 "use client";
 
-import type { AudioAnalyser } from "@web-kits/audio";
+import type { AudioAnalyser } from "@web-kits/react/sound";
 import {
   createMasterAnalyser,
   defineSound,
   ensureReady,
-} from "@web-kits/audio";
+} from "@web-kits/react/sound";
 import {
   useCallback,
   useEffect,

@@ -32,6 +32,7 @@
     "./motion-blur": "./src/motion-blur/index.ts",
     "./progressive-blur": "./src/progressive-blur/index.ts",
     "./origin": "./src/origin/index.ts",
+    "./sound": "./src/sound/index.ts",
     "./package.json": "./package.json"
   },
   "files": [
@@ -71,6 +72,10 @@
       "./origin": {
         "types": "./dist/origin/index.d.ts",
         "default": "./dist/origin/index.js"
+      },
+      "./sound": {
+        "types": "./dist/sound/index.d.ts",
+        "default": "./dist/sound/index.js"
       },
       "./package.json": "./package.json"
     }

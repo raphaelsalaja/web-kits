@@ -1,4 +1,4 @@
-import type { BiquadFilterType, Filter } from "@web-kits/audio";
+import type { BiquadFilterType, Filter } from "@web-kits/react/sound";
 import { useRef } from "react";
 import { PlusIcon, TrashIcon } from "@/components/audio/controls/icons";
 import type { BuilderAction } from "../state";

@@ -1,6 +1,6 @@
 "use client";
 
-import type { Envelope } from "@web-kits/audio";
+import type { Envelope } from "@web-kits/react/sound";
 import { useEffect, useRef } from "react";
 import type { BuilderAction } from "../state";
 import styles from "../styles.module.css";

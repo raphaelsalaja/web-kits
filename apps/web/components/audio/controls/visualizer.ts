@@ -1,8 +1,19 @@
 "use client";
 
-import type { AudioAnalyser } from "@web-kits/audio";
-import { createMasterAnalyser } from "@web-kits/audio";
+import type { AudioAnalyser } from "@web-kits/react/sound";
+import { createMasterAnalyser } from "@web-kits/react/sound";
 import { useCallback, useEffect, useRef } from "react";
+
+/** Canvas can't parse `light-dark()` or `var()`, so read the colour back through CSS. */
+function resolveColor(el: HTMLElement, property: string): string {
+  const value = getComputedStyle(el).getPropertyValue(property).trim();
+  if (!value) return "";
+  const previous = el.style.color;
+  el.style.color = value;
+  const resolved = getComputedStyle(el).color;
+  el.style.color = previous;
+  return resolved;
+}
 
 export function useVisualizer(
   canvasRef: React.RefObject<HTMLCanvasElement | null>,
@@ -20,6 +31,13 @@ export function useVisualizer(
       });
     }
     activeRef.current = true;
+
+    const target = canvasRef.current;
+    const flat = target ? resolveColor(target, "--vis-color") : "";
+    const colorLow = target ? resolveColor(target, "--vis-color-low") : "";
+    const colorMid = target ? resolveColor(target, "--vis-color-mid") : "";
+    const colorHigh = target ? resolveColor(target, "--vis-color-high") : "";
+    const useGradient = !!colorLow;
 
     const draw = () => {
       const canvas = canvasRef.current;
@@ -50,12 +68,6 @@ export function useVisualizer(
 
       const gap = 2;
       const barWidth = (w - gap * (barCount - 1)) / barCount;
-      const style = getComputedStyle(canvas);
-      const flat = style.getPropertyValue("--vis-color").trim() || "";
-      const colorLow = style.getPropertyValue("--vis-color-low").trim() || "";
-      const useGradient = !!colorLow;
-      const colorMid = style.getPropertyValue("--vis-color-mid").trim() || "";
-      const colorHigh = style.getPropertyValue("--vis-color-high").trim() || "";
 
       let hasSignal = false;
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { loadPatch } from "@web-kits/audio";
+import { defineSound, type SoundDefinition } from "@web-kits/react/sound";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -9,6 +9,7 @@ import MediaPause from "@/components/icons/fill/media-pause";
 import MediaPlay from "@/components/icons/fill/media-play";
 import { colorScale } from "@/lib/colors";
 import type { Patch } from "@/lib/registry";
+import { loadSounds } from "@/lib/sounds";
 import styles from "./styles.module.css";
 
 const MotionPause = motion.create(MediaPause);
@@ -30,7 +31,7 @@ export function Card({
   clearActive,
 }: CardProps) {
   const [playing, setPlaying] = useState(false);
-  const patchRef = useRef<Awaited<ReturnType<typeof loadPatch>> | null>(null);
+  const soundsRef = useRef<Record<string, SoundDefinition> | null>(null);
   const voiceRef = useRef<{ stop: (t?: number) => void } | null>(null);
   const playRequestRef = useRef(0);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -71,18 +72,15 @@ export function Card({
       const requestId = playRequestRef.current;
 
       try {
-        if (!patchRef.current) {
-          patchRef.current = await loadPatch(`/api/patch/${patch.name}`);
-        }
+        soundsRef.current ??= await loadSounds(patch.name);
         if (requestId !== playRequestRef.current) return;
 
-        const p = patchRef.current;
-        const sounds = p.sounds;
+        const sounds = Object.values(soundsRef.current);
         if (sounds.length === 0) return;
 
         startVis();
         const sound = sounds[Math.floor(Math.random() * sounds.length)];
-        const voice = p.play(sound);
+        const voice = defineSound(sound)();
         voiceRef.current = voice;
         setPlaying(true);
 

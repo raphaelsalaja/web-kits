@@ -77,7 +77,7 @@ Every rule file starts with YAML frontmatter that the build, validate, and extra
 title: Click - sine + low FM, very short decay
 order: 1
 impact: HIGH
-impactDescription: Default click sound; appears in nearly every patch.
+impactDescription: Default click sound; appears in nearly every set of sounds.
 tags: event, click, transient
 prompt: "click"
 example: |
@@ -164,10 +164,10 @@ The current rule set produces 30 cases. `interpret-*` rules with `inputAudio` pr
 
 ## Output contract
 
-Every emitted `SoundDefinition` is a `Layer` or `MultiLayerSound` ready to paste into a `.web-kits/<patch>.ts` file:
+Every emitted `SoundDefinition` is a `Layer` or `MultiLayerSound` ready to paste into your project:
 
 ```ts
-import type { SoundDefinition } from "@web-kits/audio";
+import type { SoundDefinition } from "@web-kits/react/sound";
 
 export const myClick: SoundDefinition = {
   source: { type: "sine", frequency: 1300, fm: { ratio: 0.5, depth: 60 } },

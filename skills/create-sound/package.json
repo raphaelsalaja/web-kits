@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Cursor agent skill: generate a SoundDefinition for @web-kits/audio from a prompt or audio file.",
+  "description": "Cursor agent skill: generate a SoundDefinition for @web-kits/react/sound from a prompt or audio file.",
   "scripts": {
     "build": "node src/build.mjs",
     "validate": "node src/validate.mjs",

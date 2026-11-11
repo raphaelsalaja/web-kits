@@ -6,7 +6,7 @@ description: Render a sound offline to an AudioBuffer.
 Renders a sound definition using an `OfflineAudioContext`. Useful for pre-rendering sounds, generating previews, or exporting audio.
 
 ```ts
-import { renderToBuffer } from "@web-kits/audio";
+import { renderToBuffer } from "@web-kits/react/sound";
 
 const buffer = await renderToBuffer(definition, {
   duration: 1,

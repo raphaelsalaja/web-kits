@@ -5,7 +5,6 @@
     "---Getting Started---",
     "index",
     "...getting-started",
-    "cli",
     "[Library](/audio/library)",
     "---Concepts---",
     "...concepts",
@@ -15,7 +14,7 @@
     "...api",
     "---Resources---",
     "...resources",
-    "external:[GitHub](https://github.com/raphaelsalaja/web-kits/tree/main/packages/audio)",
-    "external:[npm](https://www.npmjs.com/package/@web-kits/audio)"
+    "external:[GitHub](https://github.com/raphaelsalaja/web-kits/tree/main/packages/react)",
+    "external:[npm](https://www.npmjs.com/package/@web-kits/react)"
   ]
 }
