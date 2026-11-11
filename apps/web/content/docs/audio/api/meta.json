@@ -1,4 +1,4 @@
 {
   "title": "API",
-  "pages": ["sounds", "context", "output"]
+  "pages": ["sounds", "patches", "context", "output"]
 }

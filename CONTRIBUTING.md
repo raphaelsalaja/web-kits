@@ -84,8 +84,8 @@ package version when it has not yet been published; a new changeset is not neede
 for a release workflow repair. Verify the result with:
 
 ```bash
-npm view @web-kits/react version
-npm view @web-kits/react@0.1.0 version
+npm view @web-kits/audio version
+npm view @web-kits/audio@0.2.0 version
 ```
 
 ## Commit convention
@@ -145,13 +145,14 @@ See the full [Conventional Commits Cheatsheet](https://gist.github.com/qoomon/5d
 - Make sure CI passes before requesting review.
 - If your change affects the public API, include a changeset.
 
-## Sounds
+## Sound patches
 
-The sound library at [web-kits.dev/audio/library](https://web-kits.dev/audio/library) reads its sets from `.web-kits/*.json`. To add sounds:
+To contribute a first-party sound patch:
 
-1. Add well-named, well-tuned `SoundDefinition`s to a set, or add a new set and list it in `apps/web/lib/registry.ts`.
-2. Check each definition against `packages/audio/schemas/patch.schema.json`.
-3. Open a PR with a brief description of the sounds.
+1. Run `npx @web-kits/audio init` to scaffold a patch in `.web-kits/`.
+2. Follow the patch schema and add sound definitions.
+3. Include well-named, well-tuned sound definitions.
+4. Open a PR with a brief description of the patch.
 
 ## License
 

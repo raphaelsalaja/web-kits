@@ -1,35 +1,32 @@
 "use client";
 
 import { click } from "@audio/core";
-import {
-  defineSound,
-  type SoundDefinition,
-  useSound,
-} from "@web-kits/react/sound";
+import { usePatch, useSound } from "@web-kits/audio/react";
+import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import {
   createContext,
   use,
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from "react";
-import { CodePreview } from "@/components/audio/builder/code-preview";
-import { soundToCode } from "@/components/audio/builder/state";
 import ChevronRight from "@/components/icons/fill/chevron-right";
 import CircleUser from "@/components/icons/fill/circle-user";
 import Playlist4 from "@/components/icons/fill/playlist-4";
+import Check from "@/components/icons/outline/check";
+import Clone from "@/components/icons/outline/clone";
 import { colorScale } from "@/lib/colors";
 import type { Patch } from "@/lib/registry";
-import { loadSounds } from "@/lib/sounds";
 import styles from "./styles.module.css";
+
+const MotionCheck = motion.create(Check);
+const MotionClone = motion.create(Clone);
 
 interface PatchDetailContextValue {
   patch: Patch;
-  sounds: Record<string, SoundDefinition> | null;
-  selected: string | undefined;
-  select: (name: string) => void;
 }
 
 const PatchDetailContext = createContext<PatchDetailContextValue | null>(null);
@@ -49,28 +46,9 @@ function Root({
   patch: Patch;
   children: React.ReactNode;
 }) {
-  const [sounds, setSounds] = useState<Record<string, SoundDefinition> | null>(
-    null,
-  );
-  const [selected, select] = useState<string | undefined>(patch.sounds[0]);
-
-  useEffect(() => {
-    let cancelled = false;
-    loadSounds(patch.name)
-      .then((loaded) => {
-        if (!cancelled) setSounds(loaded);
-      })
-      .catch(() => {});
-    return () => {
-      cancelled = true;
-    };
-  }, [patch.name]);
-
   return (
     <div className={styles.main}>
-      <PatchDetailContext value={{ patch, sounds, selected, select }}>
-        {children}
-      </PatchDetailContext>
+      <PatchDetailContext value={{ patch }}>{children}</PatchDetailContext>
     </div>
   );
 }
@@ -131,25 +109,61 @@ function Header() {
   );
 }
 
-function Code() {
-  const { sounds, selected } = usePatchDetail();
-  const definition = selected ? sounds?.[selected] : undefined;
-  if (!selected || !definition) return null;
+function Install() {
+  const { patch } = usePatchDetail();
+
+  const snippet = `npx @web-kits/audio add raphaelsalaja/audio --patch ${patch.name}`;
+
+  const [copied, setCopied] = useState(false);
+
+  const props = {
+    width: 14,
+    height: 14,
+    strokewidth: 2,
+    initial: { opacity: 0, scale: 0.95, filter: "blur(2px)" },
+    animate: { opacity: 1, scale: 1, filter: "blur(0px)" },
+    exit: { opacity: 0, scale: 0.95, filter: "blur(2px)" },
+    transition: { duration: 0.18, ease: "easeInOut" },
+    style: { display: "flex" },
+  } as const;
+
   return (
-    <div className={styles.code}>
-      <CodePreview title={selected} code={soundToCode(selected, definition)} />
-    </div>
+    <code className={styles.snippet}>
+      <span className="line">$ {snippet}</span>
+
+      <button
+        type="button"
+        className={styles.copy}
+        onClick={() => {
+          navigator.clipboard.writeText(snippet);
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        }}
+      >
+        <AnimatePresence mode="wait" initial={false}>
+          {copied ? (
+            <MotionCheck key="check" {...props} />
+          ) : (
+            <MotionClone key="clone" {...props} />
+          )}
+        </AnimatePresence>
+      </button>
+    </code>
   );
 }
 
 function Sounds() {
-  const { patch: patchData, sounds, select } = usePatchDetail();
+  const { patch: patchData } = usePatchDetail();
+
+  const patch = usePatch(`/api/patch/${patchData.name}`);
 
   const [playing, setPlaying] = useState<string | null>(null);
 
   const voiceRef = useRef<{ stop: (t?: number) => void } | null>(null);
 
   const playingRef = useRef<string | null>(null);
+
+  const soundSet = useMemo(() => new Set(patch.sounds), [patch.sounds]);
 
   const handlePlay = useCallback(
     (soundName: string) => {
@@ -164,11 +178,10 @@ function Sounds() {
         return;
       }
 
-      const definition = sounds?.[soundName];
-      if (!definition) return;
+      if (!patch.ready) return;
+      if (!soundSet.has(soundName)) return;
 
-      select(soundName);
-      const voice = defineSound(definition)();
+      const voice = patch.play(soundName);
       voiceRef.current = voice;
       playingRef.current = soundName;
       setPlaying(soundName);
@@ -181,7 +194,7 @@ function Sounds() {
         setPlaying((current) => (current === soundName ? null : current));
       }, 3000);
     },
-    [sounds, select],
+    [patch, soundSet],
   );
 
   useEffect(
@@ -203,7 +216,7 @@ function Sounds() {
       </h2>
       <div className={styles.grid}>
         {patchData.sounds.map((sound) => {
-          const isAvailable = Boolean(sounds?.[sound]);
+          const isAvailable = patch.ready && soundSet.has(sound);
           const isPlaying = playing === sound;
           return (
             <button
@@ -213,7 +226,7 @@ function Sounds() {
               data-playing={isPlaying}
               data-available={isAvailable}
               onClick={() => handlePlay(sound)}
-              disabled={!sounds}
+              disabled={!patch.ready}
               style={colorScale(sound)}
             >
               {sound}
@@ -225,4 +238,4 @@ function Sounds() {
   );
 }
 
-export { Breadcrumb, Code, Description, Header, Layout, Main, Root, Sounds };
+export { Breadcrumb, Description, Header, Install, Layout, Main, Root, Sounds };

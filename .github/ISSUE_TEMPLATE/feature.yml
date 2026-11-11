@@ -15,7 +15,7 @@ body:
         - "@web-kits/react/origin"
         - "@web-kits/react/motion-blur"
         - "@web-kits/react/progressive-blur"
-        - "@web-kits/react/sound"
+        - "@web-kits/audio"
         - A new kit
         - Website or docs
     validations:

@@ -39,9 +39,12 @@ node --input-type=module -e '
   }
 '
 
-if ./node_modules/.bin/audio > /dev/null 2>&1; then
-  echo "Expected the retired audio CLI to exit with an error" >&2
+expected_version="$(node -p 'require(process.argv[1]).version' "$repo_dir/packages/audio/package.json")"
+actual_version="$(./node_modules/.bin/audio --version)"
+if [[ "$actual_version" != "$expected_version" ]]; then
+  echo "Expected audio CLI version $expected_version, got $actual_version" >&2
   exit 1
 fi
+./node_modules/.bin/audio --help > /dev/null
 
-echo "Every packed package passed publint, attw and imports, and the retired audio CLI points to its new home."
+echo "Every packed package passed publint, attw, imports and the audio CLI check."

@@ -45,8 +45,8 @@ export default async function Page({ params }: Props) {
         <View.Breadcrumb />
         <View.Main>
           <View.Header />
+          <View.Install />
           <View.Sounds />
-          <View.Code />
         </View.Main>
       </View.Root>
     </div>

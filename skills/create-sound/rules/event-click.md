@@ -1,7 +1,7 @@
 ---
 title: Click - sine + low FM, very short decay
 impact: HIGH
-impactDescription: Default click sound; appears in nearly every set of sounds.
+impactDescription: Default click sound; appears in nearly every patch.
 tags: event, click, transient
 prompt: "click"
 example: |

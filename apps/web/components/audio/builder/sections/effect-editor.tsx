@@ -1,4 +1,4 @@
-import type { Effect } from "@web-kits/react/sound";
+import type { Effect } from "@web-kits/audio";
 import { useRef } from "react";
 import { PlusIcon, TrashIcon } from "@/components/audio/controls/icons";
 import styles from "../styles.module.css";

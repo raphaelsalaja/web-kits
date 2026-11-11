@@ -10,10 +10,10 @@ tags: pipeline, emit, render, round-trip
 
 ### 1. Emit
 
-Always return a TypeScript snippet ready to paste into your project:
+Always return a TypeScript snippet ready to paste into a `.web-kits/<patch>.ts` file:
 
 ```ts
-import type { SoundDefinition } from "@web-kits/react/sound";
+import type { SoundDefinition } from "@web-kits/audio";
 
 export const myClick: SoundDefinition = {
   source: { type: "sine", frequency: 1300, fm: { ratio: 0.5, depth: 60 } },
@@ -31,7 +31,7 @@ Plus a one-line rationale that names the prompt tokens you acted on:
 If the user asked for a WAV (or you want to grade your own output), use [`packages/audio/src/offline.ts`](../../../packages/audio/src/offline.ts):
 
 ```ts
-import { renderToWav } from "@web-kits/react/sound";
+import { renderToWav } from "@web-kits/audio";
 import { writeFile } from "node:fs/promises";
 
 const blob = await renderToWav(myClick, { duration: 0.3 });

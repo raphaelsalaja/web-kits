@@ -7,7 +7,7 @@ import type {
   Panner3D,
   SoundDefinition,
   Source,
-} from "@web-kits/react/sound";
+} from "@web-kits/audio";
 
 export type BuilderLayer = Layer & { _id: number };
 
@@ -272,13 +272,7 @@ function cleanLayer(layer: BuilderLayer): Layer {
 export function serializeToCode(state: BuilderState): string {
   const def = toDefinition(state);
   const json = prettyPrint(def, 1);
-  return `import { defineSound } from "@web-kits/react/sound";\n\nconst play = defineSound(${json});\n\nplay();`;
-}
-
-/** A sound as code to copy, exported under its name. */
-export function soundToCode(name: string, definition: SoundDefinition): string {
-  const id = name.replace(/[-_\s]+(\w)/g, (_, c: string) => c.toUpperCase());
-  return `import { defineSound } from "@web-kits/react/sound";\n\nexport const ${id} = defineSound(${prettyPrint(definition, 1)});`;
+  return `import { defineSound } from "@web-kits/audio";\n\nconst play = defineSound(${json});\n\nplay();`;
 }
 
 function prettyPrint(value: unknown, depth: number): string {

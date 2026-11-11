@@ -9,19 +9,20 @@ Interface kits for the web.
 
 [`@web-kits/react`](./packages/react) [![npm](https://img.shields.io/npm/v/@web-kits/react)](https://www.npmjs.com/package/@web-kits/react) holds every kit, one import per feature:
 
-| Import                               | Description                                             |
-| ------------------------------------ | ------------------------------------------------------- |
-| `@web-kits/react/number-transition`  | A number that animates between values                   |
-| `@web-kits/react/text-transition`    | Text that animates between strings                      |
-| `@web-kits/react/content-transition` | SwiftUI's content transitions                           |
-| `@web-kits/react/family`             | Family's wallet transitions                             |
-| `@web-kits/react/animation`          | Apple's springs and curves, for CSS and Motion          |
-| `@web-kits/react/origin`             | App launch, genie and the glass menu for any element    |
-| `@web-kits/react/motion-blur`        | Motion blur sized from speed, frame time and shutter    |
-| `@web-kits/react/progressive-blur`   | The progressive blur from the iOS scroll edge           |
-| `@web-kits/react/sound`              | Sounds described as plain objects, played with one call |
+| Import                               | Description                                          |
+| ------------------------------------ | ---------------------------------------------------- |
+| `@web-kits/react/number-transition`  | A number that animates between values                |
+| `@web-kits/react/text-transition`    | Text that animates between strings                   |
+| `@web-kits/react/content-transition` | SwiftUI's content transitions                        |
+| `@web-kits/react/family`             | Family's wallet transitions                          |
+| `@web-kits/react/animation`          | Apple's springs and curves, for CSS and Motion       |
+| `@web-kits/react/origin`             | App launch, genie and the glass menu for any element |
+| `@web-kits/react/motion-blur`        | Motion blur sized from speed, frame time and shutter |
+| `@web-kits/react/progressive-blur`   | The progressive blur from the iOS scroll edge        |
 
-`@web-kits/audio`, `@web-kits/blur`, `@web-kits/motion-blur` and `@web-kits/springboard` have moved in. Their last releases re-export the new imports.
+`@web-kits/blur`, `@web-kits/motion-blur` and `@web-kits/springboard` have moved in. Their last releases re-export the new imports.
+
+[`@web-kits/audio`](./packages/audio) [![npm](https://img.shields.io/npm/v/@web-kits/audio)](https://www.npmjs.com/package/@web-kits/audio) is still its own package, for declarative audio synthesis with a CLI for sound patches.
 
 ## Develop
 
@@ -34,12 +35,13 @@ pnpm dev
 ## Structure
 
 ```
-apps/web                      Web Kits site and docs (web-kits.dev)
+apps/web                      Web Kits site, docs and audio registry (web-kits.dev)
 apps/playground               Side-by-side checks against the reference recordings
 packages/react                @web-kits/react
+packages/audio                @web-kits/audio
 packages/*                    The moved packages, re-exporting @web-kits/react
-skills/create-sound           Agent skill for writing sounds
-.web-kits/                    The sound library
+skills/create-sound           Agent skill for writing audio patches
+.web-kits/                    First-party audio patches
 ```
 
 ## Contributing

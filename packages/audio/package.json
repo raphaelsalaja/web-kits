@@ -1,7 +1,7 @@
 {
   "name": "@web-kits/audio",
   "version": "0.3.0",
-  "description": "Moved to @web-kits/react/sound. This release re-exports it.",
+  "description": "A declarative synthesizer for the web",
   "license": "MIT",
   "author": "Raphael Salaja",
   "homepage": "https://web-kits.dev/audio",
@@ -52,6 +52,7 @@
   "scripts": {
     "build": "rm -rf dist && tsc -p tsconfig.build.json",
     "typecheck": "tsc",
+    "test": "vitest run",
     "prepublishOnly": "pnpm build"
   },
   "engines": {
@@ -66,12 +67,14 @@
     }
   },
   "dependencies": {
-    "@web-kits/react": "workspace:^"
+    "@clack/prompts": "^0.9.1",
+    "picocolors": "^1.1.1"
   },
   "devDependencies": {
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "react": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "vitest": "catalog:"
   }
 }

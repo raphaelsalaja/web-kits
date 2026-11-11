@@ -7,7 +7,7 @@ Security fixes ship in the latest release of each package. Older versions don't 
 | Package                 | Supported                      |
 | ----------------------- | ------------------------------ |
 | `@web-kits/react`       | Latest release                 |
-| `@web-kits/audio`       | No, moved to `@web-kits/react` |
+| `@web-kits/audio`       | Latest release                 |
 | `@web-kits/blur`        | No, moved to `@web-kits/react` |
 | `@web-kits/motion-blur` | No, moved to `@web-kits/react` |
 | `@web-kits/springboard` | No, moved to `@web-kits/react` |

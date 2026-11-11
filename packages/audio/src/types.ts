@@ -464,6 +464,20 @@ export type SequenceOptions = {
   duration?: number;
 };
 
+/** JSON-serializable patch containing named sound definitions. */
+export type SoundPatch = {
+  /** Optional JSON Schema reference for validation. */
+  $schema?: string;
+  /** Display name of the patch. */
+  name: string;
+  author?: string;
+  version?: string;
+  description?: string;
+  tags?: string[];
+  /** Map of sound names to their definitions. */
+  sounds: Record<string, SoundDefinition>;
+};
+
 /** Configuration for creating an {@link AudioAnalyser}. */
 export type AnalyserOptions = {
   /** FFT window size (must be a power of 2). @defaultValue `2048` */

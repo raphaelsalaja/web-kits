@@ -18,7 +18,6 @@ Each feature is its own import, with its component or hook and the plain functio
 | `@web-kits/react/origin`             | Open an element out of another like an app, a genie or a menu. |
 | `@web-kits/react/motion-blur`        | Motion blur sized from speed, frame time and shutter.          |
 | `@web-kits/react/progressive-blur`   | The progressive blur from the iOS scroll edge.                 |
-| `@web-kits/react/sound`              | Sounds described as plain objects, played with one call.       |
 
 ## Number Transition
 
@@ -71,4 +70,4 @@ With reduced motion on, every transition but `identity` crossfades. Screen reade
 
 ## More
 
-Docs and live examples for every import are at [web-kits.dev](https://web-kits.dev): [Origin](https://web-kits.dev/springboard), [Motion Blur](https://web-kits.dev/motion-blur), [Progressive Blur](https://web-kits.dev/blur) and [Sound](https://web-kits.dev/audio).
+Docs and live examples for every import are at [web-kits.dev](https://web-kits.dev): [Origin](https://web-kits.dev/springboard), [Motion Blur](https://web-kits.dev/motion-blur) and [Progressive Blur](https://web-kits.dev/blur).

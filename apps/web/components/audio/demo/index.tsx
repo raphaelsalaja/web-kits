@@ -1,7 +1,7 @@
 "use client";
 
-import type { SoundDefinition } from "@web-kits/react/sound";
-import { defineSound, ensureReady } from "@web-kits/react/sound";
+import type { SoundDefinition } from "@web-kits/audio";
+import { defineSound, ensureReady } from "@web-kits/audio";
 import type { ReactNode } from "react";
 import { useCallback, useId, useMemo, useRef, useState } from "react";
 import {

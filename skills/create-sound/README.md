@@ -1,6 +1,6 @@
 # create-sound
 
-Cursor agent skill that produces a `SoundDefinition` for [@web-kits/react/sound](../../packages/audio) from any input — a natural-language prompt, an audio file the user shares, or both.
+Cursor agent skill that produces a `SoundDefinition` for [@web-kits/audio](../../packages/audio) from any input — a natural-language prompt, an audio file the user shares, or both.
 
 The skill follows the [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices) layout: each rule is its own short markdown file in `rules/`, and a build step compiles them into a single `SKILL.md` that Cursor autoloads.
 
@@ -68,4 +68,4 @@ The skill is grounded in real shapes from the codebase:
 - [`packages/audio/src/types.ts`](../../packages/audio/src/types.ts) — full `SoundDefinition` surface.
 - [`packages/audio/schemas/patch.schema.json`](../../packages/audio/schemas/patch.schema.json) — JSON Schema used by `validate`.
 - [`packages/audio/src/offline.ts`](../../packages/audio/src/offline.ts) — `renderToWav` for previews and round-trip checks.
-- [`.web-kits/core.ts`](../../.web-kits/core.ts) — every `event-*` recipe template is taken from these first-party sounds.
+- [`.web-kits/core.ts`](../../.web-kits/core.ts) — every `event-*` recipe template is taken from this first-party patch.

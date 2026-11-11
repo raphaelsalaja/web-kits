@@ -6,10 +6,9 @@ import styles from "./styles.module.css";
 
 type Props = {
   code: string;
-  title?: string;
 };
 
-export function CodePreview({ code, title = "Output" }: Props) {
+export function CodePreview({ code }: Props) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
@@ -21,7 +20,7 @@ export function CodePreview({ code, title = "Output" }: Props) {
   return (
     <div className={styles.codePreview}>
       <div className={styles.codeHeader}>
-        <span className={styles.codeTitle}>{title}</span>
+        <span className={styles.codeTitle}>Output</span>
         <button type="button" className={styles.copyBtn} onClick={handleCopy}>
           {copied ? (
             <>

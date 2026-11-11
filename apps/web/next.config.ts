@@ -31,7 +31,7 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
-  transpilePackages: ["@web-kits/react"],
+  transpilePackages: ["@web-kits/audio", "@web-kits/react"],
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },

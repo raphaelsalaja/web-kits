@@ -1,3 +1,4 @@
+import audio from "@web-kits/audio/package.json";
 import react from "@web-kits/react/package.json";
 import calligraph from "calligraph/package.json";
 
@@ -23,8 +24,8 @@ export const kits: Kit[] = [
   {
     slug: "audio",
     name: "Audio",
-    package: `${react.name}/sound`,
-    version: react.version,
+    package: audio.name,
+    version: audio.version,
     description: "Sounds described as plain objects, played with one call.",
     href: "/audio",
   },

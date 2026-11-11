@@ -13,6 +13,7 @@
     "@base-ui/react": "catalog:",
     "@radix-ui/colors": "^3.0.0",
     "@shikijs/transformers": "catalog:",
+    "@web-kits/audio": "workspace:*",
     "@web-kits/react": "workspace:*",
     "calligraph": "^1.4.1",
     "fumadocs-core": "catalog:",
