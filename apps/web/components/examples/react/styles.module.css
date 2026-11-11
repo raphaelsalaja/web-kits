@@ -40,33 +40,6 @@
   }
 }
 
-.window {
-  display: block;
-}
-
-.track {
-  display: inline-flex;
-  gap: 0.25em;
-  white-space: nowrap;
-}
-
-.outcome {
-  display: grid;
-
-  & > * {
-    grid-area: 1 / 1;
-  }
-}
-
-.label {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  white-space: nowrap;
-  clip-path: inset(50%);
-}
-
 .icon {
   display: grid;
   font-size: 22px;

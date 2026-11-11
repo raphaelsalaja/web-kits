@@ -27,21 +27,16 @@ These are the same springs [Springboard](/springboard/springs) uses.
 
 ## Transaction Status
 
-A pill that checks a transaction, after [Fluidity](https://benji.org/fluidity). The words sit on one track that slides as one, so "Transaction" moves over as "Analyzing" fades out and "Safe" fades in, and the pill's width follows on the same spring.
+A pill that checks a transaction, after [Fluidity](https://benji.org/fluidity). The label runs on Family's text transition, so "Transaction" slides over as "Analyzing" fades out and "Safe" fades in, and the pill's width follows.
 
 <Example>
   <TransactionStatus />
 </Example>
 
 ```tsx
-import { fromPhysics, toMotion } from "@web-kits/react/springs";
-import { motion } from "motion/react";
+import { TextTransition } from "@web-kits/react/text-transition";
 
-const spring = toMotion(fromPhysics(4, 800, 80));
-
-<motion.span animate={{ width }} transition={spring}>
-  <motion.span animate={{ x: analyzing ? 0 : -shift }} transition={spring}>
-    {/* Analyzing Transaction Safe */}
-  </motion.span>
-</motion.span>;
+<TextTransition transition="family">
+  {safe ? "Transaction Safe" : "Analyzing Transaction"}
+</TextTransition>;
 ```
