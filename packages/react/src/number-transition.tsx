@@ -68,8 +68,13 @@ export function NumberTransition({
 
   let direction: 1 | -1 = 1;
   if (countsDown !== undefined) direction = countsDown ? -1 : 1;
+  // Family's keypad shows 0 before anything is typed, so it counts as none.
   else if (previous && transition === "family-input")
-    direction = digitCount(parts) < digitCount(previous.parts) ? -1 : 1;
+    direction =
+      (value ? digitCount(parts) : 0) <
+      (previous.value ? digitCount(previous.parts) : 0)
+        ? -1
+        : 1;
   else if (previous) direction = value < previous.value ? -1 : 1;
 
   useLayoutEffect(() => {

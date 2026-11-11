@@ -71,6 +71,22 @@ function overshot(spring: Spring, gain: number, delay: number) {
   };
 }
 
+/** How many digits come before each part that isn't one. */
+function digitsAhead(parts: readonly Part[]) {
+  const out = new Map<string, number>();
+  let count = 0;
+  for (const part of parts) {
+    if (part.role === "digit") count++;
+    else out.set(part.key, count);
+  }
+  return out;
+}
+
+/** How much ancestors scale the root, so client rects map back to its own pixels. */
+function scaleOf(root: HTMLElement, box: DOMRect) {
+  return root.offsetWidth > 0 ? box.width / root.offsetWidth : 1;
+}
+
 const reducedMotion = () =>
   typeof matchMedia === "function" &&
   matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -83,15 +99,27 @@ const ROOT: CSSProperties = {
   textAlign: "start",
 };
 
+/**
+ * Family's keypad fades digits out over the bottom 0.1em of a 1.2 line. The
+ * sides are padded so glyphs sliding in from the old width stay unmasked.
+ */
 const WINDOW =
-  "linear-gradient(to bottom, transparent, #000 0.3em, #000 calc(100% - 0.2em), transparent)";
+  "linear-gradient(to bottom, transparent, #000 0.3em, #000 calc(100% - 0.1em), transparent)";
 
 const INPUT: CSSProperties = {
-  paddingBlock: "0.3em 0.2em",
-  marginBlock: "-0.3em -0.2em",
+  lineHeight: 1.2,
+  padding: "0.3em 1.5em 0",
+  margin: "-0.3em -1.5em 0",
   maskImage: WINDOW,
   WebkitMaskImage: WINDOW,
 };
+
+/**
+ * Family's wheels show a digit whole from its cap height to its baseline and
+ * fade its neighbours out over 0.4em beyond that, past the line box.
+ */
+const WHEEL =
+  "linear-gradient(to bottom, transparent, #000 0.4em, #000 calc(100% - 0.4em), transparent)";
 
 const LABEL: CSSProperties = {
   position: "absolute",
@@ -135,12 +163,13 @@ export class GlyphText extends Component<GlyphTextProps> {
     const root = this.root.current;
     if (!root || sameParts(previous.parts, this.props.parts)) return null;
     const box = root.getBoundingClientRect();
+    const k = scaleOf(root, box);
     const glyphs = new Map<string, Seen>();
     for (const el of root.querySelectorAll<HTMLElement>("[data-glyph]")) {
       const rect = el.getBoundingClientRect();
       const style = getComputedStyle(el);
       glyphs.set(el.dataset.glyph as string, {
-        center: rect.left + rect.width / 2 - box.left,
+        center: (rect.left + rect.width / 2 - box.left) / k,
         width: el.offsetWidth,
         top: el.offsetTop,
         char: el.firstElementChild?.textContent ?? "",
@@ -150,7 +179,7 @@ export class GlyphText extends Component<GlyphTextProps> {
         filter: style.filter,
       });
     }
-    return { width: box.width, left: box.left, glyphs };
+    return { width: box.width / k, left: box.left, glyphs };
   }
 
   componentDidUpdate(
@@ -188,26 +217,49 @@ export class GlyphText extends Component<GlyphTextProps> {
     }
 
     const box = root.getBoundingClientRect();
+    const k = scaleOf(root, box);
+    const width = box.width / k;
     const nodes = new Map<string, HTMLElement>();
     const centers = new Map<HTMLElement, number>();
     for (const el of root.querySelectorAll<HTMLElement>("[data-glyph]")) {
       nodes.set(el.dataset.glyph as string, el);
       const rect = el.getBoundingClientRect();
-      centers.set(el, rect.left + rect.width / 2 - box.left);
+      centers.set(el, (rect.left + rect.width / 2 - box.left) / k);
     }
     const before = new Map(previous.parts.map((part) => [part.key, part]));
     const after = new Set(parts.map((part) => part.key));
-    const slide = kind === "family-input" ? family.input.slide : layout;
+    const input = kind === "family-input";
+    const slide = input ? family.input.slide : layout;
     const crossfade = kind === "opacity" || kind === "interpolate";
 
-    if (Math.abs(snapshot.width - box.width) > 0.5) {
+    // Family's keypad takes its new width at once, so new digits rise where
+    // they end up and the rest slide from where they were on screen.
+    const shift = (snapshot.left - box.left) / k;
+    if (input) {
+      for (const seen of snapshot.glyphs.values()) seen.center += shift;
+    } else if (Math.abs(snapshot.width - width) > 0.5) {
       this.moves.push(
         root.animate(
-          { width: [`${snapshot.width}px`, `${box.width}px`] },
+          { width: [`${snapshot.width}px`, `${width}px`] },
           timing(slide),
         ),
       );
     }
+    // While the width animates the root's start edge moves, so Family's
+    // glyphs that come and go are held where they are on screen against it.
+    const hold = (el: HTMLElement, leaving: boolean) =>
+      kind !== "family" || Math.abs(shift) < 0.5
+        ? []
+        : [
+            el.animate(
+              {
+                translate: leaving
+                  ? ["0 0", `${shift}px 0`]
+                  : [`${-shift}px 0`, "0 0"],
+              },
+              { ...timing(slide), fill: leaving ? "both" : "backwards" },
+            ),
+          ];
 
     if (crossfade) {
       for (const seen of snapshot.glyphs.values()) {
@@ -227,6 +279,8 @@ export class GlyphText extends Component<GlyphTextProps> {
       exit?: (delay: number) => void;
     };
     const changes: Change[] = [];
+    const ahead = digitsAhead(parts);
+    const aheadBefore = digitsAhead(previous.parts);
 
     for (const part of parts) {
       const el = nodes.get(part.key);
@@ -242,6 +296,13 @@ export class GlyphText extends Component<GlyphTextProps> {
             el.animate({ translate: [`${dx}px 0`, "0 0"] }, timing(slide)),
           );
         }
+        if (
+          input &&
+          part.role === "group" &&
+          ahead.get(part.key) !== aheadBefore.get(part.key)
+        ) {
+          this.rejoin(el);
+        }
         if (old.char === part.char) continue;
         if (
           kind === "family" &&
@@ -254,20 +315,43 @@ export class GlyphText extends Component<GlyphTextProps> {
       }
       changes.push({
         x: center,
-        enter: (delay) => this.enter(el, part, kind, delay),
+        enter: (delay) => {
+          this.enter(el, part, kind, delay);
+          if (seen) return;
+          this.moves.push(...hold(el, false));
+          if (kind === "family" && part.role === "digit") {
+            this.roll(el, "0", part.char);
+          }
+        },
         exit: seen
           ? (delay) => this.leave(overlay, seen, part, kind, delay)
           : undefined,
       });
     }
 
+    // On the keypad a digit only leaves on its own when it's deleted. When
+    // another comes in with it, the 0 shown before typing, it's pushed out.
+    const pushed =
+      input &&
+      parts.some(
+        (part) => part.role === "digit" && !snapshot.glyphs.has(part.key),
+      );
     for (const [key, seen] of snapshot.glyphs) {
       if (after.has(key)) continue;
       const part = before.get(key);
       if (!part) continue;
       changes.push({
         x: seen.center,
-        exit: (delay) => this.leave(overlay, seen, part, kind, delay),
+        exit: (delay) =>
+          this.leave(
+            overlay,
+            seen,
+            part,
+            kind,
+            delay,
+            (clone) => hold(clone, true),
+            !pushed,
+          ),
       });
     }
 
@@ -318,12 +402,30 @@ export class GlyphText extends Component<GlyphTextProps> {
     }
   }
 
+  /**
+   * A keypad separator that ends up between other digits drops out of the
+   * window and rises back in while it slides across.
+   */
+  private rejoin(el: HTMLElement) {
+    const { enter, exit, enterOffset, exitOffset, rejoin } = family.input;
+    el.animate(
+      { transform: ["none", `translateY(${exitOffset}cap)`] },
+      timing(exit),
+    );
+    el.animate(
+      { transform: [`translateY(${enterOffset}cap)`, "none"] },
+      { ...timing(enter, rejoin), fill: "none" },
+    );
+  }
+
   private leave(
     overlay: HTMLElement,
     seen: Seen,
     part: Part,
     kind: Kind,
     delay: number,
+    move?: (clone: HTMLElement) => Animation[],
+    removed = false,
   ) {
     const { direction, layout } = this.props;
     this.exit(overlay, seen, (clone) => {
@@ -347,6 +449,17 @@ export class GlyphText extends Component<GlyphTextProps> {
         ];
       }
       if (kind === "family-input") {
+        // A digit typed over another pushes it out the way it came in.
+        if (!removed && part.role === "digit") {
+          return [
+            clone.animate(
+              {
+                transform: `translateY(${-direction * family.input.enterOffset}cap)`,
+              },
+              { ...timing(family.input.enter, delay), fill: "both" },
+            ),
+          ];
+        }
         const to = part.role === "digit" ? -direction : 1;
         return [
           clone.animate(
@@ -355,12 +468,16 @@ export class GlyphText extends Component<GlyphTextProps> {
           ),
         ];
       }
-      return [
-        clone.animate(
-          { opacity: 0 },
-          { ...timing(layout, delay), fill: "both" },
-        ),
-      ];
+      const fade = clone.animate(
+        { opacity: 0 },
+        { ...timing(layout, delay), fill: "both" },
+      );
+      if (kind !== "family") return [fade];
+      const spin =
+        removed && part.role === "digit"
+          ? this.wheel(clone, part.char, "0")
+          : undefined;
+      return [fade, ...(spin ? [spin] : []), ...(move?.(clone) ?? [])];
     });
   }
 
@@ -370,7 +487,9 @@ export class GlyphText extends Component<GlyphTextProps> {
     run: (clone: HTMLElement) => Animation[],
   ) {
     const clone = document.createElement("span");
-    clone.textContent = seen.char;
+    const inner = document.createElement("span");
+    inner.textContent = seen.char;
+    clone.append(inner);
     Object.assign(clone.style, {
       position: "absolute",
       left: `${seen.center - seen.width / 2}px`,
@@ -390,16 +509,37 @@ export class GlyphText extends Component<GlyphTextProps> {
   }
 
   private roll(el: HTMLElement, from: string, to: string) {
-    const { direction } = this.props;
+    const animation = this.wheel(el, from, to);
+    if (!animation) return;
+    const settle = () => {
+      animation.cancel();
+      el.lastElementChild?.remove();
+      (el.firstElementChild as HTMLElement).style.opacity = "";
+      Object.assign(el.style, {
+        padding: "",
+        margin: "",
+        maskImage: "",
+        webkitMaskImage: "",
+      });
+      this.rolls.delete(el);
+    };
+    this.rolls.set(el, settle);
+    animation.finished.then(settle, () => {});
+  }
+
+  /**
+   * Spins a digit's wheel straight from one digit to the other, whichever way
+   * the number moves, with the higher digits on top.
+   */
+  private wheel(el: HTMLElement, from: string, to: string) {
     const a = Number(from);
     const b = Number(to);
-    if (Number.isNaN(a) || Number.isNaN(b)) return;
-    const steps = (direction * (b - a) + 10) % 10;
-    if (!steps) return;
-    const digits = Array.from({ length: steps + 1 }, (_, i) =>
-      String((a + direction * i + 10) % 10),
+    if (Number.isNaN(a) || Number.isNaN(b) || a === b) return;
+    const direction = Math.sign(b - a);
+    const digits = Array.from({ length: Math.abs(b - a) + 1 }, (_, i) =>
+      String(a + direction * i),
     );
-    if (direction < 0) digits.reverse();
+    if (direction > 0) digits.reverse();
 
     const inner = el.firstElementChild as HTMLElement;
     const height = el.offsetHeight;
@@ -407,7 +547,7 @@ export class GlyphText extends Component<GlyphTextProps> {
     Object.assign(strip.style, {
       position: "absolute",
       insetInline: "0",
-      top: "0",
+      top: "0.15em",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -418,41 +558,25 @@ export class GlyphText extends Component<GlyphTextProps> {
       cell.style.height = `${height}px`;
       strip.append(cell);
     }
-    const edge =
-      "linear-gradient(to bottom, transparent, #000 15%, #000 85%, transparent)";
     Object.assign(el.style, {
-      paddingInline: "0.15em",
-      marginInline: "-0.15em",
-      maskImage: edge,
-      webkitMaskImage: edge,
+      padding: "0.15em",
+      margin: "-0.15em",
+      maskImage: WHEEL,
+      webkitMaskImage: WHEEL,
     });
     inner.style.opacity = "0";
     el.append(strip);
 
-    const travel = steps * height;
-    const animation = strip.animate(
+    const travel = (digits.length - 1) * height;
+    return strip.animate(
       {
         transform:
           direction > 0
-            ? ["translateY(0)", `translateY(${-travel}px)`]
-            : [`translateY(${-travel}px)`, "translateY(0)"],
+            ? [`translateY(${-travel}px)`, "translateY(0)"]
+            : ["translateY(0)", `translateY(${-travel}px)`],
       },
       { ...timing(family.wheel), fill: "both" },
     );
-    const settle = () => {
-      animation.cancel();
-      strip.remove();
-      inner.style.opacity = "";
-      Object.assign(el.style, {
-        paddingInline: "",
-        marginInline: "",
-        maskImage: "",
-        webkitMaskImage: "",
-      });
-      this.rolls.delete(el);
-    };
-    this.rolls.set(el, settle);
-    animation.finished.then(settle, () => {});
   }
 
   render() {

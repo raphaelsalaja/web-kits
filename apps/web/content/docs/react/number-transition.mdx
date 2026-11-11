@@ -37,11 +37,11 @@ SwiftUI runs the blur, scale, fade and roll on springs of its own, whatever the 
 
 ### Family
 
-Each digit is a wheel that spins through every digit between the old one and the new, on a spring with a response of 0.276 seconds and a damping ratio of 0.95. Digits that appear or disappear fade, and the width and everything around the digits slide on Family's layout spring.
+Each digit is a wheel with the higher digits on top. It spins through every digit between the old one and the new, on a spring with a response of 0.276 seconds and a damping ratio of 0.95, and its neighbours show faintly above and below as it turns. A digit that disappears spins down to 0 as it fades, and one that appears spins up from 0. Both stay where they are on screen while the width and everything around them slide on Family's layout spring.
 
 ### Family Input
 
-The amount on Family's send screen, typed on its keypad. A typed digit rises in from 1.6 cap heights below, behind a soft-edged mask, and the old digits slide over to make room. A deleted digit drops away. Group separators always leave downwards and come back at their new place.
+The amount on Family's send screen, typed on its keypad. A typed digit rises in from 1.38 cap heights below, behind a soft-edged mask, and the old digits slide over to make room. A deleted digit drops away, slowly enough to see it fall. A group separator that ends up between other digits drops out, slides over and rises back in, and one for a new group rises in like a digit.
 
 <Example>
   <Keypad />
@@ -57,7 +57,7 @@ The amount on Family's send screen, typed on its keypad. A typed digit rises in 
 
 ## Direction
 
-Digits roll up when the value grows and down when it shrinks. For `family-input`, they follow the number of digits instead. `countsDown` fixes the direction, as `.numericText(countsDown:)` does.
+Digits roll up when the value grows and down when it shrinks, and `family-input` follows the number of digits instead. `countsDown` fixes the direction, as `.numericText(countsDown:)` does. Family's wheels ignore it: each one turns toward its own new digit.
 
 ## Props
 

@@ -48,7 +48,7 @@ describe("byPlace", () => {
 });
 
 describe("byTyping", () => {
-  it("keeps typed digits and moves the group separator", () => {
+  it("keeps typed digits and the group separator they move past", () => {
     const first = byTyping([], en().formatToParts(1234), 1);
     const second = byTyping(first, en().formatToParts(12345), 2);
     expect(
@@ -57,8 +57,17 @@ describe("byTyping", () => {
         .slice(0, 4)
         .map((p) => p.key),
     ).toEqual(first.filter((p) => p.role === "digit").map((p) => p.key));
-    expect(first.find((p) => p.role === "group")?.key).toBe("group@1");
-    expect(second.find((p) => p.role === "group")?.key).toBe("group@2");
+    expect(first.find((p) => p.role === "group")?.key).toBe("group@-3");
+    expect(second.find((p) => p.role === "group")?.key).toBe("group@-3");
+  });
+
+  it("gives a separator for a new group a new key", () => {
+    const first = byTyping([], en().formatToParts(123456), 1);
+    const second = byTyping(first, en().formatToParts(1234567), 2);
+    expect(second.filter((p) => p.role === "group").map((p) => p.key)).toEqual([
+      "group@-6",
+      "group@-3",
+    ]);
   });
 
   it("gives every new digit a new key", () => {

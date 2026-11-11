@@ -95,8 +95,9 @@ export function byPlace(formatted: readonly Intl.NumberFormatPart[]): Part[] {
 
 /**
  * Keys digits the way a keypad types them: digits shared with the previous
- * amount keep their key, and separators are keyed by the digits before them,
- * so a group separator that moves leaves and comes back at its new place.
+ * amount keep their key, group separators are keyed by the integer digits
+ * after them, so each one stays the same separator as digits come and go, and
+ * the decimal by the digits before it.
  */
 export function byTyping(
   previous: readonly Part[],
@@ -106,6 +107,10 @@ export function byTyping(
   const seen = new Map<string, number>();
   const out: Part[] = [];
   const digits: number[] = [];
+  let integers = 0;
+  for (const part of formatted) {
+    if (part.type === "integer") integers += graphemes(part.value).length;
+  }
   let before = 0;
   for (const part of formatted) {
     if (part.type === "integer" || part.type === "fraction") {
@@ -116,7 +121,10 @@ export function byTyping(
       }
     } else if (part.type === "group" || part.type === "decimal") {
       out.push({
-        key: `${part.type}@${before}`,
+        key:
+          part.type === "group"
+            ? `group@-${integers - before}`
+            : `decimal@${before}`,
         char: part.value,
         role: part.type,
       });

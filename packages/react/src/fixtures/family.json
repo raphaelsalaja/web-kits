@@ -159,21 +159,27 @@
     "keypad": {
       "clip": "recording/send-keypad.mp4",
       "enter": {
-        "direction": "rises from below on insert, drops from above on delete",
+        "direction": "rises from below on insert, drops from above on delete; a digit typed over the 0 shown before typing pushes it out the same way",
         "spring": {
-          "stiffness": 699,
-          "dampingRatio": 0.93,
-          "duration": 0.238,
-          "bounce": 0.07
+          "stiffness": 5200,
+          "dampingRatio": 1.42,
+          "duration": 0.087,
+          "bounce": -0.3
         },
-        "travel": 1.6,
-        "rmsPx": 0.43
+        "travel": 1.38,
+        "units": "cap heights",
+        "method": "matched frame by frame against send-keypad.mp4 and swap.mp4"
       },
       "exit": {
-        "model": "overdamped spring, reads as an ease-out with a 65 ms time constant",
-        "spring": { "stiffness": 5000, "dampingRatio": 2.36 },
-        "travel": 1.55,
-        "rmsPx": 0.61
+        "model": "a deleted digit drops away on a slow, slightly bouncy spring",
+        "spring": {
+          "stiffness": 248,
+          "dampingRatio": 0.85,
+          "duration": 0.399,
+          "bounce": 0.15
+        },
+        "travel": 2.44,
+        "units": "cap heights"
       },
       "slide": {
         "spring": {
@@ -185,7 +191,7 @@
         "samples": 4,
         "rmsPx": 0.17
       },
-      "separators": "commas leave downwards and enter upwards at their new index",
+      "separators": "keyed by the integer digits after them: a separator that ends up between other digits drops out, slides over and rises back in 55 ms later; a new one rises in",
       "mask": "vertical clip with soft edges, about 0.35 glyph heights above and 0.23 below",
       "blur": false,
       "scale": false
@@ -193,7 +199,7 @@
     "odometer": {
       "clip": "recording/balance-tabs.mp4",
       "wheel": {
-        "what": "each digit column spins through the digits in between; travel is the digit difference",
+        "what": "each digit's wheel spins straight from the old digit to the new one, through the digits in between; travel is the digit difference",
         "spring": {
           "stiffness": 520,
           "dampingRatio": 0.95,
@@ -214,8 +220,8 @@
         },
         "rmsPx": 0.4
       },
-      "columns": "added or removed digit columns fade over about 120 ms while the width animates",
-      "direction": "wheels roll by value, so increasing digits come from below"
+      "columns": "removed digit columns roll down to 0 and fade, new ones roll up from 0 and fade in, both held on screen while the width animates",
+      "direction": "higher digits sit on top, so a digit that grows rolls down into view whichever way the number moves"
     },
     "text": {
       "clip": "recording/send-keypad.mp4 (Still not enough ETH -> Not enough ETH)",
