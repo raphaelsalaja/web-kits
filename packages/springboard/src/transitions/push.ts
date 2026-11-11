@@ -2,8 +2,7 @@
 // (0.3 s, critically damped), and the retarget impulse starts it already
 // moving, so a push leaves faster than a plain spring would.
 
-import { uikit } from "../presets.ts";
-import { impulseVelocity } from "../spring.ts";
+import { impulseVelocity, uikit } from "../spring.ts";
 
 const { navigation } = uikit;
 

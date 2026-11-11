@@ -1,0 +1,59 @@
+---
+title: Animation
+description: SwiftUI's, UIKit's and SpringBoard's springs and curves, for CSS and Motion.
+---
+
+A spring is a response, the period of the undamped spring in seconds, and a damping ratio, the same pair SwiftUI's `Spring(response:dampingRatio:)` takes. Pass one as `animation`:
+
+```tsx
+import { fromBounce, spring } from "@web-kits/react/animation";
+
+<NumberTransition value={count} animation={spring(0.4, 0.8)} />;
+<TextTransition animation={fromBounce(0.5, 0.2)}>{label}</TextTransition>;
+```
+
+| Function                                  |                                                           |
+| ----------------------------------------- | --------------------------------------------------------- |
+| `spring(response, dampingRatio)`          | `Spring(response:dampingRatio:)`.                         |
+| `fromBounce(duration, bounce)`            | `Spring(duration:bounce:)`.                               |
+| `fromPhysics(mass, stiffness, damping)`   | `Spring(mass:stiffness:damping:)`.                        |
+| `fromSettling(duration, dampingRatio)`    | UIKit's `animate(withDuration:usingSpringWithDamping:)`.  |
+| `solve(spring, time, from, to, velocity)` | Where the spring is after `time` seconds.                 |
+| `settle(spring)`                          | How long it takes to settle, in seconds.                  |
+
+## Presets
+
+The springs and curves Apple's frameworks ship, read from macOS and the iOS Simulator:
+
+```ts
+import { springboard, swiftui, uikit } from "@web-kits/react/animation";
+
+swiftui.bouncy; // { response: 0.5, dampingRatio: 0.7 }
+uikit.sheet; // UISpringTimingParameters(mass: 3, stiffness: 1000, damping: 500)
+springboard.open; // the card on opening an app
+```
+
+## CSS
+
+`toLinear` samples a spring into a CSS `linear()` easing and its duration in milliseconds:
+
+```ts
+import { swiftui, toLinear } from "@web-kits/react/animation";
+
+const { easing, duration } = toLinear(swiftui.snappy);
+el.animate({ scale: [0.9, 1] }, { easing, duration });
+```
+
+Timed presets, like `swiftui.easeInOut`, are a duration and a cubic Bézier curve. `toCSS(curve)` writes the curve as a `cubic-bezier()`.
+
+## Motion
+
+A `linear()` easing can't carry velocity into a new target. For motion that's interrupted, use [Motion](https://motion.dev):
+
+```tsx
+import { swiftui, toMotion } from "@web-kits/react/animation";
+
+<motion.div animate={{ x }} transition={toMotion(swiftui.snappy)} />;
+```
+
+`toMotion(spring, speed)` plays a spring faster or slower, like SwiftUI's `.speed()`, and `tween(duration, curve)` turns a timing curve into a Motion tween.

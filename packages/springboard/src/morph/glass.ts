@@ -7,8 +7,7 @@
 // are fitted from the iOS 27.0 Simulator, in scripts/glass/ledger.md.
 
 import type { Rect } from "../geometry.ts";
-import { uikit } from "../presets.ts";
-import { atRest, createFluid, type Spring, spring } from "../spring.ts";
+import { atRest, createFluid, type Spring, spring, uikit } from "../spring.ts";
 
 const { morph: settings } = uikit;
 

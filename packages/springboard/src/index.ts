@@ -1,12 +1,3 @@
-export {
-  CURVES,
-  type Curve,
-  circularEaseIn,
-  circularEaseInOut,
-  circularEaseOut,
-  cubicBezier,
-  toCSS,
-} from "./curves.ts";
 export type { ElementSource, ReducedMotion } from "./dom.ts";
 export { cloneWindow } from "./genie/clone.ts";
 export { createDriver } from "./genie/driver.ts";
@@ -82,12 +73,17 @@ export {
   rubberBand,
   springVelocity,
 } from "./physics.ts";
-export { springboard, swiftui, uikit } from "./presets.ts";
 export { continuousRect } from "./shapes.ts";
 export {
   atRest,
   bounce,
+  CURVES,
+  type Curve,
+  circularEaseIn,
+  circularEaseInOut,
+  circularEaseOut,
   createFluid,
+  cubicBezier,
   type Fluid,
   fromBounce,
   fromPhysics,
@@ -98,8 +94,12 @@ export {
   settle,
   solve,
   spring,
+  springboard,
+  swiftui,
+  toCSS,
   toLinear,
   toMotion,
+  uikit,
   value,
   velocity,
 } from "./spring.ts";

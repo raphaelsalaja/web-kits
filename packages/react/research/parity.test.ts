@@ -1,8 +1,15 @@
 import { describe, expect, it } from "vitest";
-import familyFixture from "./fixtures/family.json";
-import swiftuiFixture from "./fixtures/swiftui.json";
-import { animations, family, numericText } from "./internal/presets.ts";
-import { physics, type Spring, settle, value } from "./springs.ts";
+import { swiftui } from "../src/animation/presets.ts";
+import {
+  physics,
+  type Spring,
+  settle,
+  value,
+} from "../src/animation/spring.ts";
+import { measured as numericText } from "../src/content-transition/numeric-text.ts";
+import { measured as family } from "../src/family/measured.ts";
+import familyFixture from "./family.json";
+import swiftuiFixture from "./swiftui.json";
 
 type Layer = { dy: number; alpha: number; scale: number; blur: number };
 type Frame = { t: number; old: Layer | null; new: Layer | null };
@@ -103,7 +110,7 @@ describe("numericText", () => {
 describe("opacity", () => {
   it("fades the new label in on the default animation", () => {
     expect(
-      rms(series("opacity-craft", "new", "alpha"), progress(animations.smooth)),
+      rms(series("opacity-craft", "new", "alpha"), progress(swiftui.smooth)),
     ).toBeLessThan(0.01);
   });
 });

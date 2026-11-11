@@ -1,8 +1,7 @@
-// Every preset Apple ships that the post uses. Sources are in
-// scripts/apple/ledger.md: SwiftUI's are sampled from macOS 27.0.1, UIKit's and
+// Apple's presets. SwiftUI's are sampled from macOS 27.0.1, UIKit's and
 // SpringBoard's from the iOS 27.0 Simulator's live settings.
 
-import { CURVES } from "./curves.ts";
+import { CURVES } from "./curve.ts";
 import { fromBounce, fromPhysics, spring } from "./spring.ts";
 
 export const swiftui = {

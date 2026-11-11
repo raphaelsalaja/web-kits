@@ -4,7 +4,7 @@
 // ledger: the recede fits 0.35 s with an initial velocity better than 0.4 s.
 
 import type { Rect } from "../geometry.ts";
-import { uikit } from "../presets.ts";
+import { uikit } from "../spring.ts";
 
 const { zoom: spec } = uikit;
 

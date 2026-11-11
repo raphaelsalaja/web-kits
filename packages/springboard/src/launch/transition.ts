@@ -9,13 +9,13 @@
 // icon sits from the middle of the screen, so the card bends as it grows.
 
 import type { Rect } from "../geometry.ts";
-import { springboard } from "../presets.ts";
 import {
   atRest,
   createFluid,
   type Fluid,
   type Spring,
   spring,
+  springboard,
 } from "../spring.ts";
 
 /** The springs the card rides. SpringBoard's are the default. */

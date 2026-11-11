@@ -10,34 +10,30 @@ Text that animates between strings. Pass the text as its child.
 </Example>
 
 ```tsx
+import { text } from "@web-kits/react/family";
 import { TextTransition } from "@web-kits/react/text-transition";
 
-<TextTransition transition="family">{label}</TextTransition>;
+<TextTransition transition={text}>{label}</TextTransition>;
 ```
 
 ## Transitions
 
-| Transition    |                                                                                     |
-| ------------- | ----------------------------------------------------------------------------------- |
-| `opacity`     | SwiftUI's default for `Text`. The whole label crossfades.                           |
-| `interpolate` | SwiftUI's `.interpolate`. A crossfade that also eases colour, size and weight.      |
-| `identity`    | SwiftUI's `.identity`. The text swaps.                                              |
-| `numericText` | SwiftUI's `.numericText(countsDown:)`. Changed characters blur, shrink and roll.    |
-| `family`      | Family's wallet. Characters both strings share slide over, the rest fade.           |
-
-### Family
-
-The characters two strings share are found with a diff, so "Still not enough ETH" becomes "Not enough ETH" by fading "Still n" out, fading "N" in and sliding the rest over. A letter that only changes case crossfades in place. Everything runs on one spring, with a response of 0.222 seconds and a damping ratio of 1.05.
+| Transition      | From                                                      |                                                                           |
+| --------------- | --------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `opacity`       | [`content-transition`](/react/content-transition)         | SwiftUI's default for `Text`. The whole label crossfades.                 |
+| `interpolate`   | [`content-transition`](/react/content-transition)         | A crossfade that also eases colour, size and weight.                      |
+| `identity`      | [`content-transition`](/react/content-transition)         | The text swaps.                                                           |
+| `numericText()` | [`content-transition`](/react/content-transition)         | Changed characters blur, shrink and roll.                                 |
+| `text`          | [`family`](/react/family)                                 | Family's wallet. Characters both strings share slide over, the rest fade. |
 
 Text splits into graphemes with `Intl.Segmenter`, so emoji and accented letters move as one.
 
 ## Props
 
-| Prop         | Type                                           | Default     |
-| ------------ | ---------------------------------------------- | ----------- |
-| `children`   | `string`                                       |             |
-| `transition` | One of the transitions above                   | `"opacity"` |
-| `countsDown` | `boolean`                                      | `false`     |
-| `animation`  | `"smooth"`, `"snappy"`, `"bouncy"` or a spring | `"smooth"`, or Family's spring for `family` |
+| Prop         | Type                                           | Default                                    |
+| ------------ | ---------------------------------------------- | ------------------------------------------ |
+| `children`   | `string`                                       |                                            |
+| `transition` | One of the transitions above                   | `opacity`                                  |
+| `animation`  | `"smooth"`, `"snappy"`, `"bouncy"` or a spring | `"smooth"`, or Family's spring for `text`  |
 
-`countsDown` brings `numericText`'s new characters in from above. Every other prop goes to the `span` it renders.
+`animation` sets what follows SwiftUI's `Animation`: the width, the characters that slide over, and crossfades. Every other prop goes to the `span` it renders.

@@ -1,9 +1,14 @@
 "use client";
 
 import {
-  TextTransition,
-  type TextTransitionKind,
-} from "@web-kits/react/text-transition";
+  identity,
+  interpolate,
+  numericText,
+  opacity,
+  type TextContentTransition,
+} from "@web-kits/react/content-transition";
+import { text } from "@web-kits/react/family";
+import { TextTransition } from "@web-kits/react/text-transition";
 import { useState } from "react";
 import {
   Control,
@@ -22,12 +27,12 @@ const TRANSITIONS = [
 ] as const;
 type TransitionName = (typeof TRANSITIONS)[number];
 
-const TRANSITION: Record<TransitionName, TextTransitionKind> = {
-  Family: "family",
-  Opacity: "opacity",
-  Interpolate: "interpolate",
-  "Numeric Text": "numericText",
-  Identity: "identity",
+const TRANSITION: Record<TransitionName, TextContentTransition> = {
+  Family: text,
+  Opacity: opacity,
+  Interpolate: interpolate,
+  "Numeric Text": numericText(),
+  Identity: identity,
 };
 
 const LABELS = [

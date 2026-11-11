@@ -8,11 +8,10 @@ Read how they work, with live examples, in the write-ups on [opening an app](htt
 npm install @web-kits/springboard
 ```
 
-| Import                         |                                                                                             |
-| ------------------------------ | ------------------------------------------------------------------------------------------- |
-| `@web-kits/springboard`        | `origin`, its effects, springs, presets, timing curves, corners and screen transitions.     |
-| `@web-kits/springboard/react`  | `useOrigin`.                                                                                |
-| `@web-kits/springboard/motion` | Every preset as a Motion transition.                                                        |
+| Import                        |                                                                                         |
+| ----------------------------- | --------------------------------------------------------------------------------------- |
+| `@web-kits/springboard`       | `origin`, its effects, springs, presets, timing curves, corners and screen transitions. |
+| `@web-kits/springboard/react` | `useOrigin`.                                                                            |
 
 ## Quick Start
 
@@ -178,12 +177,12 @@ el.animate({ scale: [0.9, 1] }, { easing, duration });
 `toLinear` samples a spring into a CSS `linear()` easing, which can't carry velocity into a new target. For motion that's interrupted, use Motion:
 
 ```tsx
-import { swiftui } from "@web-kits/springboard/motion";
+import { swiftui, toMotion } from "@web-kits/springboard";
 
-<motion.div animate={{ x }} transition={swiftui.snappy} />;
+<motion.div animate={{ x }} transition={toMotion(swiftui.snappy)} />;
 ```
 
-`toMotion(spring, speed)` converts any other spring, and `speed` plays it faster or slower, like SwiftUI's `.speed()`.
+`toMotion(spring, speed)` plays a spring faster or slower, like SwiftUI's `.speed()`, and `tween(duration, curve)` turns a timing curve into a Motion tween.
 
 ## License
 

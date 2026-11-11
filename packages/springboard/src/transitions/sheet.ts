@@ -3,7 +3,7 @@
 // runs critically damped with a 0.344 s response. In iOS 27 the screen behind
 // doesn't scale.
 
-import { uikit } from "../presets.ts";
+import { uikit } from "../spring.ts";
 
 export const SHEET = {
   spring: uikit.sheet,

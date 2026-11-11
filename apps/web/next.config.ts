@@ -48,6 +48,11 @@ const nextConfig: NextConfig = {
         permanent: false,
       },
       {
+        source: "/:kit(react|springboard)/springs",
+        destination: "/react/animation",
+        permanent: true,
+      },
+      {
         source: "/npm",
         destination: "https://www.npmjs.com/org/web-kits",
         permanent: false,

@@ -120,53 +120,6 @@ export function solve(
   return { position: to + x, velocity: v };
 }
 
-/**
- * A value moved by springs the way SpringBoard's fluid behaviours move it:
- * retargeting starts a new spring from wherever the value is, keeping its
- * velocity. Time is in seconds, from any clock.
- */
-export function createFluid(initial: number) {
-  let current = spring(0.5, 1);
-  let from = initial;
-  let to = initial;
-  let speed = 0;
-  let start = 0;
-
-  const sample = (now: number) => solve(current, now - start, from, to, speed);
-
-  return {
-    sample,
-    get target() {
-      return to;
-    },
-    to(target: number, s: Spring, now: number, kick = 0) {
-      const state = sample(now);
-      current = s;
-      from = state.position;
-      speed = state.velocity + kick;
-      to = target;
-      start = now;
-    },
-    set(value: number, now: number) {
-      from = value;
-      to = value;
-      speed = 0;
-      start = now;
-    },
-  };
-}
-
-export type Fluid = ReturnType<typeof createFluid>;
-
-/** Within `epsilon` of its target and barely moving. */
-export function atRest(fluid: Fluid, now: number, epsilon = 1e-3) {
-  const { position, velocity } = fluid.sample(now);
-  return (
-    Math.abs(position - fluid.target) < epsilon &&
-    Math.abs(velocity) < epsilon * 10
-  );
-}
-
 /** `Spring.value(target: 1, initialVelocity:time:)` from 0. */
 export function value(s: Spring, time: number, velocity = 0) {
   return solve(s, time, 0, 1, velocity).position;
@@ -185,42 +138,4 @@ export function settle(s: Spring, threshold = 0.001, velocity = 0) {
     if (Math.abs(1 - value(s, t, velocity)) > threshold) last = t + step;
   }
   return last;
-}
-
-/**
- * A fluid spring's `retargetImpulse` starts it moving: the spring's own pull
- * applied for that long, which for a unit distance is impulse × ω².
- */
-export function impulseVelocity(s: Spring, impulse: number) {
-  const omega = TAU / s.response;
-  return impulse * omega * omega;
-}
-
-/** A Motion spring transition, slowed by `speed` (0.25 runs four times longer). */
-export function toMotion(s: Spring, speed = 1, initialVelocity?: number) {
-  const { mass, stiffness, damping } = physics(
-    spring(s.response / speed, s.dampingRatio),
-  );
-  return {
-    type: "spring" as const,
-    mass,
-    stiffness,
-    damping,
-    ...(initialVelocity === undefined
-      ? {}
-      : { velocity: initialVelocity * speed }),
-  };
-}
-
-/** A CSS `linear()` easing and its duration in milliseconds. */
-export function toLinear(s: Spring, { samples = 60, threshold = 0.001 } = {}) {
-  const duration = settle(s, threshold);
-  const points = Array.from({ length: samples + 1 }, (_, i) => {
-    const v = i === samples ? 1 : value(s, (i / samples) * duration);
-    return Number(v.toFixed(4));
-  });
-  return {
-    easing: `linear(${points.join(", ")})`,
-    duration: Math.round(duration * 1000),
-  };
 }

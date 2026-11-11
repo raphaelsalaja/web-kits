@@ -1,11 +1,5 @@
 import { describe, expect, it } from "vitest";
-import {
-  byDiff,
-  byPlace,
-  byTyping,
-  lcs,
-  type Part,
-} from "./internal/glyphs.ts";
+import { byDiff, byPlace, byTyping, lcs, type Part } from "./parts.ts";
 
 const en = (options?: Intl.NumberFormatOptions) =>
   new Intl.NumberFormat("en-US", options);

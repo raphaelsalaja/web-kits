@@ -1,11 +1,4 @@
 import { describe, expect, it } from "vitest";
-import {
-  CURVES,
-  circularEaseIn,
-  circularEaseInOut,
-  circularEaseOut,
-  cubicBezier,
-} from "./curves.ts";
 import genieFixture from "./fixtures/genie.json";
 import glassFixture from "./fixtures/glass.json";
 import springboardFixture from "./fixtures/springboard.json";
@@ -35,9 +28,13 @@ import {
   RUBBER_BAND,
   rubberBand,
 } from "./physics.ts";
-import { springboard, swiftui, uikit } from "./presets.ts";
 import {
   bounce,
+  CURVES,
+  circularEaseIn,
+  circularEaseInOut,
+  circularEaseOut,
+  cubicBezier,
   fromBounce,
   fromPhysics,
   fromSettling,
@@ -45,6 +42,9 @@ import {
   type Spring,
   solve,
   spring,
+  springboard,
+  swiftui,
+  uikit,
   value,
   velocity,
 } from "./spring.ts";

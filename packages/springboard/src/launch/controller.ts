@@ -10,8 +10,8 @@ import {
   resolve,
 } from "../dom.ts";
 import { cloneWindow } from "../genie/clone.ts";
-import { springboard } from "../presets.ts";
 import { continuousRect } from "../shapes.ts";
+import { springboard } from "../spring.ts";
 import { drawMesh } from "./tiles.ts";
 import {
   type AppGeometry,
