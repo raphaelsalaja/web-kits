@@ -11,7 +11,9 @@
   "blink": {
     "period": 1,
     "repeat": "forever",
-    "keyTimes": [0, 0.5, 0.5375, 0.575, 0.6125, 0.65, 0.85, 0.8875, 0.925, 0.9625, 1],
+    "keyTimes": [
+      0, 0.5, 0.5375, 0.575, 0.6125, 0.65, 0.85, 0.8875, 0.925, 0.9625, 1
+    ],
     "opacity": [1, 1, 0.75, 0.5, 0.25, 0, 0, 0.25, 0.5, 0.75, 1],
     "calculationMode": "discrete",
     "restartsOn": ["selection change", "keystroke"],

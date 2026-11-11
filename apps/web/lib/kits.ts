@@ -54,6 +54,14 @@ export const kits: Kit[] = [
     href: "/motion-blur",
   },
   {
+    slug: "caret",
+    name: "Caret",
+    package: `${react.name}/caret`,
+    version: react.version,
+    description: "The iOS and macOS text caret, gliding between positions.",
+    href: "/caret",
+  },
+  {
     slug: "react",
     name: "React",
     package: react.name,

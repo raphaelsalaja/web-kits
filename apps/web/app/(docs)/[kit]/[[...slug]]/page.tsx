@@ -8,6 +8,7 @@ import { Card, CardGrid } from "@/components/card";
 import { Pre, Tabs } from "@/components/code-block";
 import { CopyForLLM } from "@/components/copy-for-llm";
 import { Edge } from "@/components/examples/blur/edge";
+import { CaretFields } from "@/components/examples/caret/fields";
 import { Example } from "@/components/examples/frame";
 import { Examples as MotionBlurExamples } from "@/components/examples/motion-blur/examples";
 import { Lab, Orbit, Snap, Throw } from "@/components/examples/motion-blur/lab";
@@ -68,6 +69,7 @@ export default async function Page(props: Props) {
               pre: Pre,
               table: Table,
               CalligraphPreview,
+              CaretFields,
               Card,
               CardGrid,
               Demo,

@@ -1,7 +1,7 @@
 {
   "name": "@web-kits/react",
   "version": "0.0.0",
-  "description": "Interface pieces for React that move the way iOS does: SwiftUI's and Family's text and number transitions, SpringBoard's app launch and genie, motion blur and progressive blur.",
+  "description": "Interface pieces for React that move the way iOS does: SwiftUI's and Family's text and number transitions, SpringBoard's app launch and genie, motion blur, progressive blur and the text caret.",
   "license": "MIT",
   "author": "Raphael Salaja",
   "homepage": "https://web-kits.dev",
@@ -23,7 +23,8 @@
     "app launch",
     "genie",
     "motion blur",
-    "progressive blur"
+    "progressive blur",
+    "caret"
   ],
   "type": "module",
   "sideEffects": false,
@@ -36,6 +37,7 @@
     "./motion-blur": "./src/motion-blur/index.ts",
     "./progressive-blur": "./src/progressive-blur/index.ts",
     "./origin": "./src/origin/index.ts",
+    "./caret": "./src/caret/index.ts",
     "./package.json": "./package.json"
   },
   "files": [
@@ -75,6 +77,10 @@
       "./origin": {
         "types": "./dist/origin/index.d.ts",
         "default": "./dist/origin/index.js"
+      },
+      "./caret": {
+        "types": "./dist/caret/index.d.ts",
+        "default": "./dist/caret/index.js"
       },
       "./package.json": "./package.json"
     }

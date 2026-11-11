@@ -1,0 +1,35 @@
+.stage {
+  display: grid;
+  gap: 16px;
+  padding: 32px 24px;
+}
+
+.field {
+  position: relative;
+  display: grid;
+  gap: 6px;
+}
+
+.label {
+  font-size: 13px;
+  color: var(--text-tertiary);
+}
+
+.input {
+  padding: 10px 12px;
+  margin: 0;
+  font: inherit;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--text-primary);
+  caret-color: var(--blue);
+  resize: none;
+  outline: none;
+  background: var(--background-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-medium);
+}
+
+.input:focus-visible {
+  border-color: var(--border-secondary);
+}

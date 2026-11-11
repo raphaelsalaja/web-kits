@@ -1,0 +1,18 @@
+---
+title: React
+description: Draw the caret in a field with useCaret.
+---
+
+`useCaret` returns a ref. Put it on an `input`, a `textarea` or a
+contenteditable element.
+
+```tsx
+import { useCaret } from "@web-kits/react/caret";
+
+function Notes() {
+  const ref = useCaret({ style: "macos" });
+  return <textarea ref={ref} />;
+}
+```
+
+Options can change on any render without starting over. Use one hook per field.

@@ -1,0 +1,18 @@
+{
+  "title": "Caret",
+  "root": true,
+  "pages": [
+    "---Getting Started---",
+    "index",
+    "installation",
+    "---Guides---",
+    "react",
+    "---API---",
+    "options",
+    "instance",
+    "---Resources---",
+    "limits",
+    "external:[GitHub](https://github.com/raphaelsalaja/web-kits/tree/main/packages/react)",
+    "external:[npm](https://www.npmjs.com/package/@web-kits/react)"
+  ]
+}

@@ -8,16 +8,17 @@ npm install @web-kits/react
 
 Each feature is its own import, with its component or hook and the plain functions underneath it. React is only needed for the components and hooks.
 
-| Import                               |                                                                |
-| ------------------------------------ | -------------------------------------------------------------- |
-| `@web-kits/react/number-transition`  | `NumberTransition`: a number that animates between values.     |
-| `@web-kits/react/text-transition`    | `TextTransition`: text that animates between strings.          |
-| `@web-kits/react/content-transition` | SwiftUI's content transitions, as values for either.           |
-| `@web-kits/react/family`             | Family's wallet transitions, as values for either.             |
-| `@web-kits/react/animation`          | Apple's springs and curves, for CSS and Motion.                |
-| `@web-kits/react/origin`             | Open an element out of another like an app, a genie or a menu. |
-| `@web-kits/react/motion-blur`        | Motion blur sized from speed, frame time and shutter.          |
-| `@web-kits/react/progressive-blur`   | The progressive blur from the iOS scroll edge.                 |
+| Import                               |                                                                 |
+| ------------------------------------ | --------------------------------------------------------------- |
+| `@web-kits/react/number-transition`  | `NumberTransition`: a number that animates between values.      |
+| `@web-kits/react/text-transition`    | `TextTransition`: text that animates between strings.           |
+| `@web-kits/react/content-transition` | SwiftUI's content transitions, as values for either.            |
+| `@web-kits/react/family`             | Family's wallet transitions, as values for either.              |
+| `@web-kits/react/animation`          | Apple's springs and curves, for CSS and Motion.                 |
+| `@web-kits/react/origin`             | Open an element out of another like an app, a genie or a menu.  |
+| `@web-kits/react/motion-blur`        | Motion blur sized from speed, frame time and shutter.           |
+| `@web-kits/react/progressive-blur`   | The progressive blur from the iOS scroll edge.                  |
+| `@web-kits/react/caret`              | `useCaret`: the iOS and macOS caret, gliding between positions. |
 
 ## Number Transition
 
@@ -70,4 +71,4 @@ With reduced motion on, every transition but `identity` crossfades. Screen reade
 
 ## More
 
-Docs and live examples for every import are at [web-kits.dev](https://web-kits.dev): [Origin](https://web-kits.dev/springboard), [Motion Blur](https://web-kits.dev/motion-blur) and [Progressive Blur](https://web-kits.dev/blur).
+Docs and live examples for every import are at [web-kits.dev](https://web-kits.dev): [Origin](https://web-kits.dev/springboard), [Motion Blur](https://web-kits.dev/motion-blur), [Progressive Blur](https://web-kits.dev/blur) and [Caret](https://web-kits.dev/caret).
