@@ -136,6 +136,7 @@ describe("Family", () => {
       [family.input.slide, fitted.keypad.slide.spring],
       [family.wheel, fitted.odometer.wheel.spring],
       [family.layout, fitted.odometer.layout.spring],
+      [family.input.push, fitted.keypad.push.spring],
     ];
     for (const [spring, fit] of cases) {
       expect(spring.response).toBeCloseTo(response(fit.stiffness), 6);
@@ -143,6 +144,7 @@ describe("Family", () => {
     }
     expect(family.input.enterOffset).toBe(fitted.keypad.enter.travel);
     expect(family.input.exitOffset).toBe(fitted.keypad.exit.travel);
+    expect(family.input.pushOffset).toBe(fitted.keypad.push.travel);
   });
 
   it("matches the fitted durations, which SwiftUI calls the response", () => {

@@ -181,6 +181,17 @@
         "travel": 2.44,
         "units": "cap heights"
       },
+      "push": {
+        "model": "a digit typed over the 0 shown before typing, or replaced by it, comes in on a softer spring than other typed digits, and the one it replaces leaves on the same spring, far enough to clear the mask",
+        "spring": {
+          "stiffness": 740,
+          "dampingRatio": 0.9
+        },
+        "travel": 1.5,
+        "units": "cap heights",
+        "rmsPx": 2.5,
+        "method": "both digits of the first press in send-keypad.mp4 and swap.mp4, fitted together"
+      },
       "slide": {
         "spring": {
           "stiffness": 1300,
@@ -192,7 +203,7 @@
         "rmsPx": 0.17
       },
       "separators": "keyed by the integer digits after them: a separator that ends up between other digits drops out, slides over and rises back in 55 ms later; a new one rises in",
-      "mask": "vertical clip with soft edges, about 0.35 glyph heights above and 0.23 below",
+      "mask": "vertical clip with soft edges, about 0.35 glyph heights above and 0.23 below; the top edge fades over about 0.1em",
       "blur": false,
       "scale": false
     },

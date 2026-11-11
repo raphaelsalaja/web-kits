@@ -100,11 +100,12 @@ const ROOT: CSSProperties = {
 };
 
 /**
- * Family's keypad fades digits out over the bottom 0.1em of a 1.2 line. The
- * sides are padded so glyphs sliding in from the old width stay unmasked.
+ * Family's keypad fades digits out over the bottom 0.1em of a 1.2 line, and
+ * over 0.1em just past the top of the line. The sides are padded so glyphs
+ * sliding in from the old width stay unmasked.
  */
 const WINDOW =
-  "linear-gradient(to bottom, transparent, #000 0.3em, #000 calc(100% - 0.1em), transparent)";
+  "linear-gradient(to bottom, transparent 0.23em, #000 0.34em, #000 calc(100% - 0.1em), transparent)";
 
 const INPUT: CSSProperties = {
   lineHeight: 1.2,
@@ -282,6 +283,20 @@ export class GlyphText extends Component<GlyphTextProps> {
     const ahead = digitsAhead(parts);
     const aheadBefore = digitsAhead(previous.parts);
 
+    // On the keypad a digit only leaves on its own when it's deleted. When
+    // another comes in with it, the 0 shown before typing, it's pushed out.
+    const pushed =
+      input &&
+      parts.some(
+        (part) => part.role === "digit" && !snapshot.glyphs.has(part.key),
+      );
+    // One digit replacing another, as when the first is typed over the 0.
+    const swapped =
+      pushed &&
+      previous.parts.filter(
+        (part) => part.role === "digit" && !after.has(part.key),
+      ).length === 1;
+
     for (const part of parts) {
       const el = nodes.get(part.key);
       if (!el) continue;
@@ -316,7 +331,7 @@ export class GlyphText extends Component<GlyphTextProps> {
       changes.push({
         x: center,
         enter: (delay) => {
-          this.enter(el, part, kind, delay);
+          this.enter(el, part, kind, delay, swapped);
           if (seen) return;
           this.moves.push(...hold(el, false));
           if (kind === "family" && part.role === "digit") {
@@ -329,13 +344,6 @@ export class GlyphText extends Component<GlyphTextProps> {
       });
     }
 
-    // On the keypad a digit only leaves on its own when it's deleted. When
-    // another comes in with it, the 0 shown before typing, it's pushed out.
-    const pushed =
-      input &&
-      parts.some(
-        (part) => part.role === "digit" && !snapshot.glyphs.has(part.key),
-      );
     for (const [key, seen] of snapshot.glyphs) {
       if (after.has(key)) continue;
       const part = before.get(key);
@@ -351,6 +359,7 @@ export class GlyphText extends Component<GlyphTextProps> {
             delay,
             (clone) => hold(clone, true),
             !pushed,
+            swapped,
           ),
       });
     }
@@ -366,7 +375,13 @@ export class GlyphText extends Component<GlyphTextProps> {
     });
   }
 
-  private enter(el: HTMLElement, part: Part, kind: Kind, delay: number) {
+  private enter(
+    el: HTMLElement,
+    part: Part,
+    kind: Kind,
+    delay: number,
+    swapped = false,
+  ) {
     const { direction } = this.props;
     if (kind === "numericText") {
       el.animate(
@@ -387,15 +402,18 @@ export class GlyphText extends Component<GlyphTextProps> {
         timing(numericText.fade, delay),
       );
     } else if (kind === "family-input") {
-      const from = part.role === "digit" ? direction : 1;
+      const digit = part.role === "digit";
       el.animate(
         {
           transform: [
-            `translateY(${from * family.input.enterOffset}cap)`,
+            `translateY(${(digit ? direction : 1) * family.input.enterOffset}cap)`,
             "none",
           ],
         },
-        timing(family.input.enter, delay),
+        timing(
+          digit && swapped ? family.input.push : family.input.enter,
+          delay,
+        ),
       );
     } else {
       el.animate({ opacity: [0, 1] }, timing(this.props.layout, delay));
@@ -426,6 +444,7 @@ export class GlyphText extends Component<GlyphTextProps> {
     delay: number,
     move?: (clone: HTMLElement) => Animation[],
     removed = false,
+    swapped = false,
   ) {
     const { direction, layout } = this.props;
     this.exit(overlay, seen, (clone) => {
@@ -454,9 +473,15 @@ export class GlyphText extends Component<GlyphTextProps> {
           return [
             clone.animate(
               {
-                transform: `translateY(${-direction * family.input.enterOffset}cap)`,
+                transform: `translateY(${-direction * family.input.pushOffset}cap)`,
               },
-              { ...timing(family.input.enter, delay), fill: "both" },
+              {
+                ...timing(
+                  swapped ? family.input.push : family.input.enter,
+                  delay,
+                ),
+                fill: "both",
+              },
             ),
           ];
         }
@@ -603,6 +628,7 @@ export class GlyphText extends Component<GlyphTextProps> {
       >
         <span style={LABEL}>{label}</span>
         <span aria-hidden="true">
+          {parts.length === 0 && "\u200b"}
           {parts.map((part) => (
             <span key={part.key} data-glyph={part.key} style={GLYPH}>
               <span>{part.char}</span>

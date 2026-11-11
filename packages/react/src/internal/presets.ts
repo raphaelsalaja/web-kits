@@ -51,9 +51,13 @@ export const family = {
     enter: fitted(5200, 1.42),
     exit: fitted(248, 0.85),
     slide: fitted(1300, 1),
+    /** A digit typed over the 0 shown before typing, and the 0 it pushes out. */
+    push: fitted(740, 0.9),
     /** Travel in cap heights. */
     enterOffset: 1.38,
     exitOffset: 2.44,
+    /** A digit typed over another pushes it this far, out of the window. */
+    pushOffset: 1.5,
     /**
      * Seconds a separator that ends up between other digits stays dropped
      * out while it slides across, before it rises back in.
