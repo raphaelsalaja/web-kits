@@ -1,5 +1,6 @@
 "use client";
 
+import { keypad } from "@web-kits/react/family";
 import { NumberTransition } from "@web-kits/react/number-transition";
 import { useState } from "react";
 import styles from "./styles.module.css";
@@ -29,7 +30,7 @@ export function Keypad() {
           maximumFractionDigits: 2,
         }}
         locales="en-US"
-        transition="family-input"
+        transition={keypad}
       />
       <div className={styles.keypad}>
         {KEYS.map((key) => (

@@ -1,18 +1,19 @@
+import { type Spring, spring, swiftui } from "@web-kits/react/animation";
 import {
-  NumberTransition,
-  type NumberTransitionKind,
-} from "@web-kits/react/number-transition";
-import { type Spring, spring } from "@web-kits/react/springs";
-import {
-  TextTransition,
-  type TextTransitionKind,
-} from "@web-kits/react/text-transition";
+  type ContentTransition,
+  identity,
+  interpolate,
+  type NumberContentTransition,
+  numericText,
+  opacity,
+  type TextContentTransition,
+} from "@web-kits/react/content-transition";
+import { balance, keypad, text } from "@web-kits/react/family";
+import { NumberTransition } from "@web-kits/react/number-transition";
+import { TextTransition } from "@web-kits/react/text-transition";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { flushSync } from "react-dom";
-import {
-  family,
-  animations as presets,
-} from "../../../packages/react/src/internal/presets.ts";
+import { measured as family } from "../../../packages/react/src/family/measured.ts";
 import { Curves } from "./curves.tsx";
 import { Fit } from "./fit.tsx";
 import { FPS, ReferenceVideo } from "./reference.tsx";
@@ -20,12 +21,19 @@ import {
   type AnimationChoice,
   FONTS,
   type Font,
+  type Kind,
   SCENARIOS,
   type Scenario,
   type Step,
 } from "./scenarios.ts";
 
-const NUMBER: NumberTransitionKind[] = [
+const presets = {
+  smooth: swiftui.smooth,
+  snappy: swiftui.snappy,
+  bouncy: swiftui.bouncy,
+};
+
+const NUMBER: Kind[] = [
   "numericText",
   "family",
   "family-input",
@@ -33,7 +41,7 @@ const NUMBER: NumberTransitionKind[] = [
   "interpolate",
   "identity",
 ];
-const TEXT: TextTransitionKind[] = [
+const TEXT: Kind[] = [
   "opacity",
   "interpolate",
   "identity",
@@ -98,6 +106,27 @@ function layoutSpring(settings: Settings): Spring {
   if (settings.transition === "family") return family.layout;
   if (settings.transition === "family-input") return family.input.slide;
   return presets.smooth;
+}
+
+function contentTransition(
+  kind: string,
+  component: Scenario["component"],
+  countsDown: boolean | undefined,
+): ContentTransition {
+  if (kind === "numericText") return numericText({ countsDown });
+  const found =
+    kind === "family"
+      ? component === "number"
+        ? balance
+        : text
+      : kind === "family-input"
+        ? keypad
+        : kind === "interpolate"
+          ? interpolate
+          : kind === "identity"
+            ? identity
+            : opacity;
+  return countsDown === undefined ? found : { ...found, countsDown };
 }
 
 let ids = 0;
@@ -309,10 +338,11 @@ export function App() {
   const crop = scenario.reference?.crop;
   const points = scenario.reference?.scale ?? 3;
   const componentKey = `${scenario.id}-${settings.transition}-${settings.locales}-${JSON.stringify(settings.format)}`;
-  const shared = {
-    animation: layout,
+  const transition = contentTransition(
+    settings.transition,
+    scenario.component,
     countsDown,
-  };
+  );
 
   return (
     <div className="app">
@@ -385,14 +415,14 @@ export function App() {
                   value={current.value ?? 0}
                   format={settings.format}
                   locales={settings.locales}
-                  transition={settings.transition as NumberTransitionKind}
-                  {...shared}
+                  transition={transition as NumberContentTransition}
+                  animation={layout}
                 />
               ) : (
                 <TextTransition
                   key={componentKey}
-                  transition={settings.transition as TextTransitionKind}
-                  {...shared}
+                  transition={transition as TextContentTransition}
+                  animation={layout}
                 >
                   {current.text ?? ""}
                 </TextTransition>

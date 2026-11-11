@@ -11,10 +11,9 @@
     "---API---",
     "options",
     "instance",
-    "springs",
     "---Resources---",
     "changelog",
-    "external:[GitHub](https://github.com/raphaelsalaja/web-kits/tree/main/packages/springboard)",
-    "external:[npm](https://www.npmjs.com/package/@web-kits/springboard)"
+    "external:[GitHub](https://github.com/raphaelsalaja/web-kits/tree/main/packages/react)",
+    "external:[npm](https://www.npmjs.com/package/@web-kits/react)"
   ]
 }

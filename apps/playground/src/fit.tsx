@@ -1,4 +1,4 @@
-import { type Spring, toLinear } from "@web-kits/react/springs";
+import { type Spring, toLinear } from "@web-kits/react/animation";
 import { type ReactNode, useLayoutEffect, useRef } from "react";
 
 /**

@@ -1,0 +1,36 @@
+---
+title: Content Transition
+description: SwiftUI's content transitions, as values for TextTransition and NumberTransition.
+---
+
+How a label changes is a value, as with SwiftUI's `.contentTransition()`. Pass one as `transition`:
+
+```tsx
+import { numericText } from "@web-kits/react/content-transition";
+
+<NumberTransition value={count} transition={numericText()} />;
+<TextTransition transition={numericText({ countsDown: true })}>{label}</TextTransition>;
+```
+
+| Transition      |                                                                                |
+| --------------- | ------------------------------------------------------------------------------ |
+| `numericText()` | SwiftUI's `.numericText()`. Changed glyphs blur, shrink and roll.              |
+| `opacity`       | SwiftUI's `.opacity`, the default for `Text`. The whole label crossfades.      |
+| `interpolate`   | SwiftUI's `.interpolate`. A crossfade that also eases colour, size and weight. |
+| `identity`      | SwiftUI's `.identity`. The label swaps.                                        |
+
+Family's transitions are values too, on [Family](/react/family).
+
+## Numeric Text
+
+Digits are matched by place, so going from 9 to 10 changes the units and brings the tens in while every other digit stays put. Each changed digit leaves upwards, shrinking to 40% and blurring, while its replacement comes up from below. They start one after another, left to right, across 0.15 seconds, which is how SwiftUI staggers them.
+
+SwiftUI runs the blur, scale, fade and roll on springs of its own, whatever the `Animation`. They are the ones in SwiftUICore: mass 1, stiffness 344 and damping 37 for the fade, and mass 2, stiffness 470 and damping 34 for the roll.
+
+### Direction
+
+Numbers roll up when the value grows and down when it shrinks, and text comes in from below. `countsDown` fixes the direction, as `.numericText(countsDown:)` does.
+
+| Option       | Type      | Default                       |
+| ------------ | --------- | ----------------------------- |
+| `countsDown` | `boolean` | By the value, or up for text. |

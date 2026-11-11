@@ -1,0 +1,70 @@
+{
+  "source": "UITextView caret in the iOS 27 Simulator, iPhone 18 Pro, read from Core Animation and from the UIKit spring calls that drive it",
+  "units": "lengths in points at a 17pt system font; times in seconds",
+  "shape": {
+    "width": 2,
+    "height": 22,
+    "wrappedLineHeight": 23,
+    "cornerRadius": 0,
+    "color": "tint"
+  },
+  "blink": {
+    "period": 1,
+    "repeat": "forever",
+    "keyTimes": [
+      0, 0.5, 0.5375, 0.575, 0.6125, 0.65, 0.85, 0.8875, 0.925, 0.9625, 1
+    ],
+    "opacity": [1, 1, 0.75, 0.5, 0.25, 0, 0, 0.25, 0.5, 0.75, 1],
+    "calculationMode": "discrete",
+    "restartsOn": ["selection change", "keystroke"],
+    "solidWhileTyping": true,
+    "hiddenWithRangeSelection": true
+  },
+  "programmaticMove": "jump",
+  "dropPosition": {
+    "spring": { "tension": 400, "friction": 35, "mass": 1 },
+    "equivalent": { "response": 0.3142, "dampingRatio": 0.875 },
+    "show": { "scale": [2, 1], "opacity": [0, 1] }
+  },
+  "floatingCursor": {
+    "fadeOriginal": { "duration": 0.15, "easing": [0.42, 0, 0.58, 1] },
+    "track": { "dampingRatio": 1, "response": 0.18 },
+    "settle": { "dampingRatio": 1, "response": 0.18 }
+  },
+  "bulge": {
+    "out": { "scale": 1.1, "duration": 0.18, "bounce": 0.8, "delay": 0 },
+    "back": { "scale": 1, "duration": 0.18, "bounce": 0, "delay": 0.13 },
+    "peakScale": 1.15,
+    "peakAt": 0.1
+  },
+  "selection": {
+    "changes": "jump, with no Core Animation animations or springs",
+    "highlight": {
+      "view": "_UITextSelectionRangeView CAShapeLayer",
+      "shape": "one square rectangle per line, flush with the next",
+      "lines": "every line but the last runs to the text container's far edge",
+      "lineTops": [7, 28.33, 48.67],
+      "lineHeights": [21.33, 20.33, 21],
+      "singleLineHeight": 22,
+      "fill": { "srgb": [0, 0.33, 0.65], "alpha": 0.2 },
+      "fillFromTint": "the tint at 75% toward black, at 20% alpha"
+    },
+    "handles": {
+      "view": "_UITextSelectionLollipopView",
+      "color": { "srgb": [0.078, 0.435, 0.882], "is": "tint" },
+      "stick": { "width": 2, "height": "line height", "cornerRadius": 1 },
+      "dot": { "size": 16.5, "cornerRadius": 8.25 },
+      "start": {
+        "stickX": "left edge on the selection's start",
+        "dotFrame": [-7.25, -13.5, 16.5, 16.5],
+        "dotCenter": "5.25 above the line's top"
+      },
+      "end": {
+        "stickX": "centred on the selection's end",
+        "dotFrame": [-7.25, "lineHeight - 3", 16.5, 16.5],
+        "dotCenter": "5.25 below the line's bottom"
+      }
+    },
+    "collapse": "the highlight view hides at once"
+  }
+}

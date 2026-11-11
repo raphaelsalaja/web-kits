@@ -4,7 +4,7 @@ import { Dialog } from "@base-ui/react/dialog";
 import { Menu } from "@base-ui/react/menu";
 import { Popover } from "@base-ui/react/popover";
 import { Select } from "@base-ui/react/select";
-import type { useOrigin } from "@web-kits/springboard/react";
+import type { useOrigin } from "@web-kits/react/origin";
 import type { ComponentType, RefObject } from "react";
 import styles from "./popups.module.css";
 

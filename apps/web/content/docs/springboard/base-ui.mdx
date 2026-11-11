@@ -7,8 +7,7 @@ Leave out `open` on a Base UI popup and the hook follows the popup's own open st
 
 ```tsx
 import { Menu } from "@base-ui/react/menu";
-import { genie } from "@web-kits/springboard";
-import { useOrigin } from "@web-kits/springboard/react";
+import { genie, useOrigin } from "@web-kits/react/origin";
 
 function More() {
   const trigger = useRef<HTMLButtonElement>(null);

@@ -1,8 +1,5 @@
 import audio from "@web-kits/audio/package.json";
-import blur from "@web-kits/blur/package.json";
-import motionBlur from "@web-kits/motion-blur/package.json";
 import react from "@web-kits/react/package.json";
-import springboard from "@web-kits/springboard/package.json";
 import calligraph from "calligraph/package.json";
 
 export const site = {
@@ -35,26 +32,34 @@ export const kits: Kit[] = [
   {
     slug: "springboard",
     name: "Springboard",
-    package: springboard.name,
-    version: springboard.version,
+    package: `${react.name}/origin`,
+    version: react.version,
     description: "Apple's springs, app launch and genie for any element.",
     href: "/springboard",
   },
   {
     slug: "blur",
     name: "Blur",
-    package: blur.name,
-    version: blur.version,
+    package: `${react.name}/progressive-blur`,
+    version: react.version,
     description: "The progressive blur from the iOS scroll edge.",
     href: "/blur",
   },
   {
     slug: "motion-blur",
     name: "Motion Blur",
-    package: motionBlur.name,
-    version: motionBlur.version,
+    package: `${react.name}/motion-blur`,
+    version: react.version,
     description: "Motion blur sized from speed, frame time and shutter.",
     href: "/motion-blur",
+  },
+  {
+    slug: "caret",
+    name: "Caret",
+    package: `${react.name}/caret`,
+    version: react.version,
+    description: "The iOS and macOS text caret and selection, on a spring.",
+    href: "/caret",
   },
   {
     slug: "react",

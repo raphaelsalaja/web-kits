@@ -290,18 +290,9 @@ importers:
       '@web-kits/audio':
         specifier: workspace:*
         version: link:../../packages/audio
-      '@web-kits/blur':
-        specifier: workspace:*
-        version: link:../../packages/blur
-      '@web-kits/motion-blur':
-        specifier: workspace:*
-        version: link:../../packages/motion-blur
       '@web-kits/react':
         specifier: workspace:*
         version: link:../../packages/react
-      '@web-kits/springboard':
-        specifier: workspace:*
-        version: link:../../packages/springboard
       calligraph:
         specifier: ^1.4.1
         version: 1.4.1(motion@12.34.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -372,6 +363,10 @@ importers:
         version: 5.1.0(@opentelemetry/api@1.9.0)(@types/node@25.3.3)(vite@8.3.6(@types/node@25.3.3)(esbuild@0.28.2)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.1)(tsx@4.21.0)(yaml@2.9.1))
 
   packages/blur:
+    dependencies:
+      '@web-kits/react':
+        specifier: workspace:^
+        version: link:../react
     devDependencies:
       '@types/react':
         specifier: 'catalog:'
@@ -384,6 +379,10 @@ importers:
         version: 7.0.2
 
   packages/motion-blur:
+    dependencies:
+      '@web-kits/react':
+        specifier: workspace:^
+        version: link:../react
     devDependencies:
       '@types/react':
         specifier: 'catalog:'
@@ -413,7 +412,7 @@ importers:
   packages/springboard:
     dependencies:
       '@web-kits/react':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../react
     devDependencies:
       '@types/react':
@@ -425,9 +424,6 @@ importers:
       typescript:
         specifier: 'catalog:'
         version: 7.0.2
-      vitest:
-        specifier: 'catalog:'
-        version: 5.1.0(@opentelemetry/api@1.9.0)(@types/node@25.3.3)(vite@8.3.6(@types/node@25.3.3)(esbuild@0.28.2)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.1)(tsx@4.21.0)(yaml@2.9.1))
 
 packages:
 
@@ -1224,9 +1220,6 @@ packages:
 
   '@jridgewell/source-map@0.3.11':
     resolution: {integrity: sha512-ZMp1V8ZFcPG5dIWnQLr3NSI1MiCU7UETdS/A0G8V/XWHvJv3ZsFqutJn1Y5RPmAPX6F3BiE397OqveU/9NCuIA==}
-
-  '@jridgewell/sourcemap-codec@1.5.5':
-    resolution: {integrity: sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og==}
 
   '@jridgewell/sourcemap-codec@1.6.0':
     resolution: {integrity: sha512-T7jf+5zgsZHwNJ4lvQ7/aezbyk0nNX+zJVWpmHA7VYsEx7a7qr5Rg5IbtJFqkgze5Y2sruq1RUY8Q837Od7iFw==}
@@ -3987,14 +3980,12 @@ snapshots:
       '@jridgewell/trace-mapping': 0.3.31
     optional: true
 
-  '@jridgewell/sourcemap-codec@1.5.5': {}
-
   '@jridgewell/sourcemap-codec@1.6.0': {}
 
   '@jridgewell/trace-mapping@0.3.31':
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
-      '@jridgewell/sourcemap-codec': 1.5.5
+      '@jridgewell/sourcemap-codec': 1.6.0
 
   '@loaderkit/resolve@1.0.6':
     dependencies:

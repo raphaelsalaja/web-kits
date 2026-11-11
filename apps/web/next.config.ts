@@ -31,7 +31,7 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
-  transpilePackages: ["@web-kits/audio"],
+  transpilePackages: ["@web-kits/audio", "@web-kits/react"],
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },
@@ -46,6 +46,11 @@ const nextConfig: NextConfig = {
         source: "/twitter",
         destination: "https://x.com/raphaelsalaja",
         permanent: false,
+      },
+      {
+        source: "/:kit(react|springboard)/springs",
+        destination: "/react/animation",
+        permanent: true,
       },
       {
         source: "/npm",

@@ -7,8 +7,8 @@ import {
   smear,
   squeeze,
   svg,
-} from "@web-kits/motion-blur";
-import { useMotionBlur } from "@web-kits/motion-blur/react";
+  useMotionBlur,
+} from "@web-kits/react/motion-blur";
 import {
   type ReactNode,
   type Ref,

@@ -1,5 +1,11 @@
-import type { NumberTransitionKind } from "@web-kits/react/number-transition";
-import type { TextTransitionKind } from "@web-kits/react/text-transition";
+/** The transitions the playground can pick, by name. */
+export type Kind =
+  | "numericText"
+  | "opacity"
+  | "interpolate"
+  | "identity"
+  | "family"
+  | "family-input";
 
 export type Crop = { x: number; y: number; w: number; h: number };
 
@@ -41,7 +47,7 @@ export type Scenario = {
   name: string;
   notes?: string;
   component: "number" | "text";
-  transition: NumberTransitionKind | TextTransitionKind;
+  transition: Kind;
   animation?: AnimationChoice;
   /** A spring of the clip's own, picked as the custom animation. */
   spring?: { response: number; dampingRatio: number };

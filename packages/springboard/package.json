@@ -2,7 +2,7 @@
   "name": "@web-kits/springboard",
   "version": "0.1.0",
   "private": true,
-  "description": "Apple's springs, curves and transitions measured from iOS and macOS, with SpringBoard's app launch and the Dock's genie for any DOM element.",
+  "description": "Moved to @web-kits/react/origin and @web-kits/react/animation. This release re-exports them.",
   "license": "MIT",
   "author": "Raphael Salaja",
   "homepage": "https://www.raphaelsalaja.com/work/apple",
@@ -27,7 +27,6 @@
   "exports": {
     ".": "./src/index.ts",
     "./react": "./src/react.tsx",
-    "./motion": "./src/motion.ts",
     "./package.json": "./package.json"
   },
   "files": [
@@ -44,24 +43,19 @@
         "types": "./dist/react.d.ts",
         "default": "./dist/react.js"
       },
-      "./motion": {
-        "types": "./dist/motion.d.ts",
-        "default": "./dist/motion.js"
-      },
       "./package.json": "./package.json"
     }
   },
   "scripts": {
     "build": "rm -rf dist && tsc -p tsconfig.build.json",
     "typecheck": "tsc",
-    "test": "vitest run",
     "prepublishOnly": "pnpm build"
   },
   "engines": {
     "node": ">=22"
   },
   "dependencies": {
-    "@web-kits/react": "workspace:*"
+    "@web-kits/react": "workspace:^"
   },
   "peerDependencies": {
     "react": ">=19"
@@ -74,7 +68,6 @@
   "devDependencies": {
     "@types/react": "catalog:",
     "react": "catalog:",
-    "typescript": "catalog:",
-    "vitest": "catalog:"
+    "typescript": "catalog:"
   }
 }

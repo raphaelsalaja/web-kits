@@ -8,8 +8,11 @@
     "---Components---",
     "number-transition",
     "text-transition",
+    "---Transitions---",
+    "content-transition",
+    "family",
     "---API---",
-    "springs",
+    "animation",
     "---Resources---",
     "changelog",
     "external:[GitHub](https://github.com/raphaelsalaja/web-kits/tree/main/packages/react)"

@@ -1,6 +1,6 @@
 "use client";
 
-import { ProgressiveBlur } from "@web-kits/blur/react";
+import { ProgressiveBlur } from "@web-kits/react/progressive-blur";
 import { type CSSProperties, useState } from "react";
 import { Control, Controls } from "@/components/examples/controls";
 import styles from "./edge.module.css";

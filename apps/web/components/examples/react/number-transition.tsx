@@ -1,9 +1,14 @@
 "use client";
 
 import {
-  NumberTransition,
-  type NumberTransitionKind,
-} from "@web-kits/react/number-transition";
+  identity,
+  interpolate,
+  type NumberContentTransition,
+  numericText,
+  opacity,
+} from "@web-kits/react/content-transition";
+import { balance } from "@web-kits/react/family";
+import { NumberTransition } from "@web-kits/react/number-transition";
 import { useState } from "react";
 import {
   Control,
@@ -22,12 +27,12 @@ const TRANSITIONS = [
 ] as const;
 type TransitionName = (typeof TRANSITIONS)[number];
 
-const TRANSITION: Record<TransitionName, NumberTransitionKind> = {
-  "Numeric Text": "numericText",
-  Family: "family",
-  Opacity: "opacity",
-  Interpolate: "interpolate",
-  Identity: "identity",
+const TRANSITION: Record<TransitionName, NumberContentTransition> = {
+  "Numeric Text": numericText(),
+  Family: balance,
+  Opacity: opacity,
+  Interpolate: interpolate,
+  Identity: identity,
 };
 
 const EURO = { style: "currency", currency: "EUR" } as const;

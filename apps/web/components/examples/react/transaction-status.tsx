@@ -1,6 +1,7 @@
 "use client";
 
-import { fromPhysics, toLinear } from "@web-kits/react/springs";
+import { fromPhysics, toLinear } from "@web-kits/react/animation";
+import { text } from "@web-kits/react/family";
 import { TextTransition } from "@web-kits/react/text-transition";
 import { type CSSProperties, useEffect, useState } from "react";
 import CircleCheck from "@/components/icons/fill/circle-check";
@@ -58,7 +59,7 @@ export function TransactionStatus() {
             className={styles.shake}
           />
         </span>
-        <TextTransition transition="family">{LABELS[tone]}</TextTransition>
+        <TextTransition transition={text}>{LABELS[tone]}</TextTransition>
       </div>
     </div>
   );

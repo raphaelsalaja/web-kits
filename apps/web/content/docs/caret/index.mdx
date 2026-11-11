@@ -1,0 +1,64 @@
+---
+title: Introduction
+description:
+  The iOS and macOS text caret and selection, moving on a spring, for the web.
+---
+
+The text caret and selection from iOS 27 and macOS 27, for inputs, textareas
+and contenteditable elements. It hides the browser's caret and highlight and
+draws Apple's in their place: the same bar, the same stepped blink, solid while
+you type, the same highlight and the same handles. The caret glides from one
+position to the next, and a selection grows out of it, follows every change and
+folds back in. I read every value from UIKit and AppKit at runtime, in the
+Simulator and on a Mac.
+
+<Example>
+  <CaretFields />
+</Example>
+
+Click around, use the arrow keys, type and select. Switch to Browser to
+compare.
+
+## What Apple Does
+
+Neither platform glides the caret when you type or use the arrow keys. It jumps.
+The glide here comes from iOS's floating cursor, the one you drag by holding the
+space bar: a critically damped spring with a 0.18s response, so it follows
+quickly and never overshoots the letter you just typed.
+
+Both platforms run the same one-second blink. It steps down in quarters over
+0.15s, stays off for 0.24s and steps back up. A keystroke or a move restarts it,
+which keeps the caret solid while you type. macOS holds it solid 0.15s longer
+after a move than iOS does.
+
+Selections don't animate on either platform either. Here they move on the same
+spring: the highlight stretches out of the caret, each line follows the
+selection as it grows or shrinks, new lines grow out of the end you're moving
+and the whole thing folds back into the caret when it collapses. The shapes are
+Apple's: one square rectangle per line, flush with the next, with every line but
+the last running to the field's edge.
+
+|                      | iOS                     | macOS                                  |
+| -------------------- | ----------------------- | -------------------------------------- |
+| Bar                  | 2pt, square ends        | 2pt, 1.1pt corners, centred on the gap |
+| Solid after a move   | 0.5s                    | 0.65s                                  |
+| Selections and focus | Hides and shows at once | Fades over 0.25s on `ease`             |
+| Highlight            | Tint a quarter darker, at 20% | Accent at 30%                    |
+| Handles              | 2pt stick, 16.5pt dot   | None                                   |
+
+## Quick Start
+
+```ts
+import { caret } from "@web-kits/react/caret";
+
+const drawn = caret(document.querySelector("textarea")!, { style: "ios" });
+```
+
+The caret takes the field's `caret-color`. Set it to your tint, the way Apple
+uses the app's tint or the system accent.
+
+```css
+textarea {
+  caret-color: var(--blue);
+}
+```

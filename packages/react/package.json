@@ -1,11 +1,10 @@
 {
   "name": "@web-kits/react",
   "version": "0.0.0",
-  "private": true,
-  "description": "React components that move the way iOS does: SwiftUI's and Family's text and number transitions, measured from the real thing.",
+  "description": "Interface pieces for React that move the way iOS does: SwiftUI's and Family's text and number transitions, SpringBoard's app launch and genie, motion blur, progressive blur and the text caret.",
   "license": "MIT",
   "author": "Raphael Salaja",
-  "homepage": "https://web-kits.dev/react",
+  "homepage": "https://web-kits.dev",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/raphaelsalaja/web-kits.git",
@@ -15,18 +14,30 @@
   "keywords": [
     "react",
     "swiftui",
+    "ios",
     "numeric text",
     "content transition",
     "number animation",
     "text animation",
-    "spring"
+    "spring",
+    "app launch",
+    "genie",
+    "motion blur",
+    "progressive blur",
+    "caret"
   ],
   "type": "module",
   "sideEffects": false,
   "exports": {
-    "./number-transition": "./src/number-transition.tsx",
-    "./text-transition": "./src/text-transition.tsx",
-    "./springs": "./src/springs.ts",
+    "./animation": "./src/animation/index.ts",
+    "./content-transition": "./src/content-transition/index.ts",
+    "./family": "./src/family/index.ts",
+    "./text-transition": "./src/text-transition/index.ts",
+    "./number-transition": "./src/number-transition/index.ts",
+    "./motion-blur": "./src/motion-blur/index.ts",
+    "./progressive-blur": "./src/progressive-blur/index.ts",
+    "./origin": "./src/origin/index.ts",
+    "./caret": "./src/caret/index.ts",
     "./package.json": "./package.json"
   },
   "files": [
@@ -35,17 +46,41 @@
   "publishConfig": {
     "access": "public",
     "exports": {
-      "./number-transition": {
-        "types": "./dist/number-transition.d.ts",
-        "default": "./dist/number-transition.js"
+      "./animation": {
+        "types": "./dist/animation/index.d.ts",
+        "default": "./dist/animation/index.js"
+      },
+      "./content-transition": {
+        "types": "./dist/content-transition/index.d.ts",
+        "default": "./dist/content-transition/index.js"
+      },
+      "./family": {
+        "types": "./dist/family/index.d.ts",
+        "default": "./dist/family/index.js"
       },
       "./text-transition": {
-        "types": "./dist/text-transition.d.ts",
-        "default": "./dist/text-transition.js"
+        "types": "./dist/text-transition/index.d.ts",
+        "default": "./dist/text-transition/index.js"
       },
-      "./springs": {
-        "types": "./dist/springs.d.ts",
-        "default": "./dist/springs.js"
+      "./number-transition": {
+        "types": "./dist/number-transition/index.d.ts",
+        "default": "./dist/number-transition/index.js"
+      },
+      "./motion-blur": {
+        "types": "./dist/motion-blur/index.d.ts",
+        "default": "./dist/motion-blur/index.js"
+      },
+      "./progressive-blur": {
+        "types": "./dist/progressive-blur/index.d.ts",
+        "default": "./dist/progressive-blur/index.js"
+      },
+      "./origin": {
+        "types": "./dist/origin/index.d.ts",
+        "default": "./dist/origin/index.js"
+      },
+      "./caret": {
+        "types": "./dist/caret/index.d.ts",
+        "default": "./dist/caret/index.js"
       },
       "./package.json": "./package.json"
     }
@@ -61,6 +96,11 @@
   },
   "peerDependencies": {
     "react": ">=19"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@types/react": "catalog:",

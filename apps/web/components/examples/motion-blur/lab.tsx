@@ -1,6 +1,6 @@
 "use client";
 
-import { useMotionBlur } from "@web-kits/motion-blur/react";
+import { useMotionBlur } from "@web-kits/react/motion-blur";
 import { type PointerEvent, useCallback, useRef, useState } from "react";
 import {
   Control,

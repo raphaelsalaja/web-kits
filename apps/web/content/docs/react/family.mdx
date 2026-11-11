@@ -1,0 +1,64 @@
+---
+title: Family
+description: Family's wallet transitions, measured from the app.
+---
+
+Family's wallet animates its balance, its labels and the amount on its keypad three different ways. Each is a value to pass as `transition`:
+
+```tsx
+import { balance, keypad, text } from "@web-kits/react/family";
+
+<NumberTransition value={total} transition={balance} />;
+<NumberTransition value={amount} transition={keypad} />;
+<TextTransition transition={text}>{label}</TextTransition>;
+```
+
+| Transition |                                                                   | Works on           |
+| ---------- | ----------------------------------------------------------------- | ------------------ |
+| `balance`  | Each digit spins through the digits in between.                   | `NumberTransition` |
+| `keypad`   | Typed digits rise in and the rest slide over.                     | `NumberTransition` |
+| `text`     | Characters both labels share slide over, and the rest fade.       | `TextTransition`   |
+
+Each runs on Family's own springs unless you pass an `animation`.
+
+## Balance
+
+Each digit is a wheel with the higher digits on top. It spins through every digit between the old one and the new, on a spring with a response of 0.276 seconds and a damping ratio of 0.95, and its neighbours show faintly above and below as it turns. A digit that disappears spins down to 0 as it fades, and one that appears spins up from 0. Both stay where they are on screen while the width and everything around them slide on Family's layout spring.
+
+Each wheel turns toward its own new digit, whichever way the value moves.
+
+## Keypad
+
+The amount on Family's send screen, typed on its keypad. A typed digit rises in from 1.38 cap heights below, behind a soft-edged mask, and the old digits slide over to make room. A deleted digit drops away, slowly enough to see it fall. A group separator that ends up between other digits drops out, slides over and rises back in, and one for a new group rises in like a digit.
+
+Digits come in from below when there are more of them and from above when there are fewer.
+
+<Example>
+  <Keypad />
+</Example>
+
+```tsx
+<NumberTransition
+  value={Number(amount)}
+  format={{ style: "currency", currency: "USD", maximumFractionDigits: 2 }}
+  transition={keypad}
+/>
+```
+
+## Text
+
+The characters two labels share are found with a diff, so "Still not enough ETH" becomes "Not enough ETH" by fading "Still n" out, fading "N" in and sliding the rest over. A letter that only changes case crossfades in place. Everything runs on one spring, with a response of 0.222 seconds and a damping ratio of 1.05.
+
+### Transaction Status
+
+A pill that checks a transaction, after [Fluidity](https://benji.org/fluidity). "Transaction" slides over as "Analyzing" fades out and "Safe" fades in, and the pill's width follows.
+
+<Example>
+  <TransactionStatus />
+</Example>
+
+```tsx
+<TextTransition transition={text}>
+  {safe ? "Transaction Safe" : "Analyzing Transaction"}
+</TextTransition>
+```

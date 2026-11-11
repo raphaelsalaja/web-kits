@@ -1,6 +1,6 @@
 "use client";
 
-import { echo, motionBlur } from "@web-kits/motion-blur";
+import { echo, motionBlur } from "@web-kits/react/motion-blur";
 import { useRef } from "react";
 import styles from "./dialog.module.css";
 import { Pointer } from "./pointer";

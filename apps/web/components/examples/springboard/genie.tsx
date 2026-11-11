@@ -1,8 +1,7 @@
 "use client";
 
 import { Dialog } from "@base-ui/react/dialog";
-import { genie } from "@web-kits/springboard";
-import { useOrigin } from "@web-kits/springboard/react";
+import { genie, useOrigin } from "@web-kits/react/origin";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   AppWindow,

@@ -1,8 +1,7 @@
 "use client";
 
 import { Menu } from "@base-ui/react/menu";
-import { morph } from "@web-kits/springboard";
-import { useOrigin } from "@web-kits/springboard/react";
+import { morph, useOrigin } from "@web-kits/react/origin";
 import { type CSSProperties, useRef, useState } from "react";
 import { Control, Controls } from "@/components/examples/controls";
 import styles from "./glass-menu.module.css";

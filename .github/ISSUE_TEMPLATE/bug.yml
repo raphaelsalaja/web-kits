@@ -5,12 +5,18 @@ body:
   - type: dropdown
     id: package
     attributes:
-      label: Package
+      label: Import
       options:
+        - "@web-kits/react/number-transition"
+        - "@web-kits/react/text-transition"
+        - "@web-kits/react/content-transition"
+        - "@web-kits/react/family"
+        - "@web-kits/react/animation"
+        - "@web-kits/react/origin"
+        - "@web-kits/react/motion-blur"
+        - "@web-kits/react/progressive-blur"
+        - "@web-kits/react/caret"
         - "@web-kits/audio"
-        - "@web-kits/blur"
-        - "@web-kits/motion-blur"
-        - "@web-kits/springboard"
         - Website or docs
     validations:
       required: true

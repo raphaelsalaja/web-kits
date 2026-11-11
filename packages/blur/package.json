@@ -2,7 +2,7 @@
   "name": "@web-kits/blur",
   "version": "0.1.0",
   "private": true,
-  "description": "Apple's progressive blur from the iOS 27 scroll edge, measured in the Simulator and rebuilt with backdrop-filter.",
+  "description": "Moved to @web-kits/react/progressive-blur. This release re-exports it.",
   "license": "MIT",
   "author": "Raphael Salaja",
   "homepage": "https://www.raphaelsalaja.com/work/progressive-blur",
@@ -59,6 +59,9 @@
     "react": {
       "optional": true
     }
+  },
+  "dependencies": {
+    "@web-kits/react": "workspace:^"
   },
   "devDependencies": {
     "@types/react": "catalog:",
