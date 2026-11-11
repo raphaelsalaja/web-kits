@@ -37,9 +37,12 @@ function digitsAhead(parts: readonly Part[]) {
  */
 function rejoin(el: HTMLElement) {
   const { enter, exit, enterOffset, exitOffset, rejoin } = measured.input;
+  const drop = timing(exit);
+  // The drop stops where the rise starts, or it takes over again once the
+  // shorter rise ends and holds the separator out of the window.
   el.animate(
     { transform: ["none", `translateY(${exitOffset}cap)`] },
-    timing(exit),
+    { ...drop, iterations: (rejoin * 1000) / Number(drop.duration) },
   );
   el.animate(
     { transform: [`translateY(${enterOffset}cap)`, "none"] },
