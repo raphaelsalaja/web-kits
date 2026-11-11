@@ -1,33 +1,4 @@
 import { describe, expect, it } from "vitest";
-import genieFixture from "./fixtures/genie.json";
-import glassFixture from "./fixtures/glass.json";
-import springboardFixture from "./fixtures/springboard.json";
-import swiftuiFixture from "./fixtures/swiftui.json";
-import uikitFixture from "./fixtures/uikit.json";
-import {
-  APP_GENIE,
-  type AppGeometry,
-  appMesh,
-  card,
-  createAppTransition,
-  genieAmount,
-  genieSprings,
-  genieTargets,
-  meshPoint,
-} from "./launch/transition.ts";
-import {
-  createMorph,
-  MORPH,
-  type MorphGeometry,
-  startScale,
-} from "./morph/glass.ts";
-import {
-  DECELERATION,
-  decay,
-  project,
-  RUBBER_BAND,
-  rubberBand,
-} from "./physics.ts";
 import {
   bounce,
   CURVES,
@@ -47,10 +18,39 @@ import {
   uikit,
   value,
   velocity,
-} from "./spring.ts";
-import { PUSH } from "./transitions/push.ts";
-import { SHEET } from "./transitions/sheet.ts";
-import { recededScale } from "./transitions/zoom.ts";
+} from "../../src/animation/index.ts";
+import {
+  APP_GENIE,
+  type AppGeometry,
+  appMesh,
+  card,
+  createAppTransition,
+  genieAmount,
+  genieSprings,
+  genieTargets,
+  meshPoint,
+} from "../../src/origin/launch/transition.ts";
+import {
+  createMorph,
+  MORPH,
+  type MorphGeometry,
+  startScale,
+} from "../../src/origin/morph/glass.ts";
+import {
+  DECELERATION,
+  decay,
+  project,
+  RUBBER_BAND,
+  rubberBand,
+} from "../../src/origin/physics.ts";
+import genieFixture from "./genie.json";
+import glassFixture from "./glass.json";
+import { PUSH } from "./navigation/push.ts";
+import { SHEET } from "./navigation/sheet.ts";
+import { recededScale } from "./navigation/zoom.ts";
+import springboardFixture from "./springboard.json";
+import swiftuiFixture from "./swiftui.json";
+import uikitFixture from "./uikit.json";
 
 const rms = (errors: number[]) =>
   Math.sqrt(errors.reduce((sum, e) => sum + e * e, 0) / errors.length);

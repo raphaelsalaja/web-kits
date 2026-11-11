@@ -1,4 +1,4 @@
-import { type Spring, solve, spring } from "@web-kits/react/animation";
+import { type Spring, solve, spring } from "../animation/spring.ts";
 
 const TAU = 2 * Math.PI;
 

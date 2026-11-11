@@ -6,6 +6,7 @@
 // would bend the page behind as well, but only Chromium draws one with an SVG
 // filter, and iOS's lens bends the content, not the page.
 
+import { toLinear } from "../../animation/index.ts";
 import { createOverlay, type Overlay, type Point } from "../debug.ts";
 import {
   createClock,
@@ -19,7 +20,6 @@ import {
 } from "../dom.ts";
 import { cloneWindow } from "../genie/clone.ts";
 import { continuousRect } from "../shapes.ts";
-import { toLinear } from "../spring.ts";
 import {
   createMorph,
   fadeBlur,

@@ -1,3 +1,4 @@
+import { springboard } from "../../animation/index.ts";
 import { createOverlay, gridLines, type Overlay } from "../debug.ts";
 import {
   createClock,
@@ -11,7 +12,6 @@ import {
 } from "../dom.ts";
 import { cloneWindow } from "../genie/clone.ts";
 import { continuousRect } from "../shapes.ts";
-import { springboard } from "../spring.ts";
 import { drawMesh } from "./tiles.ts";
 import {
   type AppGeometry,

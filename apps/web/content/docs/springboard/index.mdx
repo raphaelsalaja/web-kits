@@ -16,7 +16,7 @@ Read how they work, with live examples, in the write-ups on [opening an app](htt
 The element that opens is the **popup**, and the element it opens out of is `from`, like an app's icon. `origin` opens one out of the other with an effect: `launch()` grows it out like an app, `genie()` brings it back out of the Dock, and `morph()` pours it out of a glass button like an iOS 27 menu.
 
 ```ts
-import { launch, origin } from "@web-kits/springboard";
+import { launch, origin } from "@web-kits/react/origin";
 
 const note = origin(document.querySelector(".note")!, {
   from: document.querySelector(".new-note"),
@@ -33,7 +33,8 @@ The popup starts closed and hidden. Every effect draws copies of the popup in a 
 Each effect takes its own options:
 
 ```ts
-import { genie, launch, swiftui } from "@web-kits/springboard";
+import { swiftui } from "@web-kits/react/animation";
+import { genie, launch } from "@web-kits/react/origin";
 
 launch({ springs: { open: swiftui.snappy }, grid: { columns: 8, rows: 6 } });
 genie({ edge: "left", duration: 0.6 });

@@ -1,12 +1,7 @@
 "use client";
 
-import {
-  launch,
-  type Spring,
-  springboard,
-  swiftui,
-} from "@web-kits/springboard";
-import { useOrigin } from "@web-kits/springboard/react";
+import { type Spring, springboard, swiftui } from "@web-kits/react/animation";
+import { launch, useOrigin } from "@web-kits/react/origin";
 import { useRef, useState } from "react";
 import { Control, Controls } from "@/components/examples/controls";
 import styles from "./launch.module.css";

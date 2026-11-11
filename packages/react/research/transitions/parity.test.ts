@@ -1,13 +1,13 @@
 import { describe, expect, it } from "vitest";
-import { swiftui } from "../src/animation/presets.ts";
+import { swiftui } from "../../src/animation/presets.ts";
 import {
   physics,
   type Spring,
   settle,
   value,
-} from "../src/animation/spring.ts";
-import { measured as numericText } from "../src/content-transition/numeric-text.ts";
-import { measured as family } from "../src/family/measured.ts";
+} from "../../src/animation/spring.ts";
+import { measured as numericText } from "../../src/content-transition/numeric-text.ts";
+import { measured as family } from "../../src/family/measured.ts";
 import familyFixture from "./family.json";
 import swiftuiFixture from "./swiftui.json";
 

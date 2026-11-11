@@ -49,7 +49,6 @@
   "scripts": {
     "build": "rm -rf dist && tsc -p tsconfig.build.json",
     "typecheck": "tsc",
-    "test": "vitest run",
     "prepublishOnly": "pnpm build"
   },
   "engines": {
@@ -69,7 +68,6 @@
   "devDependencies": {
     "@types/react": "catalog:",
     "react": "catalog:",
-    "typescript": "catalog:",
-    "vitest": "catalog:"
+    "typescript": "catalog:"
   }
 }

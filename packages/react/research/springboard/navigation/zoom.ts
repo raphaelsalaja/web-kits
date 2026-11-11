@@ -3,8 +3,8 @@
 // points and dims. The spring it really runs is still an open question in the
 // ledger: the recede fits 0.35 s with an initial velocity better than 0.4 s.
 
-import type { Rect } from "../geometry.ts";
-import { uikit } from "../spring.ts";
+import { uikit } from "../../../src/animation/index.ts";
+import type { Rect } from "../../../src/origin/geometry.ts";
 
 const { zoom: spec } = uikit;
 

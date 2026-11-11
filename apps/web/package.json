@@ -15,7 +15,6 @@
     "@shikijs/transformers": "catalog:",
     "@web-kits/audio": "workspace:*",
     "@web-kits/react": "workspace:*",
-    "@web-kits/springboard": "workspace:*",
     "calligraph": "^1.4.1",
     "fumadocs-core": "catalog:",
     "fumadocs-mdx": "catalog:",

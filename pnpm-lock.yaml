@@ -293,9 +293,6 @@ importers:
       '@web-kits/react':
         specifier: workspace:*
         version: link:../../packages/react
-      '@web-kits/springboard':
-        specifier: workspace:*
-        version: link:../../packages/springboard
       calligraph:
         specifier: ^1.4.1
         version: 1.4.1(motion@12.34.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -427,9 +424,6 @@ importers:
       typescript:
         specifier: 'catalog:'
         version: 7.0.2
-      vitest:
-        specifier: 'catalog:'
-        version: 5.1.0(@opentelemetry/api@1.9.0)(@types/node@25.3.3)(vite@8.3.6(@types/node@25.3.3)(esbuild@0.28.2)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.1)(tsx@4.21.0)(yaml@2.9.1))
 
 packages:
 

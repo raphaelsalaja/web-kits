@@ -8,15 +8,9 @@
 // vertex has its own spring, and the rows' responses differ with how far the
 // icon sits from the middle of the screen, so the card bends as it grows.
 
+import { type Spring, spring, springboard } from "../../animation/index.ts";
+import { atRest, createFluid, type Fluid } from "../fluid.ts";
 import type { Rect } from "../geometry.ts";
-import {
-  atRest,
-  createFluid,
-  type Fluid,
-  type Spring,
-  spring,
-  springboard,
-} from "../spring.ts";
 
 /** The springs the card rides. SpringBoard's are the default. */
 export type AppSprings = {

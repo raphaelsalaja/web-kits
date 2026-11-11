@@ -1,6 +1,5 @@
 import audio from "@web-kits/audio/package.json";
 import react from "@web-kits/react/package.json";
-import springboard from "@web-kits/springboard/package.json";
 import calligraph from "calligraph/package.json";
 
 export const site = {
@@ -33,8 +32,8 @@ export const kits: Kit[] = [
   {
     slug: "springboard",
     name: "Springboard",
-    package: springboard.name,
-    version: springboard.version,
+    package: `${react.name}/origin`,
+    version: react.version,
     description: "Apple's springs, app launch and genie for any element.",
     href: "/springboard",
   },

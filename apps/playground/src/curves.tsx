@@ -1,6 +1,6 @@
 import { type Spring, settle, value } from "@web-kits/react/animation";
-import familyFixture from "../../../packages/react/research/family.json";
-import swiftuiFixture from "../../../packages/react/research/swiftui.json";
+import familyFixture from "../../../packages/react/research/transitions/family.json";
+import swiftuiFixture from "../../../packages/react/research/transitions/swiftui.json";
 import { measured as numericText } from "../../../packages/react/src/content-transition/numeric-text.ts";
 import { measured as family } from "../../../packages/react/src/family/measured.ts";
 import { Chart, type Series } from "./chart.tsx";
