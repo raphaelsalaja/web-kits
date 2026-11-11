@@ -337,7 +337,7 @@ importers:
   packages/audio:
     dependencies:
       '@web-kits/react':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../react
     devDependencies:
       '@types/node':
@@ -356,7 +356,7 @@ importers:
   packages/blur:
     dependencies:
       '@web-kits/react':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../react
     devDependencies:
       '@types/react':
@@ -372,7 +372,7 @@ importers:
   packages/motion-blur:
     dependencies:
       '@web-kits/react':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../react
     devDependencies:
       '@types/react':
@@ -403,7 +403,7 @@ importers:
   packages/springboard:
     dependencies:
       '@web-kits/react':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../react
     devDependencies:
       '@types/react':

@@ -1,11 +1,10 @@
 {
   "name": "@web-kits/react",
   "version": "0.0.0",
-  "private": true,
-  "description": "React components that move the way iOS does: SwiftUI's and Family's text and number transitions, measured from the real thing.",
+  "description": "Interface pieces for React that move the way iOS does: SwiftUI's and Family's text and number transitions, SpringBoard's app launch and genie, motion blur, progressive blur and sound.",
   "license": "MIT",
   "author": "Raphael Salaja",
-  "homepage": "https://web-kits.dev/react",
+  "homepage": "https://web-kits.dev",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/raphaelsalaja/web-kits.git",
@@ -15,11 +14,18 @@
   "keywords": [
     "react",
     "swiftui",
+    "ios",
     "numeric text",
     "content transition",
     "number animation",
     "text animation",
-    "spring"
+    "spring",
+    "app launch",
+    "genie",
+    "motion blur",
+    "progressive blur",
+    "web audio",
+    "ui sounds"
   ],
   "type": "module",
   "sideEffects": false,

@@ -4,12 +4,13 @@
 
 Security fixes ship in the latest release of each package. Older versions don't get backports, so upgrade to the latest to pick up a fix.
 
-| Package                 | Supported      |
-| ----------------------- | -------------- |
-| `@web-kits/audio`       | Latest release |
-| `@web-kits/blur`        | Latest release |
-| `@web-kits/motion-blur` | Latest release |
-| `@web-kits/springboard` | Latest release |
+| Package                 | Supported                      |
+| ----------------------- | ------------------------------ |
+| `@web-kits/react`       | Latest release                 |
+| `@web-kits/audio`       | No, moved to `@web-kits/react` |
+| `@web-kits/blur`        | No, moved to `@web-kits/react` |
+| `@web-kits/motion-blur` | No, moved to `@web-kits/react` |
+| `@web-kits/springboard` | No, moved to `@web-kits/react` |
 
 ## Reporting a Vulnerability
 
