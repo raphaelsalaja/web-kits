@@ -1,8 +1,9 @@
 /**
- * The text caret from iOS 27 and macOS 27, read from UITextView's
- * `UIStandardTextCursorView` in the Simulator and from NSTextView's
- * `NSTextInsertionIndicator`, both through Core Animation and the UIKit spring
- * calls that drive them. Lengths are px, times are seconds.
+ * The text caret and selection from iOS 27 and macOS 27, read from
+ * UITextView's `UIStandardTextCursorView` and selection views in the Simulator
+ * and from NSTextView's `NSTextInsertionIndicator`, both through Core
+ * Animation and the UIKit spring calls that drive them. Lengths are px, times
+ * are seconds.
  */
 import { fromPhysics, type Spring, spring } from "../animation/spring.ts";
 
@@ -28,11 +29,29 @@ export type Style = {
   fade: number;
   /** The curve of that fade. */
   fadeEasing: string;
+  /**
+   * The selection's fill: the caret colour taken `shade` of the way to itself
+   * from black, at `opacity`.
+   */
+  highlight: { shade: number; opacity: number };
+  /** The lollipops at each end of a selection, or `null` for none. */
+  handles: Handles | null;
+};
+
+export type Handles = {
+  /** The stick's width. Its height is the line's. */
+  stick: number;
+  /** The dot's diameter. */
+  dot: number;
+  /** How far the dot's centre sits past the line, above the start and below the end. */
+  offset: number;
 };
 
 /**
  * `UIStandardTextCursorView`: a 2pt bar with square ends, solid for half a
- * second after a move. Selections and focus hide and show it at once.
+ * second after a move. Selections and focus hide and show it at once. The
+ * selection is the tint a quarter of the way to black at 20%, between
+ * `_UITextSelectionLollipopView` handles: a 2pt stick and a 16.5pt dot.
  */
 export const IOS: Style = {
   width: 2,
@@ -40,12 +59,15 @@ export const IOS: Style = {
   hold: 0,
   fade: 0,
   fadeEasing: "linear",
+  highlight: { shade: 0.75, opacity: 0.2 },
+  handles: { stick: 2, dot: 16.5, offset: 5.25 },
 };
 
 /**
  * `NSTextInsertionIndicator`: a 2pt bar with 1.1pt corners, solid for 0.65s
  * after a move. It fades over 0.25s on Core Animation's default curve, the
- * same as CSS `ease`.
+ * same as CSS `ease`. `selectedTextBackgroundColor` is the accent at 30%,
+ * with no handles.
  */
 export const MACOS: Style = {
   width: 2,
@@ -53,6 +75,8 @@ export const MACOS: Style = {
   hold: 0.15,
   fade: 0.25,
   fadeEasing: "ease",
+  highlight: { shade: 1, opacity: 0.3 },
+  handles: null,
 };
 
 /**

@@ -29,5 +29,23 @@
     "duration": 0.25,
     "easing": [0.25, 0.1, 0.25, 1],
     "on": ["range selection", "blur", "focus", "collapse to a caret"]
+  },
+  "selection": {
+    "changes": "jump",
+    "highlight": {
+      "shape": "line fragment rectangles, square, flush",
+      "lines": "every line but the last runs to the text container's far edge",
+      "selectedTextBackgroundColor": {
+        "light": [0.702, 0.843, 1],
+        "dark": [0.247, 0.388, 0.545],
+        "is": "the accent at 30% over white in light mode and over 0.35 grey in dark mode"
+      },
+      "unemphasizedSelectedTextBackgroundColor": {
+        "light": [0.863, 0.863, 0.863],
+        "dark": [0.275, 0.275, 0.275]
+      },
+      "textColor": "unchanged"
+    },
+    "handles": "none"
   }
 }

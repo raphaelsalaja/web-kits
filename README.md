@@ -19,7 +19,7 @@ Interface kits for the web.
 | `@web-kits/react/origin`             | App launch, genie and the glass menu for any element |
 | `@web-kits/react/motion-blur`        | Motion blur sized from speed, frame time and shutter |
 | `@web-kits/react/progressive-blur`   | The progressive blur from the iOS scroll edge        |
-| `@web-kits/react/caret`              | The iOS and macOS text caret                         |
+| `@web-kits/react/caret`              | The iOS and macOS text caret and selection           |
 
 `@web-kits/blur`, `@web-kits/motion-blur` and `@web-kits/springboard` have moved in. Their last releases re-export the new imports.
 

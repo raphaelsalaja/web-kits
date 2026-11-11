@@ -58,7 +58,7 @@ export const kits: Kit[] = [
     name: "Caret",
     package: `${react.name}/caret`,
     version: react.version,
-    description: "The iOS and macOS text caret, gliding between positions.",
+    description: "The iOS and macOS text caret and selection, on a spring.",
     href: "/caret",
   },
   {

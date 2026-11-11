@@ -1,20 +1,23 @@
 ---
 title: Introduction
 description:
-  The iOS and macOS text caret, gliding between positions, for the web.
+  The iOS and macOS text caret and selection, moving on a spring, for the web.
 ---
 
-The text caret from iOS 27 and macOS 27, for inputs, textareas and
-contenteditable elements. It hides the browser's caret and draws Apple's in its
-place: the same bar, the same stepped blink, solid while you type. It also
-glides from one position to the next. I read every value from UIKit and AppKit
-at runtime, in the Simulator and on a Mac.
+The text caret and selection from iOS 27 and macOS 27, for inputs, textareas
+and contenteditable elements. It hides the browser's caret and highlight and
+draws Apple's in their place: the same bar, the same stepped blink, solid while
+you type, the same highlight and the same handles. The caret glides from one
+position to the next, and a selection grows out of it, follows every change and
+folds back in. I read every value from UIKit and AppKit at runtime, in the
+Simulator and on a Mac.
 
 <Example>
   <CaretFields />
 </Example>
 
-Click around, use the arrow keys and type. Switch to Browser to compare.
+Click around, use the arrow keys, type and select. Switch to Browser to
+compare.
 
 ## What Apple Does
 
@@ -28,11 +31,20 @@ Both platforms run the same one-second blink. It steps down in quarters over
 which keeps the caret solid while you type. macOS holds it solid 0.15s longer
 after a move than iOS does.
 
+Selections don't animate on either platform either. Here they move on the same
+spring: the highlight stretches out of the caret, each line follows the
+selection as it grows or shrinks, new lines grow out of the end you're moving
+and the whole thing folds back into the caret when it collapses. The shapes are
+Apple's: one square rectangle per line, flush with the next, with every line but
+the last running to the field's edge.
+
 |                      | iOS                     | macOS                                  |
 | -------------------- | ----------------------- | -------------------------------------- |
 | Bar                  | 2pt, square ends        | 2pt, 1.1pt corners, centred on the gap |
 | Solid after a move   | 0.5s                    | 0.65s                                  |
 | Selections and focus | Hides and shows at once | Fades over 0.25s on `ease`             |
+| Highlight            | Tint a quarter darker, at 20% | Accent at 30%                    |
+| Handles              | 2pt stick, 16.5pt dot   | None                                   |
 
 ## Quick Start
 

@@ -18,7 +18,7 @@ Each feature is its own import, with its component or hook and the plain functio
 | `@web-kits/react/origin`             | Open an element out of another like an app, a genie or a menu.  |
 | `@web-kits/react/motion-blur`        | Motion blur sized from speed, frame time and shutter.           |
 | `@web-kits/react/progressive-blur`   | The progressive blur from the iOS scroll edge.                  |
-| `@web-kits/react/caret`              | `useCaret`: the iOS and macOS caret, gliding between positions. |
+| `@web-kits/react/caret`              | `useCaret`: the iOS and macOS caret and selection, on a spring. |
 
 ## Number Transition
 

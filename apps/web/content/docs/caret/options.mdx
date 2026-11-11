@@ -5,10 +5,10 @@ description: The options caret and useCaret take.
 
 | Option          | Default                   |                                                                                                  |
 | --------------- | ------------------------- | ------------------------------------------------------------------------------------------------ |
-| `style`         | `"ios"`                   | `"ios"`, `"macos"` or your own `Style`: the bar's width and corners, the hold and the fade.      |
-| `color`         | the field's `caret-color` | The bar's colour. `auto` becomes the text colour, as it does in the browser.                     |
-| `spring`        | `FOLLOW`                  | The spring it glides on. `DROP` is the bouncier one iOS uses to show where a drag will land.     |
-| `reducedMotion` | `"user"`                  | `"user"` jumps instead of gliding when `prefers-reduced-motion` is set. `"never"` always glides. |
+| `style`         | `"ios"`                   | `"ios"`, `"macos"` or your own `Style`: the bar's width and corners, the hold, the fade, the highlight and the handles.      |
+| `color`         | the field's `caret-color` | The bar's colour, which the highlight and handles are made from. `auto` becomes the text colour.                     |
+| `spring`        | `FOLLOW`                  | The spring the caret and selection move on. `DROP` is the bouncier one iOS uses to show where a drag will land.     |
+| `reducedMotion` | `"user"`                  | `"user"` jumps instead of moving when `prefers-reduced-motion` is set. `"never"` always moves. |
 
 Springs come from `@web-kits/react/animation`, so `spring(0.25, 0.9)` or any
 preset works too.

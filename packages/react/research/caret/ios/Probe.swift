@@ -325,6 +325,14 @@ enum Hooks {
   }
 }
 
+func finite(_ n: CGFloat) -> CGFloat { n.isFinite ? n : -1 }
+
+final class BlockTarget: NSObject {
+  let block: () -> Void
+  init(_ block: @escaping () -> Void) { self.block = block }
+  @objc func fire() { block() }
+}
+
 final class Probe: NSObject {
   let name: String
   let field: UIView
@@ -525,6 +533,20 @@ final class Controller: UIViewController, UITextViewDelegate {
       emit(["kind": "done"])
       exit(0)
     }
+    if CommandLine.arguments.contains("shot") {
+      textView.becomeFirstResponder()
+      await wait(1)
+      select(5, 50)
+      emit(["kind": "ready"])
+      await wait(20)
+      emit(["kind": "done"])
+      exit(0)
+    }
+    if CommandLine.arguments.contains("selection") {
+      await probeSelection()
+      emit(["kind": "done"])
+      exit(0)
+    }
     if CommandLine.arguments.contains("listen") {
       let probe = Probe(name: "listen", field: textView)
       listener = probe
@@ -597,6 +619,89 @@ final class Controller: UIViewController, UITextViewDelegate {
     let position = textView.position(from: textView.beginningOfDocument, offset: offset)!
     let r = textView.caretRect(for: position)
     return CGPoint(x: r.midX, y: r.midY)
+  }
+
+  /// The highlight and handles UIKit draws for a range, every frame, while the
+  /// range grows from the caret, spans lines, shrinks, moves and collapses.
+  func probeSelection() async {
+    Hooks.install()
+    textView.becomeFirstResponder()
+    select(5)
+    await wait(1)
+    guard let display = textView.interactions.compactMap({ $0 as? UITextSelectionDisplayInteraction }).first else {
+      emit(["kind": "missing", "label": "display interaction"])
+      return
+    }
+    let start = CACurrentMediaTime()
+    var last = ""
+    var lastAnimations = ""
+
+    func flatten(_ view: UIView, _ path: String, into out: inout [[String: Any]], anims: inout [String: Any]) {
+      let layer = view.layer
+      let p = layer.presentation() ?? layer
+      let r = view.superview?.convert(p.frame, to: textView) ?? p.frame
+      out.append([
+        "path": path, "class": String(describing: type(of: view)),
+        "frame": [r.origin.x, r.origin.y, r.width, r.height].map { finite(($0 * 100).rounded() / 100) },
+        "alpha": view.alpha, "opacity": p.opacity, "hidden": view.isHidden,
+        "background": describe(p.backgroundColor), "tint": view.tintColor.description,
+        "cornerRadius": p.cornerRadius, "cornerCurve": p.cornerCurve.rawValue,
+        "transform": describe(NSValue(caTransform3D: p.transform)),
+      ])
+      func layers(_ l: CALayer, _ lp: String) {
+        if let shape = l as? CAShapeLayer {
+          let sp = shape.presentation() ?? shape
+          let box = sp.path.map { $0.isEmpty ? .zero : $0.boundingBox } ?? .zero
+          var elements: [String] = []
+          sp.path?.applyWithBlock { e in
+            let el = e.pointee
+            let n = [1, 1, 2, 3, 0][Int(el.type.rawValue)]
+            let pts = (0..<n).map { "\((el.points[$0].x * 100).rounded() / 100),\((el.points[$0].y * 100).rounded() / 100)" }
+            elements.append("\(["M", "L", "Q", "C", "Z"][Int(el.type.rawValue)]) \(pts.joined(separator: " "))")
+          }
+          out.append(["path": lp, "class": "CAShapeLayer", "elements": elements, "pathBox": [box.origin.x, box.origin.y, box.width, box.height].map(finite),
+                      "fill": describe(sp.fillColor), "stroke": describe(sp.strokeColor), "lineWidth": sp.lineWidth, "opacity": sp.opacity])
+        }
+        for (i, sub) in (l.sublayers ?? []).enumerated() where sub.delegate == nil { layers(sub, "\(lp).\(i)") }
+      }
+      layers(layer, path + "#")
+      if path.hasPrefix("handle") { out.append(["path": path + "@", "tree": tree(layer)]) }
+      anims.merge(animations(on: layer, path: path), uniquingKeysWith: { a, _ in a })
+      for (i, sub) in view.subviews.enumerated() { flatten(sub, "\(path)/\(i)", into: &out, anims: &anims) }
+    }
+
+    func tick() {
+      var views: [[String: Any]] = []
+      var anims: [String: Any] = [:]
+      let highlight = display.highlightView
+      flatten(highlight, "highlight", into: &views, anims: &anims)
+      for (i, handle) in display.handleViews.enumerated() { flatten(handle, "handle\(i)", into: &views, anims: &anims) }
+      let rects = highlight.selectionRects.map { r -> [String: Any] in
+        let f = highlight.convert(r.rect, to: textView)
+        return ["rect": [f.origin.x, f.origin.y, f.width, f.height].map(finite), "start": r.containsStart, "end": r.containsEnd]
+      }
+      let t = CACurrentMediaTime() - start
+      let state: [String: Any] = ["views": views, "rects": rects]
+      let key = String(data: try! JSONSerialization.data(withJSONObject: state, options: [.sortedKeys]), encoding: .utf8)!
+      if key != last { emit(["kind": "selection", "t": t, "state": state]); last = key }
+      let akey = String(data: try! JSONSerialization.data(withJSONObject: anims, options: [.sortedKeys]), encoding: .utf8)!
+      if akey != lastAnimations { emit(["kind": "animations", "t": t, "animations": anims]); lastAnimations = akey }
+    }
+
+    let link = CADisplayLink(target: BlockTarget(tick), selector: #selector(BlockTarget.fire))
+    link.preferredFrameRateRange = CAFrameRateRange(minimum: 60, maximum: 120, preferred: 120)
+    link.add(to: .main, forMode: .common)
+    let mark = { (label: String) in emit(["kind": "mark", "label": label, "t": CACurrentMediaTime() - start]) }
+
+    for (label, location, length) in [
+      ("grow 4", 5, 4), ("grow 10", 5, 10), ("lines", 5, 50), ("shrink", 5, 10),
+      ("move", 20, 5), ("collapse", 12, 0), ("again", 12, 8), ("all", 0, textView.text.count), ("collapse end", 30, 0),
+    ] {
+      mark(label)
+      select(location, length)
+      await wait(1.2)
+    }
+    link.invalidate()
   }
 
   func probeEffects() async {

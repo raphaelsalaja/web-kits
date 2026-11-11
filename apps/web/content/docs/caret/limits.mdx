@@ -4,12 +4,17 @@ description: Where the caret hands back to the browser's.
 ---
 
 - **Typing in another script.** While an input method is composing, like
-  Japanese or Pinyin, the browser's own caret comes back and Apple's hides. It
-  returns when the text is committed.
+  Japanese or Pinyin, the browser's own caret and highlight come back and
+  Apple's hide. They return when the text is committed.
+- **Over the text.** The highlight is drawn over the text, not behind it, so the
+  text shows through it rather than on top. The browser's own highlight is
+  turned off with `::selection` while the field has focus.
+- **Unfocused selections.** When the field loses focus the highlight hides and
+  the browser shows its own unfocused one, where it has one.
 - **`email` and `number` inputs.** Browsers don't say where the caret is in
   these, so they keep their own.
-- **Where it sits.** The bar lives in an empty element placed right after the
-  field. It scrolls and transforms with the field, but a CSS selector like
+- **Where it sits.** The caret and selection live in an empty element placed
+  right after the field. It scrolls and transforms with the field, but a CSS selector like
   `:last-child` or `+` will see it.
-- **Scaled fields.** A field inside a `transform: scale()` puts the caret off by
-  the scale.
+- **Scaled fields.** A field inside a `transform: scale()` puts the caret and
+  selection off by the scale.

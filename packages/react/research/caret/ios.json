@@ -36,5 +36,35 @@
     "back": { "scale": 1, "duration": 0.18, "bounce": 0, "delay": 0.13 },
     "peakScale": 1.15,
     "peakAt": 0.1
+  },
+  "selection": {
+    "changes": "jump, with no Core Animation animations or springs",
+    "highlight": {
+      "view": "_UITextSelectionRangeView CAShapeLayer",
+      "shape": "one square rectangle per line, flush with the next",
+      "lines": "every line but the last runs to the text container's far edge",
+      "lineTops": [7, 28.33, 48.67],
+      "lineHeights": [21.33, 20.33, 21],
+      "singleLineHeight": 22,
+      "fill": { "srgb": [0, 0.33, 0.65], "alpha": 0.2 },
+      "fillFromTint": "the tint at 75% toward black, at 20% alpha"
+    },
+    "handles": {
+      "view": "_UITextSelectionLollipopView",
+      "color": { "srgb": [0.078, 0.435, 0.882], "is": "tint" },
+      "stick": { "width": 2, "height": "line height", "cornerRadius": 1 },
+      "dot": { "size": 16.5, "cornerRadius": 8.25 },
+      "start": {
+        "stickX": "left edge on the selection's start",
+        "dotFrame": [-7.25, -13.5, 16.5, 16.5],
+        "dotCenter": "5.25 above the line's top"
+      },
+      "end": {
+        "stickX": "centred on the selection's end",
+        "dotFrame": [-7.25, "lineHeight - 3", 16.5, 16.5],
+        "dotCenter": "5.25 below the line's bottom"
+      }
+    },
+    "collapse": "the highlight view hides at once"
   }
 }
