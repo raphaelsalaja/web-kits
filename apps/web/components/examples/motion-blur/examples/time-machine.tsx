@@ -1,6 +1,6 @@
 "use client";
 
-import { echo, motionBlur } from "@web-kits/motion-blur";
+import { echo, motionBlur } from "@web-kits/react/motion-blur";
 import { useRef } from "react";
 import { clamp01, drive, spring, useScene } from "./scene";
 import styles from "./time-machine.module.css";

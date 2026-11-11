@@ -28,7 +28,7 @@ export type ProgressiveBlurOptions = {
   technique?: Technique;
 };
 
-export type ProgressiveBlur = {
+export type ProgressiveBlurInstance = {
   /** Change any option without starting over. */
   set: (options: ProgressiveBlurOptions) => void;
   /** Remove the layers and put the element back the way it was. */
@@ -206,7 +206,7 @@ function layers(
 export function progressiveBlur(
   host: HTMLElement,
   initial: ProgressiveBlurOptions = {},
-): ProgressiveBlur {
+): ProgressiveBlurInstance {
   let options = initial;
   let nodes: HTMLElement[] = [];
   const dark = matchMedia("(prefers-color-scheme: dark)");

@@ -6,7 +6,7 @@ description: Draw the streak your own way with a painter.
 A technique is a function that takes the host and layer and returns a painter. The painter gets a frame every time the element moves and has to undo everything in `clear`.
 
 ```ts
-import { sigmaFor, type Technique } from "@web-kits/motion-blur";
+import { sigmaFor, type Technique } from "@web-kits/react/motion-blur";
 
 const soft: Technique = ({ layer }) => ({
   paint({ dx, dy }) {

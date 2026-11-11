@@ -1,8 +1,12 @@
-export { BOTTOM, CURVE, type Recipe, SOFT, TOP } from "./apple.ts";
 export {
-  type ProgressiveBlur,
+  BOTTOM,
+  CURVE,
+  type ProgressiveBlurInstance as ProgressiveBlur,
   type ProgressiveBlurOptions,
   progressiveBlur,
+  type Recipe,
   type Side,
+  SOFT,
   type Technique,
-} from "./core.ts";
+  TOP,
+} from "@web-kits/react/progressive-blur";

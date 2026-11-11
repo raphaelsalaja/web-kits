@@ -69,7 +69,7 @@ export type MotionBlurOptions = {
   onFrame?: (streak: number) => void;
 };
 
-export type MotionBlur = {
+export type MotionBlurInstance = {
   /** Watch the element's transform. Runs on its own for CSS transitions, animations and style changes. */
   start: () => void;
   /**
@@ -97,7 +97,7 @@ function same(a: Technique, b: Technique) {
 export function motionBlur(
   host: HTMLElement,
   { layer: given, ...options }: MotionBlurOptions = {},
-): MotionBlur {
+): MotionBlurInstance {
   const layer = given ?? host.firstElementChild;
   if (!(layer instanceof HTMLElement)) {
     throw new Error(

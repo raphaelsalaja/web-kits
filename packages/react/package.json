@@ -29,6 +29,8 @@
     "./family": "./src/family/index.ts",
     "./text-transition": "./src/text-transition/index.ts",
     "./number-transition": "./src/number-transition/index.ts",
+    "./motion-blur": "./src/motion-blur/index.ts",
+    "./progressive-blur": "./src/progressive-blur/index.ts",
     "./package.json": "./package.json"
   },
   "files": [
@@ -57,6 +59,14 @@
         "types": "./dist/number-transition/index.d.ts",
         "default": "./dist/number-transition/index.js"
       },
+      "./motion-blur": {
+        "types": "./dist/motion-blur/index.d.ts",
+        "default": "./dist/motion-blur/index.js"
+      },
+      "./progressive-blur": {
+        "types": "./dist/progressive-blur/index.d.ts",
+        "default": "./dist/progressive-blur/index.js"
+      },
       "./package.json": "./package.json"
     }
   },
@@ -71,6 +81,11 @@
   },
   "peerDependencies": {
     "react": ">=19"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@types/react": "catalog:",

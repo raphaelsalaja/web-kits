@@ -60,6 +60,9 @@
       "optional": true
     }
   },
+  "dependencies": {
+    "@web-kits/react": "workspace:*"
+  },
   "devDependencies": {
     "@types/react": "catalog:",
     "react": "catalog:",

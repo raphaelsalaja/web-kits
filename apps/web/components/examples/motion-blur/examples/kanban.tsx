@@ -1,6 +1,6 @@
 "use client";
 
-import { echo, motionBlur } from "@web-kits/motion-blur";
+import { echo, motionBlur } from "@web-kits/react/motion-blur";
 import { useRef } from "react";
 import styles from "./kanban.module.css";
 import { clamp01, drive, outCubic, useScene } from "./scene";

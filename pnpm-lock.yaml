@@ -290,12 +290,6 @@ importers:
       '@web-kits/audio':
         specifier: workspace:*
         version: link:../../packages/audio
-      '@web-kits/blur':
-        specifier: workspace:*
-        version: link:../../packages/blur
-      '@web-kits/motion-blur':
-        specifier: workspace:*
-        version: link:../../packages/motion-blur
       '@web-kits/react':
         specifier: workspace:*
         version: link:../../packages/react
@@ -372,6 +366,10 @@ importers:
         version: 5.1.0(@opentelemetry/api@1.9.0)(@types/node@25.3.3)(vite@8.3.6(@types/node@25.3.3)(esbuild@0.28.2)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.1)(tsx@4.21.0)(yaml@2.9.1))
 
   packages/blur:
+    dependencies:
+      '@web-kits/react':
+        specifier: workspace:*
+        version: link:../react
     devDependencies:
       '@types/react':
         specifier: 'catalog:'
@@ -384,6 +382,10 @@ importers:
         version: 7.0.2
 
   packages/motion-blur:
+    dependencies:
+      '@web-kits/react':
+        specifier: workspace:*
+        version: link:../react
     devDependencies:
       '@types/react':
         specifier: 'catalog:'

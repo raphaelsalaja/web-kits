@@ -1,6 +1,6 @@
 "use client";
 
-import type { MotionBlur } from "@web-kits/motion-blur";
+import type { MotionBlurInstance } from "@web-kits/react/motion-blur";
 import { type RefObject, useEffect } from "react";
 
 export type Scene = {
@@ -71,7 +71,7 @@ export function useScene(
  */
 export function drive(
   host: HTMLElement,
-  blur: MotionBlur | null,
+  blur: MotionBlurInstance | null,
   pose: (time: number) => DOMMatrix,
   time: number,
   frame: number,
