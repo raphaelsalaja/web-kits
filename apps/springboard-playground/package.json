@@ -16,9 +16,9 @@
   "devDependencies": {
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
-    "@vitejs/plugin-react": "^6.2.1",
+    "@vitejs/plugin-react": "^6.3.0",
     "playwright-core": "^1.64.1",
     "typescript": "catalog:ts7",
-    "vite": "^8.3.6"
+    "vite": "^8.3.7"
   }
 }

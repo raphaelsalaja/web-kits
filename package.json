@@ -20,9 +20,9 @@
     "@commitlint/config-conventional": "^20.5.0",
     "@web-kits/audio": "workspace:^",
     "husky": "^9.1.7",
-    "prettier": "^3.8.3",
+    "prettier": "^3.9.10",
     "publint": "^0.3.25",
-    "turbo": "^2.9.6",
+    "turbo": "^2.11.10",
     "typescript": "catalog:"
   },
   "packageManager": "pnpm@9.15.4",
