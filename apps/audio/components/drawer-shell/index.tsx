@@ -1,6 +1,6 @@
 "use client";
 
-import { DrawerPreview as Drawer } from "@base-ui/react/drawer";
+import { Drawer } from "@base-ui/react/drawer";
 import { createContext, type ReactNode, use, useState } from "react";
 import styles from "./styles.module.css";
 
