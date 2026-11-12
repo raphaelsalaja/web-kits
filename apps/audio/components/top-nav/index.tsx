@@ -1,7 +1,7 @@
 "use client";
 
 import { click, drawerClose, drawerOpen } from "@audio/core";
-import { DrawerPreview as Drawer } from "@base-ui/react/drawer";
+import { Drawer } from "@base-ui/react/drawer";
 import { useSound } from "@web-kits/audio/react";
 import HotDrink from "@web-kits/icons/fill/hot-drink";
 import Github from "@web-kits/icons/social-media/github";
