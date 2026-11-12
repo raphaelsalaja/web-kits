@@ -13,6 +13,7 @@ Interface kits for the web.
 | [`@web-kits/blur`](./packages/blur) | [![npm](https://img.shields.io/npm/v/@web-kits/blur)](https://www.npmjs.com/package/@web-kits/blur) | The progressive blur from the iOS scroll edge |
 | [`@web-kits/springboard`](./packages/springboard) | [![npm](https://img.shields.io/npm/v/@web-kits/springboard)](https://www.npmjs.com/package/@web-kits/springboard) | Apple's springs, curves, app launch and genie |
 | [`@web-kits/motion-blur`](./packages/motion-blur) | [![npm](https://img.shields.io/npm/v/@web-kits/motion-blur)](https://www.npmjs.com/package/@web-kits/motion-blur) | Motion blur for moving DOM elements |
+| [`@web-kits/react`](./packages/react) | Not yet published | SwiftUI's and Family's text and number transitions |
 
 Each package is versioned and published on its own.
 
@@ -27,13 +28,8 @@ pnpm dev
 ## Structure
 
 ```
-apps/web                      Web Kits site
-apps/audio                    Audio docs and registry (audio.raphaelsalaja.com)
-apps/audio-marketing          Audio launch video (Remotion)
-apps/springboard-playground   Springboard playground (Vite)
+apps/web                      Web Kits site, docs and audio registry (web-kits.dev)
 packages/*                    Published packages
-internal/ui                   Shared UI for the apps
-internal/icons                Shared icons for the apps
 skills/create-sound           Agent skill for writing audio patches
 .web-kits/                    First-party audio patches
 ```

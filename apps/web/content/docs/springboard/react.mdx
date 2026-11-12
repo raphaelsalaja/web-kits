@@ -1,0 +1,27 @@
+---
+title: React
+description: Drive a popup from React state with useOrigin.
+---
+
+```tsx
+import { launch } from "@web-kits/springboard";
+import { useOrigin } from "@web-kits/springboard/react";
+
+function Notes() {
+  const button = useRef<HTMLButtonElement>(null);
+  const [open, setOpen] = useState(false);
+  const note = useOrigin({ from: button, effect: launch(), open });
+  return (
+    <>
+      <button ref={button} onClick={() => setOpen(true)}>
+        New Note
+      </button>
+      <div ref={note} className="note">
+        …
+      </div>
+    </>
+  );
+}
+```
+
+Put the ref on the popup. Options can change on any render, and the effect picks them up without starting over. A new effect applies from the next run, so one that changes mid-run lands first.

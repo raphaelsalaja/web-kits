@@ -4,7 +4,6 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "icons": "turbo run build --filter=@web-kits/icons",
     "lint": "biome ci . && prettier --check \"**/*.mdx\"",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
@@ -15,50 +14,19 @@
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.5",
     "@biomejs/biome": "2.6.6",
-    "@changesets/cli": "^2.31.0",
-    "@commitlint/cli": "^20.5.0",
-    "@commitlint/config-conventional": "^20.5.0",
+    "@changesets/cli": "^3.0.3",
+    "@commitlint/cli": "^21.2.4",
+    "@commitlint/config-conventional": "^21.2.4",
     "@web-kits/audio": "workspace:^",
     "husky": "^9.1.7",
-    "prettier": "^3.8.3",
+    "prettier": "^3.9.10",
     "publint": "^0.3.25",
-    "turbo": "^2.9.6",
+    "turbo": "^2.11.10",
     "typescript": "catalog:"
   },
-  "packageManager": "pnpm@9.15.4",
+  "packageManager": "pnpm@12.18.0",
   "engines": {
     "node": ">=22",
-    "pnpm": ">=9.0.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "remotion": "4.0.450",
-      "@remotion/bundler": "4.0.450",
-      "@remotion/cli": "4.0.450",
-      "@remotion/compositor-darwin-arm64": "4.0.450",
-      "@remotion/compositor-darwin-x64": "4.0.450",
-      "@remotion/compositor-linux-arm64-gnu": "4.0.450",
-      "@remotion/compositor-linux-arm64-musl": "4.0.450",
-      "@remotion/compositor-linux-x64-gnu": "4.0.450",
-      "@remotion/compositor-linux-x64-musl": "4.0.450",
-      "@remotion/compositor-win32-x64-msvc": "4.0.450",
-      "@remotion/google-fonts": "4.0.450",
-      "@remotion/licensing": "4.0.450",
-      "@remotion/media": "4.0.450",
-      "@remotion/media-parser": "4.0.450",
-      "@remotion/media-utils": "4.0.450",
-      "@remotion/motion-blur": "4.0.450",
-      "@remotion/paths": "4.0.450",
-      "@remotion/player": "4.0.450",
-      "@remotion/renderer": "4.0.450",
-      "@remotion/shapes": "4.0.450",
-      "@remotion/streaming": "4.0.450",
-      "@remotion/studio": "4.0.450",
-      "@remotion/studio-server": "4.0.450",
-      "@remotion/studio-shared": "4.0.450",
-      "@remotion/transitions": "4.0.450",
-      "@remotion/web-renderer": "4.0.450",
-      "@remotion/zod-types": "4.0.450"
-    }
+    "pnpm": ">=12"
   }
 }

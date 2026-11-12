@@ -40,3 +40,7 @@ apps/*/next-env.d.ts
 # playwright
 test-results
 playwright-report
+
+# playground reference recordings
+apps/playground/public/reference
+apps/playground/.parity

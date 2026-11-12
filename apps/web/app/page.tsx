@@ -1,57 +1,57 @@
-import audioPkg from "@web-kits/audio/package.json";
-import calligraphPkg from "calligraph/package.json";
-import { AudioPreview } from "@/components/audio-preview";
-import { Greeting } from "@/components/greeting";
-import { TextPreview } from "@/components/text-preview";
+import Link from "next/link";
+import Github from "@/components/icons/social-media/github";
+import Linkedin from "@/components/icons/social-media/linkedin";
+import XTwitter from "@/components/icons/social-media/x-twitter";
+import { KitIcon } from "@/components/kit-icon";
+import { kits, site } from "@/lib/kits";
 import styles from "./page.module.css";
 
-const products = [
-  {
-    name: "Audio",
-    version: audioPkg.version,
-    href: "https://www.npmjs.com/package/@web-kits/audio",
-    preview: <AudioPreview />,
-  },
-  {
-    name: "Calligraph",
-    version: calligraphPkg.version,
-    href: "https://www.npmjs.com/package/calligraph",
-    preview: <TextPreview />,
-  },
-] as const;
+const social = [
+  { label: "GitHub", href: site.source, Icon: Github },
+  { label: "X", href: site.x, Icon: XTwitter },
+  { label: "LinkedIn", href: site.linkedin, Icon: Linkedin },
+];
 
 export default function HomePage() {
   return (
     <main className={styles.main}>
-      <header className={styles.hero}>
-        <h1 className={styles.brand}>Web Kits</h1>
-        <p className={styles.tagline}>Interface kits for the web.</p>
+      <header className={styles.header}>
+        <h1 className={styles.name}>{site.name}</h1>
+        <p className={styles.tagline}>{site.description}</p>
       </header>
 
-      <section className={styles.section} aria-labelledby="products-label">
-        <h2 id="products-label" className={styles.sectionLabel}>
-          Products
+      <section aria-labelledby="kits-heading">
+        <h2 id="kits-heading" className={styles.heading}>
+          Kits
         </h2>
-        <ul className={styles.products}>
-          {products.map((product) => (
-            <li key={product.name} className={styles.product}>
-              <div className={styles.preview}>{product.preview}</div>
-              <a
-                className={styles.meta}
-                href={product.href}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span className={styles.productName}>{product.name}</span>
-                <span className={styles.version}>v{product.version}</span>
-              </a>
+        <ul className={styles.list}>
+          {kits.map((kit) => (
+            <li key={kit.slug}>
+              <Link className={styles.row} href={kit.href}>
+                <KitIcon slug={kit.slug} />
+                <span className={styles.text}>
+                  <span className={styles.title}>
+                    {kit.name}
+                    <span className={styles.version}>v{kit.version}</span>
+                  </span>
+                  <span className={styles.description}>{kit.description}</span>
+                </span>
+              </Link>
             </li>
           ))}
         </ul>
       </section>
 
       <footer className={styles.footer}>
-        <Greeting />
+        <ul className={styles.social}>
+          {social.map(({ label, href, Icon }) => (
+            <li key={label}>
+              <a className={styles.link} href={href} aria-label={label}>
+                <Icon aria-hidden="true" title={label} width={16} height={16} />
+              </a>
+            </li>
+          ))}
+        </ul>
       </footer>
     </main>
   );

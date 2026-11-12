@@ -1,0 +1,30 @@
+---
+title: Introduction
+description: React components that move the way iOS does.
+---
+
+React components that move the way iOS does. Each one is rebuilt from what the real thing runs: SwiftUI's content transitions from the springs in SwiftUICore and recordings of the iOS 27 Simulator, and Family's from a 60 fps recording of the app.
+
+<Example>
+  <NumberTransitionExample />
+</Example>
+
+## Components
+
+| Component                                     |                                                       |
+| --------------------------------------------- | ----------------------------------------------------- |
+| [Number Transition](/react/number-transition) | A number that animates between values.                |
+| [Text Transition](/react/text-transition)     | Text that animates between strings.                   |
+
+Each component has its own entry point, so you only ship what you import:
+
+```tsx
+import { NumberTransition } from "@web-kits/react/number-transition";
+import { TextTransition } from "@web-kits/react/text-transition";
+```
+
+## How It Works
+
+Every glyph is its own element. When the text changes, the components measure where each glyph was and where it lands, then animate the change with the Web Animations API on spring easings. A change that comes in mid-animation starts from wherever the glyphs are.
+
+Screen readers read the whole text, never the glyphs. With reduced motion on, every transition but `identity` crossfades.

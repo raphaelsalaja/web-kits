@@ -1,0 +1,10 @@
+---
+title: Layout
+description: Where to put the host so the blur can see the content.
+---
+
+The host gets `pointer-events: none`, and `position: relative` if it was static. Every layer inside is absolutely positioned. Keep the host empty.
+
+## Backdrop Root
+
+A `backdrop-filter` only sees as far back as its backdrop root, so nothing between the host and the content can have `opacity` below 1, a `filter`, a `mask`, `mix-blend-mode` or `will-change` on those. Put the host beside the scrolling content, not inside a faded wrapper.

@@ -1,0 +1,49 @@
+---
+title: Options
+description: The options origin takes, and the options of each effect.
+---
+
+| Option          | Default      |                                                                                                                                                                                                                                                    |
+| --------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `from`          |              | The element the popup opens out of and closes back into.                                                                                                                                                                                           |
+| `effect`        |              | `launch()`, `genie()` or `morph()`.                                                                                                                                                                                                                |
+| `bounds`        | the viewport | The positioned element the copies are drawn in. The genie's funnel is clipped to it.                                                                                                                                                               |
+| `hideTarget`    | per effect   | Hides `from` while the popup's open. Launch does, like an icon under its app, and the genie doesn't, like a Dock tile. Shown, the popup fades in and out over it, so give `from` a `z-index` over the copies for the popup to go in under it.     |
+| `reducedMotion` | `"user"`     | `"user"` crossfades under `prefers-reduced-motion`. `"always"` always does, and `"never"` never.                                                                                                                                                   |
+| `speed`         | `1`          | Plays slower or faster, like the Simulator's Slow Animations. `0.1` is ten times slower, and changing it takes effect mid-run.                                                                                                                     |
+| `debug`         | `false`      | Draws the mesh: its pieces in blue and its vertices in orange.                                                                                                                                                                                     |
+| `open`          | `false`      | Starts open, with no animation. In React, it drives the popup.                                                                                                                                                                                     |
+| `onStart`       |              | Called with `true` when it starts opening and `false` when it starts closing.                                                                                                                                                                      |
+| `onFrame`       |              | Called every frame with `{ progress }`, from 0 closed to 1 open. Launch's frames also carry the card's rect, corner radius, mesh and home scale.                                                                                                   |
+| `onLand`        |              | Called once it's landed open or closed.                                                                                                                                                                                                            |
+
+## `launch()`
+
+| Option    | Default                    |                                                                                                               |
+| --------- | -------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `grid`    | `{ columns: 12, rows: 8 }` | Tiles across and down the card. Finer grids bend more smoothly and cost more.                                 |
+| `fade`    | `{ in: 0.15, out: 0.2 }`   | Seconds to fade from `from` to the popup on the way out, and the share of the way back it takes to fade back. |
+| `springs` | SpringBoard's              | Any of `open`, `close`, `home` and `cornerReset`, over SpringBoard's.                                         |
+| `home`    |                            | An element behind the popup that recedes to 88% like the home screen.                                         |
+
+Every vertex of the card has its own spring, as on iOS, so the edge nearest `from` leads and the far edge catches up. The card lands once no vertex moves faster than 3 px a second.
+
+## `genie()`
+
+| Option     | Default    |                                                                      |
+| ---------- | ---------- | -------------------------------------------------------------------- |
+| `edge`     | `"bottom"` | The side the Dock is on. `"auto"` picks the side `from` is on.       |
+| `scale`    | `1`        | CSS pixels per macOS point, so a small screen bends like a full one. |
+| `duration` | `0.5`      | Seconds from open to minimised.                                      |
+| `fade`     | `false`    | Fades the window out over the second half. The Dock doesn't.         |
+| `blur`     | `false`    | Blurs the window over the second half.                               |
+
+## `morph()`
+
+| Option  | Default                       |                                                                                                 |
+| ------- | ----------------------------- | ----------------------------------------------------------------------------------------------- |
+| `pivot` | `from`'s first element        | The label inside the button the popup grows from, like `matchedTransitionSource` on the label. |
+| `fill`  | the popup's background colour | The glass both shapes are filled with while they're joined.                                     |
+| `lens`  | `true`                        | Bends the content at the rim as it grows, with an SVG displacement filter.                      |
+
+One spring moves the popup out of the label and the button down to a quarter of its size, on iOS's `mainEjectSpring` and `mainAbsorbSpring` at speed 0.7. A blurred field joins the two shapes into one while they're close, and the kick, the lens and the field's blur each go out and come back on springs fitted from the Simulator. It hides `from` while it's open, as iOS absorbs the button.

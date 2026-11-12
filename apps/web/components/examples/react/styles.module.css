@@ -1,0 +1,133 @@
+.stage {
+  display: grid;
+  place-items: center;
+  padding: 48px 24px;
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.text {
+  font-size: 40px;
+}
+
+.status {
+  --tone: var(--blue);
+  position: relative;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 14px 24px 14px 18px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--tone);
+  letter-spacing: -0.02em;
+  background: color-mix(in oklab, var(--tone) 15%, transparent);
+  border-radius: 999px;
+  transition:
+    color 400ms ease,
+    background-color 400ms ease;
+
+  &[data-tone="safe"] {
+    --tone: var(--green);
+  }
+
+  &[data-tone="warning"] {
+    --tone: var(--red);
+  }
+}
+
+.icon {
+  display: grid;
+  font-size: 22px;
+
+  & > svg {
+    grid-area: 1 / 1;
+    width: 1em;
+    height: 1em;
+    opacity: 0;
+    scale: 0.5;
+    transition:
+      opacity var(--spring-duration) var(--spring),
+      scale var(--spring-duration) var(--spring);
+  }
+
+  & > svg[data-active="true"] {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.spinner {
+  animation: spin 600ms linear infinite;
+}
+
+.shake[data-active="true"] {
+  animation: shake 250ms 650ms ease-in-out;
+}
+
+@keyframes spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes shake {
+  20% {
+    translate: 2px 0;
+  }
+
+  40% {
+    translate: -2px 0;
+  }
+
+  60% {
+    translate: 1px 0;
+  }
+
+  80% {
+    translate: -1px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner,
+  .shake[data-active="true"] {
+    animation: none;
+  }
+}
+
+.wallet {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 64px);
+  gap: 4px;
+}
+
+.key {
+  height: 48px;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text-primary);
+  border-radius: 12px;
+  transition: background-color 150ms var(--ease-out-quart);
+
+  &:hover {
+    background: var(--gray-3);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring, var(--gray-8));
+    outline-offset: -2px;
+  }
+}

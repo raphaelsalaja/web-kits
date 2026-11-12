@@ -1,0 +1,269 @@
+{
+  "source": "Family on iPhone 15 Pro Max, screen recorded at 60 fps",
+  "units": "t in seconds from the frame before the first change; y is the entering digit's top edge below its rest, in glyph heights, once it clears the mask",
+  "keypad": {
+    "enter": [
+      {
+        "event": 252,
+        "glyphHeightPx": 85,
+        "samples": [
+          { "t": 0.0, "y": -0.0118 },
+          { "t": 0.0167, "y": 0.0118 },
+          { "t": 0.0333, "y": 0.0706 },
+          { "t": 0.05, "y": 0.3176 },
+          { "t": 0.0667, "y": 0.2 },
+          { "t": 0.0833, "y": 0.1294 },
+          { "t": 0.1, "y": 0.0824 },
+          { "t": 0.1167, "y": 0.0471 },
+          { "t": 0.1334, "y": 0.0353 },
+          { "t": 0.15, "y": 0.0235 },
+          { "t": 0.1667, "y": 0.0118 },
+          { "t": 0.1834, "y": 0.0118 },
+          { "t": 0.2001, "y": 0.0 },
+          { "t": 0.2167, "y": 0.0 },
+          { "t": 0.2334, "y": 0.0 },
+          { "t": 0.2501, "y": 0.0 },
+          { "t": 0.2667, "y": 0.0 },
+          { "t": 0.2834, "y": 0.0 },
+          { "t": 0.3001, "y": 0.0 },
+          { "t": 0.3167, "y": 0.0 },
+          { "t": 0.3334, "y": 0.0 },
+          { "t": 0.3501, "y": 0.0 },
+          { "t": 0.3667, "y": 0.0 },
+          { "t": 0.3834, "y": 0.0 },
+          { "t": 0.4001, "y": 0.0 },
+          { "t": 0.4167, "y": 0.0 },
+          { "t": 0.4334, "y": 0.0 },
+          { "t": 0.4501, "y": 0.0 },
+          { "t": 0.4668, "y": 0.0 },
+          { "t": 0.4834, "y": 0.0 },
+          { "t": 0.5001, "y": 0.0 }
+        ]
+      },
+      {
+        "event": 282,
+        "glyphHeightPx": 83,
+        "samples": [
+          { "t": 0.0, "y": 0.0 },
+          { "t": 0.0167, "y": 0.0 },
+          { "t": 0.0333, "y": 0.0 },
+          { "t": 0.05, "y": 0.012 },
+          { "t": 0.0667, "y": 0.2651 },
+          { "t": 0.0833, "y": 0.1687 },
+          { "t": 0.1, "y": 0.1084 },
+          { "t": 0.1167, "y": 0.0602 },
+          { "t": 0.1333, "y": 0.0361 },
+          { "t": 0.15, "y": 0.0241 },
+          { "t": 0.1667, "y": 0.012 },
+          { "t": 0.1834, "y": 0.012 },
+          { "t": 0.2, "y": 0.0 },
+          { "t": 0.2167, "y": 0.0 },
+          { "t": 0.2334, "y": 0.0 },
+          { "t": 0.25, "y": 0.0 },
+          { "t": 0.2667, "y": 0.0 },
+          { "t": 0.2834, "y": 0.0 },
+          { "t": 0.3001, "y": 0.0 },
+          { "t": 0.3167, "y": 0.0 },
+          { "t": 0.3334, "y": 0.0 },
+          { "t": 0.3501, "y": 0.0 },
+          { "t": 0.3667, "y": 0.0 },
+          { "t": 0.3834, "y": 0.0 },
+          { "t": 0.4001, "y": 0.0 },
+          { "t": 0.4167, "y": 0.0 },
+          { "t": 0.4334, "y": 0.0 },
+          { "t": 0.4501, "y": 0.0 },
+          { "t": 0.4668, "y": 0.0 },
+          { "t": 0.4834, "y": 0.0 },
+          { "t": 0.5001, "y": 0.0 }
+        ]
+      },
+      {
+        "event": 323,
+        "glyphHeightPx": 94,
+        "samples": [
+          { "t": 0.0, "y": -0.0319 },
+          { "t": 0.0167, "y": -0.0213 },
+          { "t": 0.0333, "y": -0.0213 },
+          { "t": 0.05, "y": 0.0106 },
+          { "t": 0.0667, "y": 0.2021 },
+          { "t": 0.0833, "y": 0.1277 },
+          { "t": 0.1, "y": 0.0745 },
+          { "t": 0.1167, "y": 0.0426 },
+          { "t": 0.1334, "y": 0.0213 },
+          { "t": 0.15, "y": 0.0106 },
+          { "t": 0.1667, "y": 0.0106 },
+          { "t": 0.1834, "y": 0.0 },
+          { "t": 0.2, "y": 0.0 },
+          { "t": 0.2167, "y": 0.0 },
+          { "t": 0.2334, "y": 0.0 },
+          { "t": 0.2501, "y": 0.0 },
+          { "t": 0.2667, "y": 0.0 },
+          { "t": 0.2834, "y": 0.0 },
+          { "t": 0.3001, "y": 0.0 },
+          { "t": 0.3167, "y": 0.0 },
+          { "t": 0.3334, "y": 0.0 },
+          { "t": 0.3501, "y": 0.0 },
+          { "t": 0.3667, "y": 0.0 },
+          { "t": 0.3834, "y": 0.0 },
+          { "t": 0.4001, "y": 0.0 },
+          { "t": 0.4168, "y": 0.0 },
+          { "t": 0.4334, "y": 0.0 },
+          { "t": 0.4501, "y": 0.0 },
+          { "t": 0.4668, "y": 0.0 },
+          { "t": 0.4834, "y": 0.0 },
+          { "t": 0.5001, "y": 0.0 }
+        ]
+      },
+      {
+        "event": 385,
+        "glyphHeightPx": 60,
+        "samples": [
+          { "t": 0.0, "y": -0.0667 },
+          { "t": 0.0167, "y": -0.0667 },
+          { "t": 0.0333, "y": -0.05 },
+          { "t": 0.05, "y": 0.0167 },
+          { "t": 0.0667, "y": 0.1833 },
+          { "t": 0.0834, "y": 0.1333 },
+          { "t": 0.1, "y": 0.0833 },
+          { "t": 0.1167, "y": 0.05 },
+          { "t": 0.1334, "y": 0.0333 },
+          { "t": 0.15, "y": 0.0167 },
+          { "t": 0.1667, "y": 0.0167 },
+          { "t": 0.1834, "y": 0.0167 },
+          { "t": 0.2, "y": 0.0 },
+          { "t": 0.2167, "y": 0.0 },
+          { "t": 0.2334, "y": 0.0 },
+          { "t": 0.2501, "y": 0.0 },
+          { "t": 0.2667, "y": 0.0 },
+          { "t": 0.2834, "y": 0.0 },
+          { "t": 0.3001, "y": 0.0 },
+          { "t": 0.3167, "y": 0.0 },
+          { "t": 0.3334, "y": 0.0 },
+          { "t": 0.3501, "y": 0.0 },
+          { "t": 0.3667, "y": 0.0 },
+          { "t": 0.3834, "y": 0.0 },
+          { "t": 0.4001, "y": 0.0 },
+          { "t": 0.4168, "y": 0.0 },
+          { "t": 0.4334, "y": 0.0 },
+          { "t": 0.4501, "y": 0.0 },
+          { "t": 0.4668, "y": 0.0 },
+          { "t": 0.4834, "y": 0.0 },
+          { "t": 0.5001, "y": 0.0 }
+        ]
+      }
+    ]
+  },
+  "fitted": {
+    "source": "Family on iPhone 15 Pro Max, screen recorded at 60 fps (recording/), plus benji.org/family-values clips (values/)",
+    "units": "springs use mass 1; distances are in multiples of the glyph height unless noted",
+    "keypad": {
+      "clip": "recording/send-keypad.mp4",
+      "enter": {
+        "direction": "rises from below on insert, drops from above on delete; a digit typed over the 0 shown before typing pushes it out the same way",
+        "spring": {
+          "stiffness": 5200,
+          "dampingRatio": 1.42,
+          "duration": 0.087,
+          "bounce": -0.3
+        },
+        "travel": 1.38,
+        "units": "cap heights",
+        "method": "matched frame by frame against send-keypad.mp4 and swap.mp4"
+      },
+      "exit": {
+        "model": "a deleted digit drops away on a slow, slightly bouncy spring",
+        "spring": {
+          "stiffness": 248,
+          "dampingRatio": 0.85,
+          "duration": 0.399,
+          "bounce": 0.15
+        },
+        "travel": 2.44,
+        "units": "cap heights"
+      },
+      "push": {
+        "model": "a digit typed over the 0 shown before typing, or replaced by it, comes in on a softer spring than other typed digits, and the one it replaces leaves on the same spring, far enough to clear the mask",
+        "spring": {
+          "stiffness": 740,
+          "dampingRatio": 0.9
+        },
+        "travel": 1.5,
+        "units": "cap heights",
+        "rmsPx": 2.5,
+        "method": "both digits of the first press in send-keypad.mp4 and swap.mp4, fitted together"
+      },
+      "slide": {
+        "spring": {
+          "stiffness": 1300,
+          "dampingRatio": 1.0,
+          "duration": 0.174,
+          "bounce": 0
+        },
+        "samples": 4,
+        "rmsPx": 0.17
+      },
+      "separators": "keyed by the integer digits after them: a separator that ends up between other digits drops out, slides over and rises back in 55 ms later; a new one rises in",
+      "mask": "vertical clip with soft edges, about 0.35 glyph heights above and 0.23 below; the top edge fades over about 0.1em",
+      "blur": false,
+      "scale": false
+    },
+    "odometer": {
+      "clip": "recording/balance-tabs.mp4",
+      "wheel": {
+        "what": "each digit's wheel spins straight from the old digit to the new one, through the digits in between; travel is the digit difference",
+        "spring": {
+          "stiffness": 520,
+          "dampingRatio": 0.95,
+          "duration": 0.276,
+          "bounce": 0.05
+        },
+        "stagger": 0,
+        "rmsDigits": 0.005,
+        "samples": ["2->7", "1->5", "0->2"]
+      },
+      "layout": {
+        "what": "currency sign and width follow the new number",
+        "spring": {
+          "stiffness": 803,
+          "dampingRatio": 1.05,
+          "duration": 0.222,
+          "bounce": 0
+        },
+        "rmsPx": 0.4
+      },
+      "columns": "removed digit columns roll down to 0 and fade, new ones roll up from 0 and fade in, both held on screen while the width animates",
+      "direction": "higher digits sit on top, so a digit that grows rolls down into view whichever way the number moves"
+    },
+    "text": {
+      "clip": "recording/send-keypad.mp4 (Still not enough ETH -> Not enough ETH)",
+      "method": "character diff: shared characters slide, removed ones fade out in place, added ones fade in at their final place",
+      "spring": {
+        "stiffness": 803,
+        "dampingRatio": 1.08,
+        "duration": 0.222,
+        "bounce": 0
+      },
+      "fade": "opacity follows the same spring (0.59 at 50 ms, 0.23 at 100 ms, 0.11 at 133 ms)",
+      "caseChange": "n -> N crossfades in place",
+      "rmsPx": 0.23,
+      "articleTool": {
+        "clip": "values/22.mp4 (Craft <-> Creative)",
+        "spring": {
+          "stiffness": 450,
+          "dampingRatio": 0.9,
+          "duration": 0.296,
+          "bounce": 0.1
+        },
+        "rmsPx": 1.2
+      }
+    },
+    "labelSwap": {
+      "clip": "recording/send-keypad.mp4 (subtitle -> Not enough ETH)",
+      "what": "whole label crossfades, the incoming one rises slightly"
+    },
+    "errorShake": {
+      "clip": "recording/send-keypad.mp4",
+      "what": "message shakes horizontally when the amount exceeds the balance"
+    }
+  }
+}

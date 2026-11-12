@@ -1,0 +1,24 @@
+.content {
+  flex: 0 1 var(--body-width);
+  min-width: 0;
+  padding: var(--fade-size) 0 80px;
+}
+
+.header {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.title {
+  color: var(--text-primary);
+  @typography 20, 500, 1.4;
+}
+
+@media (width <= 1024px) {
+  .content {
+    padding-top: 32px;
+  }
+}

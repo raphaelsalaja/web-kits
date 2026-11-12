@@ -1,0 +1,14 @@
+---
+title: Instance
+description: The methods on what motionBlur returns.
+---
+
+`motionBlur` returns:
+
+| Method              |                                                          |
+| ------------------- | -------------------------------------------------------- |
+| `start()`           | Start watching now, for changes it can't see on its own. |
+| `render(from, to?)` | Draw one frame by hand, from two transforms or a path.   |
+| `set(options)`      | Change any option except `layer`.                        |
+| `clear()`           | Remove the streak until the element next moves.          |
+| `destroy()`         | Stop watching and remove anything it added.              |

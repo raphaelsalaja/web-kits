@@ -1,0 +1,101 @@
+.dialog {
+  position: absolute;
+  inset: 0;
+}
+
+.trigger {
+  position: absolute;
+  top: 138px;
+  left: 50%;
+  height: 40px;
+  padding: 0 18px;
+  font-size: 15px;
+  font-variation-settings: var(--font-weight-500);
+  line-height: 40px;
+  color: var(--text-primary);
+  background: var(--example-surface);
+  border-radius: 11px;
+  box-shadow: var(--example-shadow);
+  translate: -50% 0;
+}
+
+.dim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: color-mix(in oklab, var(--gray-12) 8%, transparent);
+}
+
+.host {
+  position: absolute;
+  top: 76px;
+  left: 44px;
+  z-index: 2;
+  width: 304px;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  background: var(--example-surface);
+  border-radius: 16px;
+  box-shadow: var(--example-lift);
+}
+
+.title {
+  font-size: 16px;
+  font-variation-settings: var(--font-weight-600);
+  line-height: 20px;
+  color: var(--text-primary);
+}
+
+.text {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--text-tertiary);
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 14px;
+  font-size: 14px;
+  font-variation-settings: var(--font-weight-500);
+  color: var(--text-primary);
+  background: var(--example-surface);
+  border-radius: 9px;
+  box-shadow: var(--example-shadow);
+
+  &[data-primary] {
+    color: var(--gray-1);
+    background: var(--gray-12);
+  }
+}
+
+/* The tip of the arrow is its hotspot, drawn 1.5x so it reads at tile size */
+.pointer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 24px;
+  height: 24px;
+  filter: drop-shadow(0 1px 1px oklch(0 0 0 / 25%));
+  transform-origin: 0 0;
+
+  & svg {
+    display: block;
+    transform-origin: 7.5px 5.25px;
+    scale: 1.5;
+  }
+}

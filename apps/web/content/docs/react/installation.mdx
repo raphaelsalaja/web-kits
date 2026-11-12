@@ -1,0 +1,23 @@
+---
+title: Installation
+description: Install @web-kits/react and pick a component.
+---
+
+Install `@web-kits/react` with your package manager of choice. It needs React 19.
+
+<Tabs items={[
+  { label: "npm", value: "npm install @web-kits/react" },
+  { label: "yarn", value: "yarn add @web-kits/react" },
+  { label: "pnpm", value: "pnpm add @web-kits/react" },
+  { label: "bun", value: "bun add @web-kits/react" },
+]} />
+
+## Entry Points
+
+| Import                              |                                         |
+| ----------------------------------- | --------------------------------------- |
+| `@web-kits/react/number-transition` | `NumberTransition`.                     |
+| `@web-kits/react/text-transition`   | `TextTransition`.                       |
+| `@web-kits/react/springs`           | The springs both components run on.     |
+
+Both components are client components, so they work in the Next.js App Router without a wrapper.

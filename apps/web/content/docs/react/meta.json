@@ -1,0 +1,17 @@
+{
+  "title": "React",
+  "root": true,
+  "pages": [
+    "---Getting Started---",
+    "index",
+    "installation",
+    "---Components---",
+    "number-transition",
+    "text-transition",
+    "---API---",
+    "springs",
+    "---Resources---",
+    "changelog",
+    "external:[GitHub](https://github.com/raphaelsalaja/web-kits/tree/main/packages/react)"
+  ]
+}

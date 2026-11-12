@@ -1,19 +1,23 @@
 packages:
   - "apps/*"
   - "packages/*"
-  - "internal/*"
 
 catalog:
+  "@base-ui/react": ^1.9.0
+  "@shikijs/transformers": ^4.6.0
   "@types/node": ^25.2.3
   "@types/react": 19.2.14
   "@types/react-dom": 19.2.3
+  fumadocs-core: 16.18.4
+  fumadocs-mdx: 15.5.3
   motion: ^12.0.0
-  next: 16.1.6
+  next: 16.4.5
   react: 19.2.4
   react-dom: 19.2.4
-  typescript: ^6.0.3
+  shiki: ^4.6.0
+  typescript: ^7.0.2
   vitest: ^5.1.0
 
-catalogs:
-  ts7:
-    typescript: ^7.0.2
+allowBuilds:
+  "@parcel/watcher": false
+  esbuild: false

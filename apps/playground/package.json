@@ -1,0 +1,23 @@
+{
+  "name": "@web-kits/playground",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "references": "bash scripts/references.sh",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@web-kits/react": "workspace:*",
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "devDependencies": {
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "^6.2.1",
+    "playwright-core": "1.65.0",
+    "typescript": "catalog:",
+    "vite": "^8.3.6"
+  }
+}
