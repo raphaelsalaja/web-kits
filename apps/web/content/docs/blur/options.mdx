@@ -1,0 +1,13 @@
+---
+title: Options
+description: The options progressiveBlur and ProgressiveBlur take.
+---
+
+| Option      | Default                              |                                                                          |
+| ----------- | ------------------------------------ | ------------------------------------------------------------------------ |
+| `side`      | `"top"`                              | `"top"`, `"bottom"`, `"left"` or `"right"`. Where the blur is strongest. |
+| `color`     | the first background behind the host | The colour the edge fades into. Apple uses what's behind the scroll view. |
+| `scheme`    | `"auto"`                             | `"light"` or `"dark"` weights. `"auto"` follows `prefers-color-scheme`.  |
+| `start`     | `0.34`, or `0` for `"bottom"`        | Where the fade begins, as a fraction of the host's size.                 |
+| `end`       | `0.97`, or `0.954` for `"bottom"`    | Where it reaches nothing.                                                |
+| `technique` | `"auto"`                             | How the wide blur is blended. See [Techniques](/blur/techniques).        |

@@ -1,5 +1,12 @@
 # @web-kits/audio
 
+## 0.3.1
+
+### Patch Changes
+
+- 0ee00e5: `add` no longer submits installed patches to the registry.
+- 3fbd771: The CLI talks to the registry at web-kits.dev, where the audio docs now live.
+
 ## 0.3.0
 
 ### Minor Changes

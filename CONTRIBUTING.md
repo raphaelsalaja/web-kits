@@ -42,12 +42,8 @@ pnpm smoke
 ## Monorepo layout
 
 ```
-apps/web                      Web Kits site
-apps/audio                    Audio docs and registry (Fumadocs)
-apps/audio-marketing          Audio launch video (Remotion)
-apps/springboard-playground   Springboard playground (Vite)
+apps/web                      Web Kits site, docs and audio registry (web-kits.dev)
 packages/*                    Published packages
-internal/                     Shared UI and icons for the apps
 .web-kits/                    First-party sound patches & generated code
 ```
 
@@ -78,9 +74,9 @@ runs `pnpm smoke`, which packs every package, checks each tarball with publint a
 Are the Types Wrong, installs them all in a temporary project, imports every
 export, and runs the audio CLI.
 
-Configure the repository's `NPM_TOKEN` Actions secret with permission to publish
-the `@web-kits` scope. The workflow passes this secret as both `NPM_TOKEN` for
-Changesets and `NODE_AUTH_TOKEN` for the npm configuration created by setup-node.
+Publishing uses npm trusted publishing, so there is no token to rotate. Each
+package on npmjs.com has a trusted publisher for this repository and the
+`release.yml` workflow.
 
 If publishing fails after a version bump, fix the underlying error and rerun the
 Release workflow from Actions on `main` using **Run workflow**. Keep the existing
@@ -118,9 +114,8 @@ Format: `<type>(<optional scope>): <description>`
 A scope is optional, but when you use one it must name a workspace or area:
 
 - Packages: `audio`, `blur`, `motion-blur`, `springboard`
-- Apps: `web`, `audio-website`, `audio-marketing`, `springboard-playground`
-- Internal: `ui`, `icons`, `skills`
-- Repo: `ci`, `deps`, `deps-dev`, `release`, `repo`
+- Apps: `web`
+- Repo: `skills`, `ci`, `deps`, `deps-dev`, `release`, `repo`
 
 ### Rules
 

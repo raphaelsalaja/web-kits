@@ -1,0 +1,18 @@
+---
+title: Options
+description: The options motionBlur, useMotionBlur and MotionBlur take.
+---
+
+| Option          | Default     |                                                                             |
+| --------------- | ----------- | --------------------------------------------------------------------------- |
+| `technique`     | `echo()`    | How the streak is drawn. See [Techniques](/motion-blur/techniques).         |
+| `shutter`       | `180`       | Shutter angle in degrees.                                                   |
+| `reducedMotion` | `"user"`    | `"user"` drops the blur under `prefers-reduced-motion`. `"never"` keeps it. |
+| `onFrame`       |             | Called every frame with the streak length in px.                            |
+| `layer`         | first child | The element that holds the visuals. Not available in React.                 |
+
+## Shutter
+
+At 180° the streak covers half of each frame's travel, and at 360° it covers all of it, which closes the gaps that make fast motion strobe. 0 turns the blur off. Values past 360 draw more than one frame's travel, so an animation played at a quarter of its speed with `shutter: 720` keeps the streak it had at full speed.
+
+The streak is tied to the real frame time, so at 120Hz it's half as long as at 60Hz, the same as the gap it fills.

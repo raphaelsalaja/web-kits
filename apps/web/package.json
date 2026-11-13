@@ -5,18 +5,30 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev --turbopack",
+    "postinstall": "fumadocs-mdx",
     "typecheck": "tsc --noEmit",
     "start": "next start"
   },
   "dependencies": {
+    "@base-ui/react": "catalog:",
+    "@radix-ui/colors": "^3.0.0",
+    "@shikijs/transformers": "catalog:",
     "@web-kits/audio": "workspace:*",
+    "@web-kits/blur": "workspace:*",
+    "@web-kits/motion-blur": "workspace:*",
+    "@web-kits/springboard": "workspace:*",
     "calligraph": "^1.4.1",
+    "fumadocs-core": "catalog:",
+    "fumadocs-mdx": "catalog:",
     "motion": "catalog:",
     "next": "catalog:",
     "react": "catalog:",
-    "react-dom": "catalog:"
+    "react-dom": "catalog:",
+    "react-knob-headless": "0.4.0",
+    "shiki": "catalog:"
   },
   "devDependencies": {
+    "@types/mdx": "^2.0.0",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",

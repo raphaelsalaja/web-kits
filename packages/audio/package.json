@@ -1,10 +1,10 @@
 {
   "name": "@web-kits/audio",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A declarative synthesizer for the web",
   "license": "MIT",
   "author": "Raphael Salaja",
-  "homepage": "https://audio.raphaelsalaja.com",
+  "homepage": "https://web-kits.dev/audio",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/raphaelsalaja/web-kits.git",
@@ -74,7 +74,7 @@
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "react": "catalog:",
-    "typescript": "catalog:ts7",
+    "typescript": "catalog:",
     "vitest": "catalog:"
   }
 }

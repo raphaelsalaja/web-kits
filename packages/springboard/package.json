@@ -1,6 +1,7 @@
 {
   "name": "@web-kits/springboard",
   "version": "0.1.0",
+  "private": true,
   "description": "Apple's springs, curves and transitions measured from iOS and macOS, with SpringBoard's app launch and the Dock's genie for any DOM element.",
   "license": "MIT",
   "author": "Raphael Salaja",
@@ -70,7 +71,7 @@
   "devDependencies": {
     "@types/react": "catalog:",
     "react": "catalog:",
-    "typescript": "catalog:ts7",
+    "typescript": "catalog:",
     "vitest": "catalog:"
   }
 }

@@ -1,0 +1,19 @@
+---
+title: Props
+description: Every prop Calligraph takes.
+---
+
+`Calligraph` also passes any other `span` prop to its wrapper.
+
+| Prop         | Default                                 |                                                                                                                                          |
+| ------------ | --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `children`   |                                         | The string or number to show.                                                                                                            |
+| `variant`    | `"text"`                                | `"text"` for character diffing, `"number"` for rolling vertical digits and `"slots"` for a slot-machine digit spin.                     |
+| `animation`  | `"default"`, or `"snappy"` for `number` | The timing: `"default"`, `"smooth"`, `"snappy"` or `"bouncy"`. See [Animations](/calligraph/animations).                              |
+| `as`         | `"span"`                                | The wrapper element.                                                                                                                     |
+| `drift`      | `{ x: 15, y: 0 }`                       | The most entering and exiting characters spread, in pixels, scaled by the share of characters that changed. Only for `"text"`.          |
+| `trend`      | `0`                                     | The vertical direction characters enter from: `1` from below, `-1` from above and `0` neither. Only for `"text"`.                       |
+| `stagger`    | `0.02`                                  | Seconds of delay spread across the characters.                                                                                           |
+| `initial`    | `false`                                 | Animates the characters in on first mount.                                                                                               |
+| `onComplete` |                                         | Called when the last character finishes animating.                                                                                       |
+| `autoSize`   | `true`                                  | Animates the wrapper's width to fit the content.                                                                                         |

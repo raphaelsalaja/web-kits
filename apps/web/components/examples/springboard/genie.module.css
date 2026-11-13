@@ -1,0 +1,13 @@
+.demo {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  width: 100%;
+  container-name: demo;
+  container-type: inline-size;
+}
+
+/* The desktop sets its own height, so a phone has no empty frame below it. */
+:global([data-demo]):has(> .demo[data-demo-id="genie"]) {
+  min-height: 0;
+}

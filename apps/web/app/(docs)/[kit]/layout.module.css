@@ -1,0 +1,24 @@
+.layout {
+  display: flex;
+  width: 100%;
+  min-height: 100dvh;
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  gap: 64px;
+  justify-content: center;
+  min-width: 0;
+  padding: 0 48px;
+}
+
+@media (width <= 1024px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .main {
+    padding: 0 24px;
+  }
+}

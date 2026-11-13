@@ -3,7 +3,7 @@ import { readdir, readFile, writeFile } from "node:fs/promises";
 import { basename, isAbsolute, join, resolve } from "node:path";
 import * as p from "@clack/prompts";
 
-export const REGISTRY_BASE = "https://audio.raphaelsalaja.com/api";
+export const REGISTRY_BASE = "https://web-kits.dev/api";
 
 const CONFIG_DIR = ".web-kits";
 const CONFIG_FILE = "config.json";
@@ -273,16 +273,6 @@ export async function fetchPatchJson(
     throw new Error(`Failed to fetch patch: ${res.status}`);
   }
   return res.json() as Promise<Record<string, unknown>>;
-}
-
-export async function registerPatch(url: string): Promise<void> {
-  try {
-    await fetch(`${REGISTRY_BASE}/patches`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ url }),
-    });
-  } catch {}
 }
 
 export function validatePatch(

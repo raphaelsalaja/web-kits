@@ -1,0 +1,58 @@
+.bento {
+  --example-tile: var(--gray-1);
+  --example-well: var(--gray-3);
+  --example-surface: var(--gray-1);
+  --example-bar: var(--gray-6);
+  --example-bar-faint: var(--gray-4);
+  --example-shadow:
+    0 0 0 1px var(--border-primary),
+    0 1px 2px oklch(0 0 0 / calc(5% * var(--shadow-strength)));
+  --example-lift:
+    0 0 0 1px var(--border-secondary),
+    0 8px 24px oklch(0 0 0 / calc(10% * var(--shadow-strength)));
+  /* A 312px tile in the 640px column; the script measures the real one */
+  --scale: 0.796;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.tile {
+  position: relative;
+  aspect-ratio: 392 / 315;
+  margin: 0;
+  overflow: hidden;
+  user-select: none;
+  background: var(--example-tile);
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px var(--border-primary);
+}
+
+.canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 392px;
+  height: 315px;
+  transform-origin: 0 0;
+  scale: var(--scale);
+}
+
+@media (prefers-color-scheme: dark) {
+  .bento {
+    --example-tile: var(--gray-2);
+    --example-surface: var(--gray-4);
+    --example-bar: var(--gray-7);
+    --example-bar-faint: var(--gray-5);
+  }
+}
+
+@media (max-width: 560px) {
+  .bento {
+    --scale: 1;
+
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

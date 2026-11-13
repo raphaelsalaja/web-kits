@@ -1,0 +1,120 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  height: 52px;
+  padding: 0 12px 0 24px;
+  background: var(--background-primary);
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.crumbs {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  min-width: 0;
+}
+
+.home {
+  color: var(--text-quaternary);
+}
+
+.slash {
+  color: var(--border-secondary);
+}
+
+.kit {
+  font-variation-settings: var(--font-weight-500);
+  color: var(--text-primary);
+}
+
+.menuButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  background: none;
+  border-radius: 8px;
+}
+
+.menuButton:hover {
+  color: var(--text-primary);
+  background: var(--background-secondary);
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+}
+
+.viewport {
+  position: fixed;
+  inset: 0;
+  z-index: 41;
+  pointer-events: none;
+}
+
+.popup {
+  --sidebar-item-height: 36px;
+
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 41;
+  display: flex;
+  flex-direction: column;
+  max-height: 80dvh;
+  pointer-events: auto;
+  background: var(--background-primary);
+  border-top: 1px solid var(--border-secondary);
+  border-radius: 16px 16px 0 0;
+  transform: translateY(var(--drawer-swipe-movement-y));
+  transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+  @typography 14, 400;
+}
+
+.popup[data-starting-style],
+.popup[data-ending-style] {
+  transform: translateY(100%);
+}
+
+.popup[data-swiping] {
+  transition-duration: 0ms;
+}
+
+.handle {
+  flex-shrink: 0;
+  width: 32px;
+  height: 4px;
+  margin: 10px auto 0;
+  background: var(--border-secondary);
+  border-radius: 9999px;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 16px 24px 32px;
+  overflow-y: auto;
+}
+
+@media (width <= 1024px) {
+  .nav {
+    display: flex;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .popup {
+    transition: none;
+  }
+}

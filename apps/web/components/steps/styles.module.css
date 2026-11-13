@@ -1,0 +1,62 @@
+.steps {
+  margin: 24px 0;
+  counter-reset: step;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  counter-increment: step;
+}
+
+.indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.number {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--text-tertiary);
+  border: 1px solid var(--border-secondary);
+  border-radius: 50%;
+  @typography 12, 500;
+}
+
+.number::before {
+  content: counter(step);
+}
+
+.line {
+  flex: 1;
+  width: 1px;
+  margin-block: 4px;
+  background: var(--border-primary);
+}
+
+.step:last-child .line {
+  display: none;
+}
+
+.content {
+  padding-bottom: 32px;
+  padding-left: 14px;
+}
+
+.step:last-child .content {
+  padding-bottom: 0;
+}
+
+.content h2 {
+  display: flex;
+  align-items: center;
+  min-height: 24px;
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}

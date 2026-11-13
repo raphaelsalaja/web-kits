@@ -1,0 +1,225 @@
+.prose {
+  --prose-block-spacing-small: 8px;
+  --prose-block-spacing: 16px;
+  --prose-block-spacing-large: 24px;
+  --prose-block-radius: 8px;
+  --prose-block-menu-size: 20px;
+  --prose-block-menu-offset: 28px;
+  --prose-list-inset: 24px;
+  --prose-bullet-disc-width: 8px;
+  --prose-bullet-disc-offset: 8px;
+
+  min-width: 0;
+  color: var(--text-tertiary);
+  @typography 14, 400, 1.6;
+}
+
+.prose h1 {
+  margin-bottom: var(--prose-block-spacing-small);
+  color: var(--text-primary);
+  @typography 20, 500;
+}
+
+.prose h2 {
+  margin-top: 40px;
+  margin-bottom: var(--prose-block-spacing-small);
+  color: var(--text-primary);
+  scroll-margin-top: 24px;
+  @typography 16, 500;
+}
+
+.prose h3 {
+  margin-top: 28px;
+  margin-bottom: var(--prose-block-spacing-small);
+  color: var(--text-primary);
+  scroll-margin-top: 24px;
+  @typography 14, 500;
+}
+
+.prose h4 {
+  margin-top: var(--prose-block-spacing-small);
+  margin-bottom: var(--prose-block-spacing-small);
+  color: var(--text-primary);
+  @typography 14, 500;
+}
+
+.prose p {
+  margin-bottom: var(--prose-block-spacing);
+}
+
+.prose :is(p, li, td, th) a {
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--border-secondary);
+  text-underline-offset: 2px;
+  transition: text-decoration-color 0.15s;
+}
+
+.prose :is(p, li, td, th) a:hover {
+  text-decoration-color: var(--text-primary);
+}
+
+.prose strong {
+  font-variation-settings: var(--font-weight-500);
+  color: var(--text-primary);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 20px;
+  margin-bottom: 16px;
+}
+
+.prose ul {
+  list-style: disc;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose li {
+  margin-bottom: 4px;
+  list-style: inherit;
+}
+
+.prose li::marker {
+  color: var(--ds-gray-8);
+}
+
+.prose :not(pre) > code {
+  position: relative;
+  padding: 2px 3px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-primary);
+  background: var(--background-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: 4px;
+}
+
+.prose blockquote {
+  padding-left: 16px;
+  margin-bottom: 16px;
+  color: var(--text-quaternary);
+  border-left: 2px solid var(--border-secondary);
+}
+
+.prose hr {
+  margin: 32px 0;
+  border: none;
+  border-top: 1px solid var(--border-primary);
+}
+
+.tableFrame {
+  position: relative;
+  margin-bottom: 16px;
+  border-radius: var(--radius-medium);
+
+  &::after {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    content: "";
+
+    border-radius: inherit;
+  }
+}
+
+.tableWrapper {
+  --table-fade: 24px;
+
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  border-radius: inherit;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &[data-fade="right"] {
+    mask-image: linear-gradient(
+      to right,
+      black calc(100% - var(--table-fade)),
+      transparent 100%
+    );
+  }
+
+  &[data-fade="left"] {
+    mask-image: linear-gradient(
+      to left,
+      black calc(100% - var(--table-fade)),
+      transparent 100%
+    );
+  }
+
+  &[data-fade="both"] {
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black var(--table-fade),
+      black calc(100% - var(--table-fade)),
+      transparent 100%
+    );
+  }
+}
+
+.prose table {
+  min-width: 100%;
+  border-spacing: 0;
+  border-collapse: separate;
+  @typography 13, 400, 1.5;
+}
+
+.prose th,
+.prose td {
+  padding: 8px 12px;
+  vertical-align: top;
+  text-align: left;
+}
+
+.prose :is(th, td):first-child {
+  white-space: nowrap;
+}
+
+.prose td:last-child:not(:first-child) {
+  min-width: 240px;
+}
+
+.prose th {
+  color: var(--text-quaternary);
+  background: var(--background-secondary);
+  @typography 12, 400;
+}
+
+.prose th:first-child {
+  border-top-left-radius: var(--radius-medium);
+  border-bottom-left-radius: var(--radius-medium);
+}
+
+.prose th:last-child {
+  border-top-right-radius: var(--radius-medium);
+  border-bottom-right-radius: var(--radius-medium);
+}
+
+.prose td {
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.prose tr:last-child td {
+  border-bottom: none;
+}
+
+.prose img {
+  margin-bottom: 16px;
+  border-radius: var(--radius-medium);
+}
+
+.prose > *:first-child {
+  margin-top: 0;
+}
+
+.prose > *:last-child {
+  margin-bottom: 0;
+}

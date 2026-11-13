@@ -1,0 +1,69 @@
+.tabs {
+  position: absolute;
+  top: 96px;
+  left: 52px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  width: 288px;
+}
+
+.list {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 72px);
+  height: 46px;
+  background: var(--example-well);
+  border-radius: 13px;
+}
+
+.host {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 72px;
+  height: 46px;
+}
+
+.pill {
+  position: absolute;
+  inset: 4px;
+  background: var(--example-surface);
+  border-radius: 9px;
+  box-shadow: var(--example-shadow);
+}
+
+/* Labels sit above the pill and stay sharp; only the pill is blurred */
+.tab {
+  position: relative;
+  z-index: 1;
+  font-size: 16px;
+  font-variation-settings: var(--font-weight-500);
+  line-height: 46px;
+  color: var(--text-tertiary);
+  text-align: center;
+
+  &:first-of-type {
+    color: var(--text-primary);
+  }
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.line {
+  height: 10px;
+  background: var(--example-well);
+  border-radius: 5px;
+
+  &:nth-child(2) {
+    width: 80%;
+  }
+
+  &:nth-child(3) {
+    width: 56%;
+  }
+}

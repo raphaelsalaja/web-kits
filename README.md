@@ -27,13 +27,8 @@ pnpm dev
 ## Structure
 
 ```
-apps/web                      Web Kits site
-apps/audio                    Audio docs and registry (audio.raphaelsalaja.com)
-apps/audio-marketing          Audio launch video (Remotion)
-apps/springboard-playground   Springboard playground (Vite)
+apps/web                      Web Kits site, docs and audio registry (web-kits.dev)
 packages/*                    Published packages
-internal/ui                   Shared UI for the apps
-internal/icons                Shared icons for the apps
 skills/create-sound           Agent skill for writing audio patches
 .web-kits/                    First-party audio patches
 ```

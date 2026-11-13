@@ -1,0 +1,16 @@
+---
+title: When to Use It
+description: What to blur, and what to leave sharp.
+---
+
+Blur what the eye can't follow: a thrown card, a sheet being dismissed, a panel snapping in, a spinner. Leave it off anything the reader tracks or reads, like scrolling, carousels and lists sliding into place. The screen already blurs what the eye follows, and more blur on top turns text into grey bars.
+
+A panel snapping in on an ease-out is fastest on its first frames, so the blur is strongest there and gone by the time it settles, which is when you'd start reading it.
+
+<Example>
+  <Snap />
+</Example>
+
+## Background Tabs
+
+A background tab throttles `requestAnimationFrame`, which stretches the frame time and every streak with it, so check streak lengths in a focused tab.

@@ -13,8 +13,7 @@
       "!**/node_modules/**/*",
       "!**/.source/**/*",
       "!**/*.md",
-      "!.web-kits",
-      "!apps/audio-marketing/src/generated"
+      "!.web-kits"
     ]
   },
   "formatter": {
@@ -60,5 +59,17 @@
         "useSortedProperties": "on"
       }
     }
-  }
+  },
+  "overrides": [
+    {
+      "includes": ["apps/web/components/icons/**"],
+      "linter": {
+        "rules": {
+          "a11y": {
+            "noSvgWithoutTitle": "off"
+          }
+        }
+      }
+    }
+  ]
 }

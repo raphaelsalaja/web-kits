@@ -1,1 +1,0 @@
-@web-kits/audio — Declarative audio synthesis for the web.

@@ -1,0 +1,58 @@
+---
+title: Introduction
+description: Apple's motion for the web, from the values iOS and macOS ship.
+---
+
+Apple's motion for the web, from the values iOS and macOS ship. Open a popup out of its button the way SpringBoard opens an app, minimise a window into its icon the way the Dock does, morph a menu out of a glass button the way iOS 27 does, or use SwiftUI's, UIKit's and SpringBoard's springs on anything else. It works with plain DOM, React, Base UI and Motion.
+
+<Example>
+  <Launch />
+</Example>
+
+Read how they work, with live examples, in the write-ups on [opening an app](https://www.raphaelsalaja.com/work/apple), [the genie](https://www.raphaelsalaja.com/work/genie) and [the glass menu](https://www.raphaelsalaja.com/work/glass-menu).
+
+## Quick Start
+
+The element that opens is the **popup**, and the element it opens out of is `from`, like an app's icon. `origin` opens one out of the other with an effect: `launch()` grows it out like an app, `genie()` brings it back out of the Dock, and `morph()` pours it out of a glass button like an iOS 27 menu.
+
+```ts
+import { launch, origin } from "@web-kits/springboard";
+
+const note = origin(document.querySelector(".note")!, {
+  from: document.querySelector(".new-note"),
+  effect: launch(),
+});
+
+button.addEventListener("click", () => note.toggle());
+```
+
+The popup starts closed and hidden. Every effect draws copies of the popup in a layer next to it, so give the popup a positioned parent, or pass `bounds`. `from` and `bounds` take an element, a ref or a function that returns one, read each time a run starts, so they can be rendered later.
+
+## Effects
+
+Each effect takes its own options:
+
+```ts
+import { genie, launch, swiftui } from "@web-kits/springboard";
+
+launch({ springs: { open: swiftui.snappy }, grid: { columns: 8, rows: 6 } });
+genie({ edge: "left", duration: 0.6 });
+```
+
+`genie()` minimises a window into its Dock icon. Tap a window to minimise it and its icon to bring it back:
+
+<Example>
+  <Genie />
+</Example>
+
+`morph()` pours a menu out of a glass button:
+
+<Example>
+  <GlassMenu />
+</Example>
+
+An effect is a plain value, so to share one, export it and use it everywhere:
+
+```ts
+export const zoom = launch({ springs: { open: swiftui.snappy } });
+```

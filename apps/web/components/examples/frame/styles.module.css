@@ -1,0 +1,43 @@
+.example {
+  margin: 24px 0;
+}
+
+/* Without controls: one card. */
+.example:not(:has([data-controls], [data-panels])),
+.example [data-panels] > * {
+  overflow: hidden;
+  background: var(--background-primary);
+  border-radius: 12px;
+  box-shadow:
+    0 1px 3px oklch(0 0 0 / calc(8% * var(--shadow-strength))),
+    0 0 0 1px oklch(0 0 0 / calc(4% * var(--shadow-strength)));
+}
+
+.example [data-panels] {
+  gap: 8px;
+}
+
+/* With controls: the stage, then its controls under it. Every box between
+   the frame and the controls steps aside so the two stack directly. */
+.example:has([data-controls]) {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.example:has(> * > [data-controls]) > *,
+.example:has(> * > * > [data-controls]) > *,
+.example:has(> * > * > [data-controls]) > * > * {
+  display: contents;
+}
+
+.example:has(> [data-controls]) > :not([data-controls]),
+.example:has(> * > [data-controls]) > * > :not([data-controls]),
+.example:has(> * > * > [data-controls]) > * > * > :not([data-controls]) {
+  flex: 1 1 auto;
+  min-height: 320px;
+  overflow: hidden;
+  background: var(--background-primary);
+  border-radius: 10px;
+  box-shadow: 0 0 0 1px var(--border-primary);
+}
