@@ -14,15 +14,15 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.5",
-    "@biomejs/biome": "2.6.6",
+    "@biomejs/biome": "2.6.8",
     "@changesets/cli": "^2.31.0",
     "@commitlint/cli": "^20.5.0",
     "@commitlint/config-conventional": "^20.5.0",
     "@web-kits/audio": "workspace:^",
     "husky": "^9.1.7",
-    "prettier": "^3.8.3",
+    "prettier": "^3.10.1",
     "publint": "^0.3.25",
-    "turbo": "^2.9.6",
+    "turbo": "^2.11.13",
     "typescript": "catalog:"
   },
   "packageManager": "pnpm@9.15.4",
